@@ -1,0 +1,18 @@
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" placeholder = "Introduce tu email" formControlName="email">
+        <p class="error" *ngIf="checkControl('email', 'required')">Este campo es requerido</p>
+        <p class="error" *ngIf="checkControl('email', 'pattern')">El email tiene formato incorrecto</p>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="text" class="form-control" placeholder = "Introduce tu contraseña" formControlName="password">
+        <p class="error" *ngIf="checkControl('password', 'required')">Este campo es requerido</p>
+        <p class="error" *ngIf="checkControl('password', 'minLength')">La contraseña no tiene el mínimo de 8 carácteres</p>
+    </div>
+    <input type="submit" value="Enviar" class="btn btn-info" [disabled]="!formLogin.valid">
+</form>
+    <p class="error">{{errorMessage}}</p>
+
+<button [routerLink]="['/register']">¿Aún no eres usuario? ¡Regístrate!</button>
