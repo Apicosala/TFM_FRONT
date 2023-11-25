@@ -47,6 +47,7 @@ export class FormLoginComponent {
       //Login correcto
       localStorage.setItem('auth_token', response.token);
       //Navego a la ruta principal
+      //TODO: Revisar que navegue a main correctamente
       this.router.navigate(['/']);
     }
   }
