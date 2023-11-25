@@ -7,9 +7,9 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Contraseña</label>
-        <input type="text" class="form-control" placeholder = "Introduce tu contraseña" formControlName="password">
+        <input type="password" class="form-control" placeholder = "Introduce tu contraseña" formControlName="password">
         <p class="error" *ngIf="checkControl('password', 'required')">Este campo es requerido</p>
-        <p class="error" *ngIf="checkControl('password', 'minLength')">La contraseña no tiene el mínimo de 8 carácteres</p>
+        <p class="error" *ngIf="checkControl('password', 'minlength')">La contraseña debe tener al menos 8 caracteres</p>
     </div>
     <input type="submit" value="Enviar" class="btn btn-info" [disabled]="!formLogin.valid">
 </form>
