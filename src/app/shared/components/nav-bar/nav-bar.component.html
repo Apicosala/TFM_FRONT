@@ -8,6 +8,6 @@
         <li *ngIf="usersService.isLogged()">Mis alumnos</li>
         <li *ngIf="usersService.isLogged()">Profesores</li>
         <li *ngIf="usersService.isLogged()">Alumnos</li>
-        <li (click)="onClickLogOut()">Desconectar</li>
+        <li *ngIf="usersService.isLogged()" (click)="onClickLogOut()">Desconectar</li>
     </ul>
 </nav>
