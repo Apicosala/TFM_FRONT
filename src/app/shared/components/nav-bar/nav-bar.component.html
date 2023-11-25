@@ -1,13 +1,13 @@
 <nav>
     <ul>
-        <li>Inicio</li>
-        <li>Iniciar sesión</li>
-        <li>Registrarse</li>
-        <li>Mi perfil</li>
-        <li>Mis clases</li>
-        <li>Mis alumnos</li>
-        <li>Profesores</li>
-        <li>Alumnos</li>
-        <li>Desconectar</li>
+        <li [routerLink]="['/']">Inicio</li>
+        <li *ngIf="!usersService.isLogged()">Iniciar sesión </li>
+        <li *ngIf="!usersService.isLogged()">Registrarse</li>
+        <li *ngIf="usersService.isLogged()">Mi perfil</li>
+        <li *ngIf="usersService.isLogged()">Mis clases</li>
+        <li *ngIf="usersService.isLogged()">Mis alumnos</li>
+        <li *ngIf="usersService.isLogged()">Profesores</li>
+        <li *ngIf="usersService.isLogged()">Alumnos</li>
+        <li (click)="onClickLogOut()">Desconectar</li>
     </ul>
 </nav>
