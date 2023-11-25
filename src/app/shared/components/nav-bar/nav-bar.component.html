@@ -1,7 +1,7 @@
 <nav>
     <ul>
         <li [routerLink]="['/']">Inicio</li>
-        <li *ngIf="!usersService.isLogged()">Iniciar sesión </li>
+        <li [routerLink]="['/auth', 'login']" *ngIf="!usersService.isLogged()">Iniciar sesión </li>
         <li *ngIf="!usersService.isLogged()">Registrarse</li>
         <li *ngIf="usersService.isLogged()">Mi perfil</li>
         <li *ngIf="usersService.isLogged()">Mis clases</li>
