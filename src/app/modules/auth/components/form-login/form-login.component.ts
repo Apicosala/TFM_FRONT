@@ -21,7 +21,7 @@ export class FormLoginComponent {
         Validators.required,
         Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/),
       ]),
-      password: new FormControl('', [
+      pass: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
       ]),
@@ -47,7 +47,6 @@ export class FormLoginComponent {
       //Login correcto
       localStorage.setItem('auth_token', response.token);
       //Navego a la ruta principal
-      //TODO: Revisar que navegue a main correctamente
       this.router.navigate(['/']);
     }
   }
