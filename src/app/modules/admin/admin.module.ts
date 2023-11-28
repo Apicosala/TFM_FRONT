@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { StudentListComponent } from './components/student-list/student-list.component';
@@ -13,7 +15,8 @@ import { TeachersListComponent } from './components/teachers-list/teachers-list.
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatExpansionModule
   ]
 })
 export class AdminModule { }

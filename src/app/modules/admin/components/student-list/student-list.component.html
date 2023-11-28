@@ -1,8 +1,23 @@
-<div class="card mb-3 mt-5" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<h1>ALUMNOS</h1>
+<mat-accordion>
+
+  <div *ngFor="let student of arrStudents">
+    <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
+      <mat-expansion-panel-header>
+        <img class="card-img-top" src="{{student.foto}}" alt="Imagen de perfil de: {{student.nombre}}">
+        <div class="card-body">
+          <h5 class="card-title">{{student.nombre}} {{student.apellidos}}</h5>  
+          <button class="btn btn-primary" (click)="deactivateStudent(student)">Dar de baja al alumno</button>
+          <button mat-button (click)="togglePanel(student.id)">Mostrar más información</button>
+        </div>
+      </mat-expansion-panel-header>
+
+      <!-- Contenido del panel de expansión -->
+      <div>
+        <p>Correo electrónico: {{student.mail}}</p>
+        <p>Teléfono: {{student.tel}}</p>
+        <!-- Otros detalles según tus necesidades -->
+      </div>
+    </mat-expansion-panel>
   </div>
-</div>
+</mat-accordion>
