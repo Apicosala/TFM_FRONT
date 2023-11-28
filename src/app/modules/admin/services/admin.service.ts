@@ -17,15 +17,15 @@ export class AdminService {
       .get<IUser[]>(`${this.baseUrl}/todos`)
       .pipe(
         map((users) =>
-          users.filter((user) => user.activo === true && user.rol === 'alumn')
+          users.filter((user) => user.activo && user.rol === 'alumn')
         )
       );
   }
 
-  deactivateStudent(id: number): Observable<IUser> {
+  deactivateStudent(id: number, student: IUser): Observable<IUser> {
     const url = `${this.baseUrl}/${id}`;
-    const deactivateStudent = { activo: false };
+    const updatedStudent = { ...student, activo: false };
 
-    return this.httpClient.put<IUser>(url, deactivateStudent);
+    return this.httpClient.put<IUser>(url, updatedStudent);
   }
 }

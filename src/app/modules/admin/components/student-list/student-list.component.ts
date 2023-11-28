@@ -19,18 +19,21 @@ export class StudentListComponent implements OnInit {
         this.adminService.getAllActiveStudents()
       );
       this.arrStudents = response;
+      console.log(response);
     } catch (error) {
       console.error('Error al cargar los estudiantes', error);
     }
   }
-
   async deactivateStudent(student: IUser) {
     try {
-      await lastValueFrom(this.adminService.deactivateStudent(student.id));
+      await lastValueFrom(
+        this.adminService.deactivateStudent(student.id, student)
+      );
 
-      // Actualizar la lista de estudiantes después de desactivar
+      // Cargar los estudiantes después de desactivar
       await this.loadStudents();
-      //TODO: Poner alerta?
+
+      // TODO: Poner alerta?
       console.log('Estudiante desactivado con éxito');
     } catch (error) {
       console.error('Error al desactivar al estudiante', error);
@@ -43,10 +46,12 @@ export class StudentListComponent implements OnInit {
         this.adminService.getAllActiveStudents()
       );
       this.arrStudents = response;
+      console.log(response);
     } catch (error) {
       console.error('Error al cargar los estudiantes', error);
     }
   }
+
   // Uso la librería de Angular Material para crear un acordeón con información adicional
   // Variable para rastrear los paneles abiertos
   expandedPanels: Set<number> = new Set<number>();
