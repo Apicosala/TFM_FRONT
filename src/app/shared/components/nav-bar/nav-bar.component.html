@@ -1,13 +1,33 @@
-<nav>
-    <ul>
-        <li [routerLink]="['/']">Inicio</li>
-        <li [routerLink]="['/auth', 'login']" *ngIf="!usersService.isLogged()">Iniciar sesión </li>
-        <li *ngIf="!usersService.isLogged()">Registrarse</li>
-        <li *ngIf="usersService.isLogged()">Mi perfil</li>
-        <li *ngIf="usersService.isLogged()">Mis clases</li>
-        <li *ngIf="usersService.isLogged()">Mis alumnos</li>
-        <li *ngIf="usersService.isLogged()">Profesores</li>
-        <li *ngIf="usersService.isLogged()">Alumnos</li>
-        <li *ngIf="usersService.isLogged()" (click)="onClickLogOut()">Desconectar</li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" [routerLink]="['/']">Inicio</a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item" *ngIf="!usersService.isLogged()">
+        <a class="nav-link" [routerLink]="['/auth', 'login']">Iniciar sesión</a>
+      </li>
+      <li class="nav-item" *ngIf="!usersService.isLogged()">
+        <a class="nav-link" [routerLink]="['/auth', 'register']">Registrarse</a>
+      </li>
+      <li class="nav-item" *ngIf="usersService.isLogged()">
+        <a class="nav-link" [routerLink]="['/profile']">Mi perfil</a>
+      </li>
+      <li class="nav-item" *ngIf="usersService.isLogged()">
+        <a class="nav-link" [routerLink]="['/my-classes']">Mis clases</a>
+      </li>
+      <li class="nav-item" *ngIf="usersService.isLogged()">
+        <a class="nav-link" [routerLink]="['/my-students']">Mis alumnos</a>
+      </li>
+      <li class="nav-item" *ngIf="usersService.isLogged()">
+        <a class="nav-link" [routerLink]="['/teachers']">Profesores</a>
+      </li>
+      <li class="nav-item" *ngIf="usersService.isLogged()">
+        <a class="nav-link" [routerLink]="['/students']">Alumnos</a>
+      </li>
+      <li class="nav-item" *ngIf="usersService.isLogged()" (click)="onClickLogOut()">
+        <a class="nav-link" href="#">Desconectar</a>
+      </li>
     </ul>
+  </div>
 </nav>
+
