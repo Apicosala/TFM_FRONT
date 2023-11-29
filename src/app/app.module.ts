@@ -8,11 +8,13 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormUsuariosComponent } from './shared/components/form-usuarios/form-usuarios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+    FormUsuariosComponent,
+
   ],
   imports: [
     BrowserModule,

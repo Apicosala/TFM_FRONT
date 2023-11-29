@@ -1,0 +1,13 @@
+<main>
+    <div class="usuario">
+      <img class="imagenUsuario mt-5" [src]="miUsuario?.foto" [alt]="miUsuario?.nombre" />
+      <h1 class="nombre mt-5">{{miUsuario?.nombre}} {{miUsuario?.apellidos}}</h1>
+      <ul class="list">
+        <li class="list__item">{{miUsuario?.mail}}</li>
+        <li class="list__item">{{miUsuario?.tel}}</li>
+      </ul>
+    </div>
+  
+    <app-form-usuarios></app-form-usuarios>
+  
+  </main>
