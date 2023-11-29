@@ -1,0 +1,18 @@
+<div class="onlyCard shadow p-3 mb-5 bg-body-tertiary rounded">
+    <div class="cardComponent" [routerLink]="['/src/app/modules/usuario', miUsuario.alumno_id]">
+
+        <img class="imageAlumno" [src]="miUsuario.foto" [alt]="miUsuario.nombre">
+        <div class="text">
+            <h2 class="card-nombre">{{miUsuario.nombre}} {{miUsuario.apellidos}}</h2>
+            <h3 class="card-clase">Nombre de la clase</h3>
+        </div>
+        <div class="buttons">
+            <a class="button1" type="submit">
+                <span>Aceptar</span>
+            </a>
+            <a class="button2" type="submit">
+                <span>Cancelar</span>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,171 @@
+<div *ngIf="usuario?.rol === 'alumn'; else profesorTemplate">
+  <!-- FORMULARIO PERSONAL -->
+
+  <div class="container-fluid formulario">
+    <h3 class="h3Titulo">Actualiza tus datos personales</h3>
+    <div class="form">
+      <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
+
+        <div class="containerForm">
+          <input class="input" type="text" id="nombre" formControlName="nombre" />
+          <label class="label" for="nombre">Nombre</label>
+          <p class="error" *ngIf="checkControl('nombre')">Tu nombre debe de contener al menos 3 letras.</p>
+        </div>
+
+        <div class="containerForm">
+          <input class="input" type="text" id="apellidos" formControlName="apellidos" />
+          <label class="label" for="apellidos">Apellidos</label>
+          <p class="error" *ngIf="checkControl('apellidos')">Tu apellido debe de contener al menos 3 letras.</p>
+        </div>
+
+        <div class="containerForm">
+          <input class="input" type="email" id="mail" formControlName="mail" />
+          <label class="label" for="mail">correo</label>
+          <p class="error" *ngIf="checkControl('mail')">Tu correo electrónico es incorrecto.</p>
+        </div>
+
+        <div class="containerForm">
+          <input class="input" type="text" id="tel" formControlName="tel" />
+          <label class="label" for="tel">Teléfono</label>
+          <p class="error" *ngIf="checkControl('tel')">Tu teléfono no puede contener ni espacios ni caracteres
+            especiales.</p>
+        </div>
+
+        <div class="containerForm">
+          <input class="input" type="text" id="foto" formControlName="foto" />
+          <label class="label" for="foto">Fotografía</label>
+        </div>
+
+        <div class="containerForm">
+          <input class="input" type="password" id="pass" formControlName="pass" />
+          <label class="label" for="pass">Contraseña</label>
+          <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra, contener al menos
+            un dígito y contener al menos 8 caracteres.</p>
+        </div>
+
+        <div class="containerForm">
+          <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
+          <label class="label" for="repetirPass">Repite tu contraseña</label>
+          <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
+
+        </div>
+
+
+        <input class="button span" type="submit" value="actualizar">
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<ng-template #profesorTemplate>
+  <!-- FORMULARIO PROFESOR-->
+
+  <div class="todoForm">
+    <h3 class="nombreH3">Actualiza tus datos</h3>
+
+    <!-- ACORDEON1 -->
+
+    <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button header" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseOne">
+            Personales
+          </button>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <div class="form">
+                <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
+                  <div class="containerForm">
+                    <input class="input" type="text" id="nombre" formControlName="nombre" />
+                    <label class="label" for="nombre">Nombre</label>
+                    <p class="error" *ngIf="checkControl('nombre')">Tu nombre debe de contener al menos 3 letras.</p>
+                  </div>
+
+                  <div class="containerForm">
+                    <input class="input" type="text" id="apellidos" formControlName="apellidos" />
+                    <label class="label" for="apellidos">Apellidos</label>
+                    <p class="error" *ngIf="checkControl('apellidos')">Tu apellido debe de contener al menos 3 letras.
+                    </p>
+                  </div>
+
+                  <div class="containerForm">
+                    <input class="input" type="email" id="mail" formControlName="mail" />
+                    <label class="label" for="mail">correo</label>
+                    <p class="error" *ngIf="checkControl('mail')">Tu correo electrónico es incorrecto.</p>
+                  </div>
+
+                  <div class="containerForm">
+                    <input class="input" type="text" id="tel" formControlName="tel" />
+                    <label class="label" for="tel">Teléfono</label>
+                    <p class="error" *ngIf="checkControl('tel')">Tu teléfono no puede contener ni espacios ni
+                      caracteres especiales.</p>
+                  </div>
+
+                  <div class="containerForm">
+                    <input class="input" type="text" id="foto" formControlName="foto" />
+                    <label class="label" for="foto">Fotografía</label>
+                  </div>
+
+                  <div class="containerForm">
+                    <input class="input" type="password" id="pass" formControlName="pass" />
+                    <label class="label" for="pass">Contraseña</label>
+                    <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra,
+                      contener al menos un dígito y contener al menos 8 caracteres.</p>
+                  </div>
+
+                  <div class="containerForm">
+                    <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
+                    <label class="label" for="repetirPass">Repite tu contraseña</label>
+                    <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
+                  </div>
+                  <input class="button span" type="submit" value="actualizar">
+                </form>
+              </div>
+            </div>
+          </div>
+        </h2>
+      </div>
+
+      <!-- ACORDEON 2 -->
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed header" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseTwo">
+            Profesionales
+          </button>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              <div class="form">
+                <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
+
+                  <div class="containerForm">
+                    <input class="input" type="text" id="experiencia" formControlName="experiencia" />
+                    <label class="label" for="experiencia">Experiencia</label>
+                  </div>
+
+                  <div class="containerForm">
+                    <input class="input" type="number" id="precio" formControlName="precio" />
+                    <label class="label" for="precio">Precio/h</label>
+                  </div>
+
+                  <div class=" containerForm check">
+                    <label class="title__check" for="localizacion">¿Deseas añadir la localización de tus clases?</label>
+                    <input class="input__ckeck" type="checkbox" id="localizacion" formControlName="localizacion" />
+                  </div>
+
+
+                  <input class="button span" type="submit" value="actualizar">
+                </form>
+              </div>
+            </div>
+          </div>
+        </h2>
+      </div>
+    </div>
+  </div>
+</ng-template>
