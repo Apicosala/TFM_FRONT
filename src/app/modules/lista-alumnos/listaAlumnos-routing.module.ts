@@ -6,7 +6,7 @@ import { ListaAlumnosComponent } from './components/lista-alumnos.component';
 
 const routes: Routes = [
     
-  { path: ':profesorId/alumnos', component: ListaAlumnosComponent },
+  { path: ':usuarioId', component: ListaAlumnosComponent },
 
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class ListaAlumnosRoutingModule { }

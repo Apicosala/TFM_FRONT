@@ -19,10 +19,9 @@ export class StudentListComponent implements OnInit {
         this.adminService.getAllActiveStudents()
       );
       this.arrStudents = response;
-      console.log(response);
     } catch (error) {
       console.error('Error al cargar los estudiantes', error);
-    }
+    };
   }
   async deactivateStudent(student: IUser) {
     try {

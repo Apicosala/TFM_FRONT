@@ -5,10 +5,11 @@ import { UsersService } from 'src/app/modules/auth/services/users.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent {
-//TODO: Poner los routerlink en HTML una vez tengamos todos los componentes definidos + Filtrar accesos por rol
+
+  //TODO: Poner los routerlink en HTML una vez tengamos todos los componentes definidos + Filtrar accesos por rol
   router = inject(Router);
   public usersService = inject(UsersService);
 
@@ -17,5 +18,4 @@ export class NavBarComponent {
     localStorage.removeItem('auth_token');
     this.router.navigate(['auth', 'login']);
   }
-
 }

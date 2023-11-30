@@ -10,13 +10,13 @@
         <a class="nav-link" [routerLink]="['/auth', 'register']">Registrarse</a>
       </li>
       <li class="nav-item" *ngIf="usersService.isLogged()">
-        <a class="nav-link" [routerLink]="['/profile']">Mi perfil</a>
+        <a class="nav-link" [routerLink]="['/usuario', ':usuarioId']">Mi perfil</a>
       </li>
       <li class="nav-item" *ngIf="usersService.isLogged()">
-        <a class="nav-link" [routerLink]="['/my-classes']">Mis clases</a>
+        <a class="nav-link" [routerLink]="['/clases', ':usuarioId']">Mis clases</a>
       </li>
       <li class="nav-item" *ngIf="usersService.isLogged()">
-        <a class="nav-link" [routerLink]="['/my-students']">Mis alumnos</a>
+        <a class="nav-link" [routerLink]="['/alumnos', ':usuarioId']">Mis alumnos</a>
       </li>
       <li class="nav-item" *ngIf="usersService.isLogged()">
         <a class="nav-link" [routerLink]="['/admin', 'teachersList']">Profesores</a>

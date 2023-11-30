@@ -5,7 +5,7 @@ import { UsuarioComponent } from './components/usuario.component';
 
 const routes: Routes = [
     
-  { path: 'usuarios/:usuarioId', component: UsuarioComponent },
+  { path: ':usuarioId', component: UsuarioComponent },
 
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class UsuarioRoutingModule { }
