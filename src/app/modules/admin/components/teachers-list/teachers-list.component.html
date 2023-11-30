@@ -1,1 +1,37 @@
-<p>teachers-list works!</p>
+<h1 class="mt-4 mb-4">PROFESORES</h1>
+<mat-accordion>
+  <div *ngFor="let teacher of arrTeachers" class="mb-3">
+    <mat-expansion-panel [expanded]="isPanelExpanded(teacher.id)">
+      <mat-expansion-panel-header
+        class="d-flex justify-content-between align-items-center"
+      >
+        <div class="d-flex align-items-center">
+          <img
+            class="card-img-top rounded-circle img-fluid mr-3 w-25"
+            src="{{ teacher.foto }}"
+            alt="Imagen de perfil de: {{ teacher.nombre }}"
+          />
+          <div class="card-body">
+            <h5 class="card-title mb-0">
+              {{ teacher.nombre }} {{ teacher.apellidos }}
+            </h5>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-danger" (click)="deactivateStudent(teacher)">
+            Dar de baja al profesor
+          </button>
+        </div>
+      </mat-expansion-panel-header>
+      <!-- Contenido del panel de expansión -->
+      <div class="d-flex p-3 justify-content-around">
+        <div class="mr-3">
+          <p class="mb-1">
+            <strong>Correo electrónico:</strong> {{ teacher.mail }}
+          </p>
+          <p class="mb-0"><strong>Teléfono:</strong> {{ teacher.tel }}</p>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>

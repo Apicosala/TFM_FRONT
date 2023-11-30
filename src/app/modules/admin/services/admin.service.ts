@@ -28,4 +28,20 @@ export class AdminService {
 
     return this.httpClient.put<IUser>(url, updatedStudent);
   }
+
+  getAllActiveTeachers(): Observable<IUser[]> {
+    return this.httpClient
+      .get<IUser[]>(`${this.baseUrl}/todos`)
+      .pipe(
+        map((users) =>
+          users.filter((user) => user.activo && user.rol === 'prof')
+        )
+      );
+  }
+  desactivateTeacher(id: number, teacher: IUser): Observable<IUser> {
+    const url = `${this.baseUrl}/${id}`;
+    const updatedTeacher = { ...teacher, activo: false };
+
+    return this.httpClient.put<IUser>(url, updatedTeacher);
+  }
 }
