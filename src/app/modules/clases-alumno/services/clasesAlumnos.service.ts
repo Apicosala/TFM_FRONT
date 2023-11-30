@@ -7,7 +7,7 @@ import { Injectable, inject } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ListaAlumnosService {
+export class ClasesAlumnosService {
 
   private baseUrl: string = "http://localhost:3000/api/usuarios/";
 
