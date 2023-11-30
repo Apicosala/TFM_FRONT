@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IUser } from 'src/app/core/models/user.interface';
 
+
 @Component({
   selector: 'app-clases-card',
   templateUrl: './clases-card.component.html',
@@ -8,10 +9,6 @@ import { IUser } from 'src/app/core/models/user.interface';
 })
 export class ClasesCardComponent {
 
-  @Input() infoProfesor!: IUser;
-
-
-
-
+  @Input() infoProfesor: IUser | any;
 
 }

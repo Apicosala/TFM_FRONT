@@ -1,3 +1,6 @@
 <main>
- <app-clases-card *ngFor="let clase of arrUsuarioClases" [infoProfesor] = "getProfesorInfo(clase.profesor_id)"></app-clases-card>
+    <div *ngFor="let profesor of arrProfesores">
+        
+        <app-clases-card [infoProfesor]="profesor[0]"></app-clases-card>
+    </div>
 </main>

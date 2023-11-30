@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ClasesAlumnosService } from '../services/clasesAlumnos.service';
 import { IUser } from 'src/app/core/models/user.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
-import { AnimationStyleMetadata } from '@angular/animations';
+
 
 @Component({
   selector: 'app-clases-alumno',
@@ -13,7 +13,7 @@ import { AnimationStyleMetadata } from '@angular/animations';
 export class ClasesAlumnoComponent {
 
   arrUsuarioClases: SolicitudClase[] = [];
-  arrProfesores: IUser[] = [];
+  arrProfesores: any[] = [];
 
   activatedRoute = inject(ActivatedRoute);
   clasesAlumnoService = inject(ClasesAlumnosService);
@@ -34,15 +34,13 @@ export class ClasesAlumnoComponent {
         const allDataProfesor = profesorIds.map((profesorId: number) => this.clasesAlumnoService.getProfesorById(profesorId));
         this.arrProfesores = await Promise.all(allDataProfesor);
 
+        console.log(this.arrProfesores);
+
       } catch (error) {
         console.log(error) 
         //TODO: mostrar un mensaje de error al usuario.
       } 
     }); 
-  }
-
-  getProfesorInfo(profesorId: number): IUser | any {
-    return this.arrProfesores.find(profesor => profesor.id === profesorId)
   }
 
 }
