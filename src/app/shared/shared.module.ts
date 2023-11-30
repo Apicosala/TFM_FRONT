@@ -14,7 +14,6 @@ import { PeticionCardComponent } from './components/peticion-card/peticion-card.
   declarations: [
     NavBarComponent,
     FormUsuariosComponent,
-    ClasesCardComponent,
     PeticionCardComponent
   ],
   imports: [
@@ -26,7 +25,6 @@ import { PeticionCardComponent } from './components/peticion-card/peticion-card.
   exports: [
     NavBarComponent,
     FormUsuariosComponent,
-    ClasesCardComponent,
     PeticionCardComponent
 
   ]
