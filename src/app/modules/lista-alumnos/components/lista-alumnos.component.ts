@@ -21,8 +21,7 @@ export class ListaAlumnosComponent {
     
     this.activatedRoute.params.subscribe( async (params:any) => {
       try {
-        let id = params.profesorId;
-        
+        let id = params.usuarioId;
         this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id);
         console.log(this.arrUsuario);
       } catch (error) {
