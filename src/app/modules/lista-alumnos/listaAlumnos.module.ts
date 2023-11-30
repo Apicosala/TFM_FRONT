@@ -3,6 +3,7 @@ import { ListaAlumnosComponent } from './components/lista-alumnos.component';
 import { AlumnoCardComponent } from 'src/app/shared/components/alumno-card/alumno-card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ListaAlumnosRoutingModule } from './listaAlumnos-routing.module';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -13,7 +14,8 @@ import { ListaAlumnosRoutingModule } from './listaAlumnos-routing.module';
   ],
   imports: [
     SharedModule,
-    ListaAlumnosRoutingModule
+    ListaAlumnosRoutingModule,
+    CommonModule
   ]
 })
 export class ListaAlumnosModule {}
