@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./teachers-list.component.css'],
 })
 export class TeachersListComponent {
-  arrTeachers: IUser[] = [];
+  arrUnactiveTeachers: IUser[] = [];
+  arrActiveTeachers: IUser[] = [];
   expandedPanels: Set<number> = new Set<number>();
 
   constructor(
@@ -23,7 +24,16 @@ export class TeachersListComponent {
       const response = await lastValueFrom(
         this.adminService.getAllUnactiveTeachers()
       );
-      this.arrTeachers = response;
+      this.arrUnactiveTeachers = response;
+    } catch (error) {
+      console.error('Error al cargar los profesores', error);
+    }
+
+    try {
+      const response = await lastValueFrom(
+        this.adminService.getAllActiveTeachers()
+      );
+      this.arrActiveTeachers = response;
     } catch (error) {
       console.error('Error al cargar los profesores', error);
     }
@@ -36,7 +46,8 @@ export class TeachersListComponent {
       );
 
       // Cargamos los profesores después de activar
-      await this.loadTeachers();
+      await this.loadUnactiveTeachers();
+      await this.loadActiveTeachers();
 
       // Mostrar alerta de éxito
       this.toastr.success('Profesor activado con éxito', 'Éxito');
@@ -46,12 +57,42 @@ export class TeachersListComponent {
     }
   }
 
-  private async loadTeachers() {
+  async deactivateTeacher(teacher: IUser) {
+    try {
+      await lastValueFrom(
+        this.adminService.deactivateTeacher(teacher.id, teacher)
+      );
+
+      // Cargamos los profesores después de activar
+      await this.loadActiveTeachers();
+      await this.loadUnactiveTeachers();
+
+      // Mostrar alerta de éxito
+      this.toastr.success('Profesor desactivado con éxito', 'Éxito');
+    } catch (error) {
+      // Mostrar alerta de error
+      this.toastr.error('Error al desactivar al profesor', 'Error');
+    }
+  }
+
+  private async loadUnactiveTeachers() {
     try {
       const response = await lastValueFrom(
         this.adminService.getAllUnactiveTeachers()
       );
-      this.arrTeachers = response;
+      this.arrUnactiveTeachers = response;
+      console.log(response);
+    } catch (error) {
+      console.error('Error al cargar los profesores', error);
+    }
+  }
+
+  private async loadActiveTeachers() {
+    try {
+      const response = await lastValueFrom(
+        this.adminService.getAllActiveTeachers()
+      );
+      this.arrActiveTeachers = response;
       console.log(response);
     } catch (error) {
       console.error('Error al cargar los profesores', error);
