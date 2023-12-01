@@ -3,8 +3,6 @@ import { Injectable, inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
 
-
-
 @Injectable({
     providedIn: 'root'
 })
@@ -16,12 +14,22 @@ export class PeticionClasesService {
 
     constructor() { }
 
-    // Metodo para cancelar la conexion profesor-alumno
-    cancelarSolicitud(usuarioId: number): Promise<any> {
+    // Metodo para aceptar la conexion profesor-alumno
+    aceptarSolicitud(profesorId: number, alumnoId: number): Promise<any> {
 
-        const profesorId = 20;
-
-        return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}${profesorId}/alumnos/${usuarioId}`));
-
+        return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}${profesorId}/alumnos/`, {alumnoId}))
+            .then(response => {
+                if (response.suces) {
+                    response.activo = true;
+                } 
+                return response;
+            })
     }
-}
+
+
+    // Metodo para cancelar la conexion profesor-alumno
+    cancelarSolicitud(profesorId: number, alumnoId: number): Promise<any> {
+
+        return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}${profesorId}/alumnos`, {body: {alumnoId} })
+        )};
+    }
