@@ -22,9 +22,26 @@ export class AdminService {
       );
   }
 
+  getAllDeactivatedStudents(): Observable<IUser[]> {
+    return this.httpClient
+      .get<IUser[]>(`${this.baseUrl}/todos`)
+      .pipe(
+        map((users) =>
+          users.filter((user) => !user.activo && user.rol === 'alumn')
+        )
+      );
+  }
+
   deactivateStudent(id: number, student: IUser): Observable<IUser> {
     const url = `${this.baseUrl}/${id}`;
     const updatedStudent = { ...student, activo: false };
+
+    return this.httpClient.put<IUser>(url, updatedStudent);
+  }
+
+  activateStudent(id: number, student: IUser): Observable<IUser> {
+    const url = `${this.baseUrl}/${id}`;
+    const updatedStudent = { ...student, activo: true };
 
     return this.httpClient.put<IUser>(url, updatedStudent);
   }
@@ -46,8 +63,7 @@ export class AdminService {
         map((users) =>
           users.filter((user) => user.activo && user.rol === 'prof')
         )
-    );
-
+      );
   } //TODO: Revisar que devuelva TODOS los ususarios inactivos, no solamente los 10 primeros
 
   activateTeacher(id: number, teacher: IUser): Observable<IUser> {
