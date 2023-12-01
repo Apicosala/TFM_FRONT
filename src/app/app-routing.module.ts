@@ -31,6 +31,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/lista-alumnos/listaAlumnos.module').then((m) => m.ListaAlumnosModule),
   },
+  {
+    path: 'foro',
+    loadChildren: () =>
+      import('./modules/foroUsuarios/foro.module').then((m) => m.ForoModule),
+  },
   { path: '**', redirectTo: 'home' },
 ];
 

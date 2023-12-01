@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ForoUsuarioService {
+
+  private baseUrl: string = "http://localhost:3000/api/usuarios/";
+
+  httpClient = inject(HttpClient);
 
   constructor() { }
 }

@@ -13,6 +13,9 @@
         <a class="nav-link" [routerLink]="['/usuario', ':usuarioId']">Mi perfil</a>
       </li>
       <li class="nav-item" *ngIf="usersService.isLogged()">
+        <a class="nav-link" [routerLink]="['/foro', ':usuarioId']">Foro</a>
+      </li>
+      <li class="nav-item" *ngIf="usersService.isLogged()">
         <a class="nav-link" [routerLink]="['/clases', ':usuarioId']">Mis clases</a>
       </li>
       <li class="nav-item" *ngIf="usersService.isLogged()">
