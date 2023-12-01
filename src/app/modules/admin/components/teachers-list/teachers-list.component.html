@@ -1,34 +1,50 @@
 <h1 class="mt-4 mb-4">PROFESORES</h1>
+<h3>Peticiones de alta de profesores</h3>
 <mat-accordion>
-  <div *ngFor="let teacher of arrTeachers" class="mb-3">
+  <div *ngFor="let teacher of arrUnactiveTeachers" class="mb-3">
     <mat-expansion-panel [expanded]="isPanelExpanded(teacher.id)">
-      <mat-expansion-panel-header
-        class="d-flex justify-content-between align-items-center"
-      >
+      <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
-          <img
-            class="card-img-top rounded-circle img-fluid mr-3 w-25"
-            src="{{ teacher.foto }}"
-            alt="Imagen de perfil de: {{ teacher.nombre }}"
-          />
+          <img class="card-img-top rounded-circle img-fluid mr-3 w-25" [src]="teacher.foto" alt="Imagen de perfil de: {{ teacher.nombre }}" />
           <div class="card-body">
-            <h5 class="card-title mb-0">
-              {{ teacher.nombre }} {{ teacher.apellidos }}
-            </h5>
+            <h5 class="card-title mb-0">{{ teacher.nombre }} {{ teacher.apellidos }}</h5>
           </div>
         </div>
         <div>
-          <button class="btn btn-success" (click)="activateTeacher(teacher)">
-            Dar de alta al profesor
-          </button>
-        </div> 
+          <button class="btn btn-success" (click)="activateTeacher(teacher)">Dar de alta al profesor</button>
+        </div>
       </mat-expansion-panel-header>
       <!-- Contenido del panel de expansión -->
       <div class="d-flex p-3 justify-content-around">
         <div class="mr-3">
-          <p class="mb-1">
-            <strong>Correo electrónico:</strong> {{ teacher.mail }}
-          </p>
+          <p class="mb-1"><strong>Correo electrónico:</strong> {{ teacher.mail }}</p>
+          <p class="mb-0"><strong>Teléfono:</strong> {{ teacher.tel }}</p>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>
+
+<h3>Profesores activos</h3>
+
+<mat-accordion>
+  <div *ngFor="let teacher of arrActiveTeachers" class="mb-3">
+    <mat-expansion-panel [expanded]="isPanelExpanded(teacher.id)">
+      <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <img class="card-img-top rounded-circle img-fluid mr-3 w-25" [src]="teacher.foto" alt="Imagen de perfil de: {{ teacher.nombre }}" />
+          <div class="card-body">
+            <h5 class="card-title mb-0">{{ teacher.nombre }} {{ teacher.apellidos }}</h5>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-danger" (click)="deactivateTeacher(teacher)">Dar de baja al profesor</button>
+        </div>
+      </mat-expansion-panel-header>
+      <!-- Contenido del panel de expansión -->
+      <div class="d-flex p-3 justify-content-around">
+        <div class="mr-3">
+          <p class="mb-1"><strong>Correo electrónico:</strong> {{ teacher.mail }}</p>
           <p class="mb-0"><strong>Teléfono:</strong> {{ teacher.tel }}</p>
         </div>
       </div>

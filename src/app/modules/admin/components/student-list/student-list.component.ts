@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { IUser } from 'src/app/core/models/user.interface';
 import { lastValueFrom } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-list',
@@ -9,19 +10,32 @@ import { lastValueFrom } from 'rxjs';
   styleUrls: ['./student-list.component.css'],
 })
 export class StudentListComponent implements OnInit {
-  arrStudents: IUser[] = [];
+  arrActiveStudents: IUser[] = [];
+  arrDeactivatedStudents: IUser[] = [];
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private toastr: ToastrService
+  ) {}
 
   async ngOnInit() {
     try {
       const response = await lastValueFrom(
         this.adminService.getAllActiveStudents()
       );
-      this.arrStudents = response;
+      this.arrActiveStudents = response;
     } catch (error) {
       console.error('Error al cargar los estudiantes', error);
-    };
+    }
+
+    try {
+      const response = await lastValueFrom(
+        this.adminService.getAllDeactivatedStudents()
+      );
+      this.arrDeactivatedStudents = response;
+    } catch (error) {
+      console.error('Error al cargar los estudiantes', error);
+    }
   }
   async deactivateStudent(student: IUser) {
     try {
@@ -30,24 +44,64 @@ export class StudentListComponent implements OnInit {
       );
 
       // Cargar los estudiantes después de desactivar
-      await this.loadStudents();
-
-      // TODO: Poner alerta?
-      console.log('Estudiante desactivado con éxito');
+      await this.loadActiveStudents();
+      await this.loadDeactivatedStudents();
+      this.toastr.success('Alumno desactivado con éxito', 'Éxito', {
+        positionClass: 'toast-bottom-right',
+      });
+      console.log('Alumno desactivado con éxito');
     } catch (error) {
       console.error('Error al desactivar al estudiante', error);
+
+      this.toastr.error('Error al desactivar al estudiante', 'Error', {
+        positionClass: 'toast-bottom-right',
+      });
     }
   }
 
-  private async loadStudents() {
+  async activateStudent(student: IUser) {
+    try {
+      await lastValueFrom(
+        this.adminService.activateStudent(student.id, student)
+      );
+
+      // Cargar los estudiantes después de desactivar
+      await this.loadActiveStudents();
+      await this.loadDeactivatedStudents();
+      this.toastr.success('Alumno activado con éxito', 'Éxito', {
+        positionClass: 'toast-bottom-right',
+      });
+      console.log('Alumno activado con éxito');
+    } catch (error) {
+      console.error('Error al activar al estudiante', error);
+
+      this.toastr.error('Error al activar al estudiante', 'Error', {
+        positionClass: 'toast-bottom-right',
+      });
+    }
+  }
+
+  private async loadActiveStudents() {
     try {
       const response = await lastValueFrom(
         this.adminService.getAllActiveStudents()
       );
-      this.arrStudents = response;
+      this.arrActiveStudents = response;
       console.log(response);
     } catch (error) {
-      console.error('Error al cargar los estudiantes', error);
+      console.error('Error al cargar los estudiantes activos', error);
+    }
+  }
+
+  private async loadDeactivatedStudents() {
+    try {
+      const response = await lastValueFrom(
+        this.adminService.getAllDeactivatedStudents()
+      );
+      this.arrDeactivatedStudents = response; // Corregir aquí
+      console.log(response);
+    } catch (error) {
+      console.error('Error al cargar los estudiantes desactivados', error);
     }
   }
 
