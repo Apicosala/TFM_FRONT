@@ -28,7 +28,7 @@
         <a class="nav-link" [routerLink]="['/admin', 'studentsList']">Alumnos</a>
       </li>
       <li class="nav-item" *ngIf="usersService.isLogged()" (click)="onClickLogOut()">
-        <a class="nav-link" href="#">Desconectar</a>
+        <a class="nav-link">Desconectar</a>
       </li>
     </ul>
   </div>
