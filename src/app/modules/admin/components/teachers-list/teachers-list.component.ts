@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { IUser } from 'src/app/core/models/user.interface';
 import { lastValueFrom } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-teachers-list',
@@ -10,8 +11,12 @@ import { lastValueFrom } from 'rxjs';
 })
 export class TeachersListComponent {
   arrTeachers: IUser[] = [];
+  expandedPanels: Set<number> = new Set<number>();
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private toastr: ToastrService
+  ) {}
 
   async ngOnInit() {
     try {
@@ -23,19 +28,21 @@ export class TeachersListComponent {
       console.error('Error al cargar los profesores', error);
     }
   }
+
   async activateTeacher(teacher: IUser) {
     try {
       await lastValueFrom(
         this.adminService.activateTeacher(teacher.id, teacher)
       );
 
-      // Cargar los estudiantes después de desactivar
+      // Cargamos los profesores después de activar
       await this.loadTeachers();
 
-      // TODO: Poner alerta?
-      console.log('Profesor activado con éxito');
+      // Mostrar alerta de éxito
+      this.toastr.success('Profesor activado con éxito', 'Éxito');
     } catch (error) {
-      console.error('Error al activar al profesor', error);
+      // Mostrar alerta de error
+      this.toastr.error('Error al activar al profesor', 'Error');
     }
   }
 
@@ -52,8 +59,6 @@ export class TeachersListComponent {
   }
 
   // Uso la librería de Angular Material para crear un acordeón con información adicional
-  // Variable para rastrear los paneles abiertos
-  expandedPanels: Set<number> = new Set<number>();
 
   // Método para alternar la expansión de un panel
   togglePanel(teacherId: number) {

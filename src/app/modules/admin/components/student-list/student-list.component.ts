@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { IUser } from 'src/app/core/models/user.interface';
 import { lastValueFrom } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-list',
@@ -11,7 +12,10 @@ import { lastValueFrom } from 'rxjs';
 export class StudentListComponent implements OnInit {
   arrStudents: IUser[] = [];
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private toastr: ToastrService
+  ) {}
 
   async ngOnInit() {
     try {
@@ -21,7 +25,7 @@ export class StudentListComponent implements OnInit {
       this.arrStudents = response;
     } catch (error) {
       console.error('Error al cargar los estudiantes', error);
-    };
+    }
   }
   async deactivateStudent(student: IUser) {
     try {
@@ -32,10 +36,16 @@ export class StudentListComponent implements OnInit {
       // Cargar los estudiantes después de desactivar
       await this.loadStudents();
 
-      // TODO: Poner alerta?
+      this.toastr.success('Estudiante desactivado con éxito', 'Éxito', {
+        positionClass: 'toast-bottom-right',
+      });
       console.log('Estudiante desactivado con éxito');
     } catch (error) {
       console.error('Error al desactivar al estudiante', error);
+
+      this.toastr.error('Error al desactivar al estudiante', 'Error', {
+        positionClass: 'toast-bottom-right',
+      });
     }
   }
 
