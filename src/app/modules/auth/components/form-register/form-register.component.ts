@@ -73,7 +73,7 @@ export class FormRegisterComponent {
       localStorage.setItem('auth_token', response.token);
       //Navego a la ruta principal
       //TODO: Llevar al login? Autentificar automáticamente?
-      this.router.navigate(['/']);
+      this.router.navigate(['/usuario', ':usuarioId']);
     }
   }
 }

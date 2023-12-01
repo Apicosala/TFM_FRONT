@@ -1,3 +1,5 @@
+<section>
+<h1>Incio de sesión</h1>
 <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label class="form-label">Email</label>
@@ -16,3 +18,4 @@
     <p class="error">{{errorMessage}}</p>
 
 <button [routerLink]="['/auth', 'register']">¿Aún no eres usuario? ¡Regístrate!</button>
+</section>

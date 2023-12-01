@@ -1,6 +1,6 @@
-<h1>Registro</h1>
-
-<form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+<section>
+    <h1>Registro</h1>
+    <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
 
   <h3>¿Cuál va a ser tu perfil?</h3>
 
@@ -14,7 +14,7 @@
     <p class="error" *ngIf="checkControl('rol', 'required')">Selecciona tu perfil</p>
   </div>
 
-  <!-- Muestra el resto del formulario si se ha seleccionado un rol -->
+  <!-- Muestra el resto del formulario cuando se ha seleccionado un rol -->
   <div [ngClass]="{'form-container': true, 'show': formRegister.get('rol')?.value === 'alumn' || formRegister.get('rol')?.value === 'prof'}">
 
     <div class="mb-3">
@@ -56,3 +56,4 @@
 </form>
 
 <p class="error">{{errorMessage}}</p>
+</section>
