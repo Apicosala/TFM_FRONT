@@ -3,22 +3,20 @@ import { Injectable, inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 
-
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ListaAlumnosService {
-
-  private baseUrl: string = "http://localhost:3000/api/usuarios/";
-
+  private baseUrl: string = 'http://localhost:3000/api/usuarios/';
   httpClient = inject(HttpClient);
+  constructor() {}
 
-  constructor() { }
-
-  getAlumnosByProfesorId(usuarioId: number): Promise<SolicitudClase[]> {
-    return lastValueFrom(this.httpClient.get<SolicitudClase[]>(`${this.baseUrl}${usuarioId}/alumnos`));
+  getAlumnosByProfesorId(id: number): Promise<SolicitudClase[]> {
+    const usuarioId = localStorage.getItem('usuarioId');
+    return lastValueFrom(
+      this.httpClient.get<SolicitudClase[]>(
+        `${this.baseUrl}${usuarioId}/alumnos`
+      )
+    );
   }
-
-
 }

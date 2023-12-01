@@ -1,23 +1,21 @@
 <main>
-    <h1 class="title">MIS ALUMNOS</h1>
+  <h1 class="title">MIS ALUMNOS</h1>
 
-    <div class="solicitud">
-        <h2 class="solicitud-title">SOLICITUD DE CLASES</h2>
-        <div *ngFor="let usuario of arrUsuario;">
-            <ng-container *ngIf="!usuario.activo">
-                <app-peticion-card [miUsuario]="usuario"></app-peticion-card>
-            </ng-container>
-        </div>
-
+  <div class="solicitud">
+    <h2 class="solicitud-title">SOLICITUD DE CLASES</h2>
+    <div *ngFor="let usuario of arrUsuario">
+      <ng-container *ngIf="!usuario.activo">
+        <app-peticion-card [miUsuario]="usuario"></app-peticion-card>
+      </ng-container>
     </div>
+  </div>
 
-    <div class="aceptados">
-        <h2 class="aceptados-title">ACEPTADOS</h2>
-        <div *ngFor="let usuario of arrUsuario">
-            <ng-container *ngIf="usuario.activo">
-                <app-alumno-card [miUsuario]="usuario"></app-alumno-card>
-            </ng-container>
-        </div>
+  <div class="aceptados">
+    <h2 class="aceptados-title">ACEPTADOS</h2>
+    <div *ngFor="let usuario of arrUsuario">
+      <ng-container *ngIf="usuario.activo">
+        <app-alumno-card [miUsuario]="usuario"></app-alumno-card>
+      </ng-container>
     </div>
-
+  </div>
 </main>
