@@ -38,10 +38,28 @@ export class AdminService {
         )
       );
   }
-  
+
+  getAllActiveTeachers(): Observable<IUser[]> {
+    return this.httpClient
+      .get<IUser[]>(`${this.baseUrl}/todos`)
+      .pipe(
+        map((users) =>
+          users.filter((user) => user.activo && user.rol === 'prof')
+        )
+    );
+
+  } //TODO: Revisar que devuelva TODOS los ususarios inactivos, no solamente los 10 primeros
+
   activateTeacher(id: number, teacher: IUser): Observable<IUser> {
     const url = `${this.baseUrl}/${id}`;
     const updatedTeacher = { ...teacher, activo: true };
+
+    return this.httpClient.put<IUser>(url, updatedTeacher);
+  }
+
+  deactivateTeacher(id: number, teacher: IUser): Observable<IUser> {
+    const url = `${this.baseUrl}/${id}`;
+    const updatedTeacher = { ...teacher, activo: false };
 
     return this.httpClient.put<IUser>(url, updatedTeacher);
   }
