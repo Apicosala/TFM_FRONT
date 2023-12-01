@@ -4,7 +4,6 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormUsuariosComponent } from './components/form-usuarios/form-usuarios.component';
-import { ClasesCardComponent } from './components/clases-card/clases-card.component';
 import { PeticionCardComponent } from './components/peticion-card/peticion-card.component';
 
 

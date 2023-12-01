@@ -19,9 +19,9 @@ export class ClasesAlumnoComponent {
   clasesAlumnoService = inject(ClasesAlumnosService);
 
   async ngOnInit(): Promise<void> {
-    
-    this.activatedRoute.params.subscribe( async (params:any) => {
-      
+
+    this.activatedRoute.params.subscribe(async (params: any) => {
+
       try {
         // recuperamos las clases con el Id del usuario
         let id = params.usuarioId;
@@ -34,13 +34,11 @@ export class ClasesAlumnoComponent {
         const allDataProfesor = profesorIds.map((profesorId: number) => this.clasesAlumnoService.getProfesorById(profesorId));
         this.arrProfesores = await Promise.all(allDataProfesor);
 
-        console.log(this.arrProfesores);
-
       } catch (error) {
-        console.log(error) 
+        console.log(error)
         //TODO: mostrar un mensaje de error al usuario.
-      } 
-    }); 
+      }
+    });
   }
 
 }
