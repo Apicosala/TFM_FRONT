@@ -1,14 +1,31 @@
 <main>
-    <h1>FORO</h1>
-    <div class="form-control">
-        <label for="titulo">Título</label>
-        <input type="text" id="titulo" placeholder="Título">
+  <div>
+    <h1>Nombre del alumno</h1>
+
+    <div>
+      <img class="imagenUsuario mt-5" src="" [alt]="" />
+      <h2 class="nombre mt-5">nombre de la clase</h2>
+      <ul class="list">
+        <li class="list__item">correo</li>
+        <li class="list__item">telefóno</li>
+      </ul>
     </div>
-    <div class="form-control">
-        <label for="contenido">Contenido</label>
-        <textarea id="contenido" placeholder="Contenido"></textarea>
+  </div>
+
+  <form [formGroup]="formForo" (ngSubmit)="getDataForm()">
+
+    <div class="form">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" placeholder="Introduce tu título" formControlName="titulo" />
     </div>
-    <div class="form-control">
-        <input type="submit" value="Enviar">
+
+    <div class="form">
+      <label for="contenido">Contenido</label>
+      <textarea id="contenido" placeholder="Introduce tu mensaje" formControlName="contenido"></textarea>
     </div>
+
+    <div class="form">
+      <input type="submit" value="Enviar" />
+    </div>
+  </form>
 </main>

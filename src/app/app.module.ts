@@ -9,12 +9,10 @@ import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ForoUsuarioComponent } from './modules/foroUsuarios/components/foro-usuario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ForoUsuarioComponent
 
   ],
   imports: [
