@@ -1,1 +1,58 @@
-<p>form-register works!</p>
+<h1>Registro</h1>
+
+<form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+
+  <h3>¿Cuál va a ser tu perfil?</h3>
+
+  <div class="mb-3">
+    <label>
+      <input type="radio" formControlName="rol" value="alumn"> Alumno
+    </label>
+    <label>
+      <input type="radio" formControlName="rol" value="prof"> Profesor
+    </label>
+    <p class="error" *ngIf="checkControl('rol', 'required')">Selecciona tu perfil</p>
+  </div>
+
+  <!-- Muestra el resto del formulario si se ha seleccionado un rol -->
+  <div [ngClass]="{'form-container': true, 'show': formRegister.get('rol')?.value === 'alumn' || formRegister.get('rol')?.value === 'prof'}">
+
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" placeholder="Introduce tu nombre" formControlName="nombre">
+      <p class="error" *ngIf="checkControl('nombre', 'required')">Este campo es requerido</p>
+    </div>
+
+    <div class="mb-3">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" placeholder="Introduce tus apellidos" formControlName="apellidos">
+      <p class="error" *ngIf="checkControl('apellidos', 'required')">Este campo es requerido</p>
+    </div>
+
+    <div class="mb-3">
+      <label for="mail" class="form-label">Email</label>
+      <input type="text" class="form-control" id="mail" placeholder="Introduce tu email" formControlName="mail">
+      <p class="error" *ngIf="checkControl('mail', 'required')">Este campo es requerido</p>
+      <p class="error" *ngIf="checkControl('mail', 'pattern')">El email tiene formato incorrecto</p>
+    </div>
+
+    <div class="mb-3">
+      <label for="pass" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="pass" placeholder="Introduce tu contraseña" formControlName="pass">
+      <p class="error" *ngIf="checkControl('pass', 'required')">Este campo es requerido</p>
+      <p class="error" *ngIf="checkControl('pass', 'minlength')">La contraseña debe tener al menos 8 caracteres</p>
+    </div>
+
+    <div class="mb-3">
+      <label for="repeatpassword" class="form-label">Repite la contraseña</label>
+      <input type="password" class="form-control" id="repeatpassword" placeholder="Repite tu contraseña" formControlName="repeatpassword">
+      <p class="error" *ngIf="checkControl('pass', 'required')">Este campo es requerido</p>
+      <p class="error" *ngIf="formRegister.hasError('checkpassword')">Los campos contraseña y repite la contraseña no coinciden</p>
+    </div>
+
+    <input type="submit" value="Enviar" class="btn btn-info" [disabled]="!formRegister.valid">
+  </div>
+
+</form>
+
+<p class="error">{{errorMessage}}</p>

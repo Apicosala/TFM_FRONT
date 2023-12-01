@@ -15,5 +15,4 @@
 </form>
     <p class="error">{{errorMessage}}</p>
 
-//TODO: Revisar que redirecciona a FormRegister correctamente
-<button [routerLink]="['/register']">¿Aún no eres usuario? ¡Regístrate!</button>
+<button [routerLink]="['/auth', 'register']">¿Aún no eres usuario? ¡Regístrate!</button>

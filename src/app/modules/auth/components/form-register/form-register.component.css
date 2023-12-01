@@ -1,0 +1,23 @@
+input.ng-invalid.ng-touched{
+  border-bottom: 3px solid tomato;
+}
+
+input.ng-valid.ng-touched{
+  border-bottom: 3px solid lightgreen;
+}
+
+.error{
+  color: tomato;
+  font-size: 12px;
+}
+
+.form-container {
+  opacity: 0;
+  transform: translateY(-20px); /* Puedes ajustar la distancia del desplazamiento */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.form-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
