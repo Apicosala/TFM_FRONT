@@ -23,8 +23,8 @@ export class ListaAlumnosComponent {
       try {
         let id = params.usuarioId;
         this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id);
-        console.log(this.arrUsuario);
       } catch (error) {
+        //TODO: mostrar error al usuario
         console.log(error)
         
       } 
