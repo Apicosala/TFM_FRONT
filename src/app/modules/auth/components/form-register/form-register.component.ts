@@ -1,5 +1,5 @@
 import { Component, inject} from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 
@@ -35,7 +35,7 @@ export class FormRegisterComponent {
     );
   }
 
-  checkPassword(formValue: AbstractControl) {
+  checkPassword(formValue: AbstractControl): ValidationErrors | null {
     const passwordControl = formValue.get('pass');
     const repeatPasswordControl = formValue.get('repeatpassword');
 
@@ -43,14 +43,14 @@ export class FormRegisterComponent {
       const password: string = passwordControl.value;
       const repeatPassword: string = repeatPasswordControl.value;
 
-      if (password !== repeatPassword) {
+      if (password && repeatPassword && password !== repeatPassword) {
         return { checkpassword: true };
       } else {
-        //TODO: Trabajar el caso negativo
-        return null;
+        return null; // Sin error
       }
     }
-    return null;
+
+    return null; // Si alguno de los controles no existe
   }
 
   checkControl(
@@ -64,16 +64,14 @@ export class FormRegisterComponent {
   }
 
   async onSubmit() {
-    const response = await this.usersService.register(this.formRegister.value);
-    if (response.fatal) {
-      //Error en el register
-      this.errorMessage = response.fatal;
-    } else {
-      //Register correcto
+    try {
+      const response = await this.usersService.register(
+        this.formRegister.value
+      );
       localStorage.setItem('auth_token', response.token);
-      //Navego a la ruta principal
-      //TODO: Llevar al login? Autentificar automáticamente?
       this.router.navigate(['/usuario', ':usuarioId']);
+    } catch (error: any) {
+      this.errorMessage = error.fatal;
     }
   }
 }

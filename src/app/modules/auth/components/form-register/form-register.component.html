@@ -36,22 +36,23 @@
       <p class="error" *ngIf="checkControl('mail', 'pattern')">El email tiene formato incorrecto</p>
     </div>
 
-    <div class="mb-3">
-      <label for="pass" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" id="pass" placeholder="Introduce tu contraseña" formControlName="pass">
-      <p class="error" *ngIf="checkControl('pass', 'required')">Este campo es requerido</p>
-      <p class="error" *ngIf="checkControl('pass', 'minlength')">La contraseña debe tener al menos 8 caracteres</p>
-    </div>
+    <!-- Resto del formulario -->
 
-    <div class="mb-3">
-      <label for="repeatpassword" class="form-label">Repite la contraseña</label>
-      <input type="password" class="form-control" id="repeatpassword" placeholder="Repite tu contraseña" formControlName="repeatpassword">
-      <p class="error" *ngIf="checkControl('pass', 'required')">Este campo es requerido</p>
-      <p class="error" *ngIf="formRegister.hasError('checkpassword')">Los campos contraseña y repite la contraseña no coinciden</p>
-    </div>
+<div class="mb-3">
+    <label for="pass" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" id="pass" placeholder="Introduce tu contraseña" formControlName="pass">
+    <p class="error" *ngIf="checkControl('pass', 'required')">Este campo es requerido</p>
+    <p class="error" *ngIf="checkControl('pass', 'minlength')">La contraseña debe tener al menos 8 caracteres</p>
+</div>
 
-    <input type="submit" value="Enviar" class="btn btn-info" [disabled]="!formRegister.valid">
-  </div>
+<div class="mb-3">
+    <label for="repeatpassword" class="form-label">Repite la contraseña</label>
+    <input type="password" class="form-control" id="repeatpassword" placeholder="Repite tu contraseña" formControlName="repeatpassword">
+    <p class="error" *ngIf="formRegister.get('repeatpassword')?.touched && formRegister.hasError('checkpassword')">Los campos contraseña y repite la contraseña no coinciden</p>
+</div>
+
+<input type="submit" value="Enviar" class="btn btn-info" [disabled]="!formRegister.valid">
+</div>
 
 </form>
 
