@@ -16,33 +16,33 @@ export class TeachersListComponent {
   async ngOnInit() {
     try {
       const response = await lastValueFrom(
-        this.adminService.getAllActiveTeachers()
+        this.adminService.getAllUnactiveTeachers()
       );
       this.arrTeachers = response;
     } catch (error) {
       console.error('Error al cargar los profesores', error);
     }
   }
-  async deactivateStudent(teacher: IUser) {
+  async activateTeacher(teacher: IUser) {
     try {
       await lastValueFrom(
-        this.adminService.desactivateTeacher(teacher.id, teacher)
+        this.adminService.activateTeacher(teacher.id, teacher)
       );
 
       // Cargar los estudiantes después de desactivar
       await this.loadTeachers();
 
       // TODO: Poner alerta?
-      console.log('Estudiante desactivado con éxito');
+      console.log('Profesor activado con éxito');
     } catch (error) {
-      console.error('Error al desactivar al estudiante', error);
+      console.error('Error al activar al profesor', error);
     }
   }
 
   private async loadTeachers() {
     try {
       const response = await lastValueFrom(
-        this.adminService.getAllActiveTeachers()
+        this.adminService.getAllUnactiveTeachers()
       );
       this.arrTeachers = response;
       console.log(response);
