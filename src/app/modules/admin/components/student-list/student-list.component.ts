@@ -36,7 +36,7 @@ export class StudentListComponent implements OnInit {
       // Cargar los estudiantes después de desactivar
       await this.loadStudents();
 
-      this.toastr.success('Estudiante desactivado con éxito', 'Éxito', {
+      this.toastr.success('Alumno desactivado con éxito', 'Éxito', {
         positionClass: 'toast-bottom-right',
       });
       console.log('Alumno desactivado con éxito');
