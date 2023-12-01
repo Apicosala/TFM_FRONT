@@ -16,17 +16,28 @@ export class PeticionCardComponent {
 
   aceptarSolicitud() {
 
+    const profesorId = this.miUsuario.profesor_id;
+    const usuarioId = this.miUsuario.alumno_id;
+
+    this.peticionClasesServices.aceptarSolicitud(profesorId, usuarioId)
+      .then(response => {
+        console.log('conexion aceptada', response)
+      })
+      .catch(error => {
+        console.log('error al aceptar', error);
+      })
   };
 
   async cancelarSolicitud() {
     try {
-      const response = await this.peticionClasesServices.cancelarSolicitud(this.miUsuario.id);
+      const profesorId = this.miUsuario.profesor_id;
+      const usuarioId = this.miUsuario.alumno_id;
+
+      const response = await this.peticionClasesServices.cancelarSolicitud(profesorId, usuarioId);
       console.log('conexion cancelada', response)
     } catch (error) {
+      //TODO: crear alerta para mostrar el error
       console.log('error al cancelar', error);
-      
     }
   }
-
-
 }
