@@ -7,16 +7,14 @@ import { SolicitudClase } from 'src/app/core/models/peticion.interface';
   providedIn: 'root',
 })
 export class ListaAlumnosService {
+
   private baseUrl: string = 'http://localhost:3000/api/usuarios/';
+
   httpClient = inject(HttpClient);
+
   constructor() {}
 
-  getAlumnosByProfesorId(id: number): Promise<SolicitudClase[]> {
-    const usuarioId = localStorage.getItem('usuarioId');
-    return lastValueFrom(
-      this.httpClient.get<SolicitudClase[]>(
-        `${this.baseUrl}${usuarioId}/alumnos`
-      )
-    );
+  getAlumnosByProfesorId(profesorId: number): Promise<SolicitudClase[]> {
+    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrl}${profesorId}/alumnos`));
   }
 }

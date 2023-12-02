@@ -19,7 +19,7 @@ export class PeticionClasesService {
 
         return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}${profesorId}/alumnos/`, {alumnoId}))
             .then(response => {
-                if (response.suces) {
+                if (response.succes) {
                     response.activo = true;
                 } 
                 return response;
@@ -30,6 +30,6 @@ export class PeticionClasesService {
     // Metodo para cancelar la conexion profesor-alumno
     cancelarSolicitud(profesorId: number, alumnoId: number): Promise<any> {
 
-        return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}${profesorId}/alumnos`, {body: {alumnoId} })
+        return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}${profesorId}/alumnos`, {body: { alumnoId } })
         )};
     }

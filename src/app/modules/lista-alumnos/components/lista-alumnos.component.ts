@@ -9,19 +9,22 @@ import { ListaAlumnosService } from '../services/listAlumnos.service';
   styleUrls: ['./lista-alumnos.component.css'],
 })
 export class ListaAlumnosComponent {
+
   arrUsuario: SolicitudClase[] = [];
 
   activatedRoute = inject(ActivatedRoute);
   listaAlumnosService = inject(ListaAlumnosService);
 
   async ngOnInit(): Promise<void> {
+
+    
     this.activatedRoute.params.subscribe(async (params: any) => {
       try {
         let id = params.usuarioId;
-        this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(
-          id
-        );
-        console.log(this.arrUsuario);
+        if (!this.arrUsuario.length) {
+          this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id);
+          
+        }
       } catch (error) {
         console.log(error);
       }
