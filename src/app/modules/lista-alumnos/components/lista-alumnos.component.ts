@@ -18,12 +18,13 @@ export class ListaAlumnosComponent {
     this.activatedRoute.params.subscribe(async (params: any) => {
       try {
         let id = params.usuarioId;
-        this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id);
+        this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(
+          id
+        );
+        console.log(this.arrUsuario);
       } catch (error) {
-        //TODO: mostrar error al usuario
-        console.log(error)
-        
-      } 
-    })
+        console.log(error);
+      }
+    });
   }
 }
