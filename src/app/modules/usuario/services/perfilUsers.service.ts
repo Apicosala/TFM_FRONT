@@ -16,10 +16,6 @@ export class perfilUsersService {
 
   constructor() { }
 
-  getAll(): Promise<IUser[]>{
-    return lastValueFrom(this.httpClient.get<IUser[]>(this.baseUrl));
-  }
-
   getAlumnosByProfesorId(profesorId: number): Promise<SolicitudClase[]> {
     return lastValueFrom(this.httpClient.get<SolicitudClase[]>(`${this.baseUrl}${profesorId}/alumnos`));
   }

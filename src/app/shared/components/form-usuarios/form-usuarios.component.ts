@@ -19,7 +19,7 @@ export class FormUsuariosComponent {
   usersServices = inject(perfilUsersService);
 
   formUsuario: FormGroup;
- 
+
 
   constructor() {
     this.formUsuario = new FormGroup({
@@ -39,11 +39,13 @@ export class FormUsuariosComponent {
       precio: new FormControl('', []),
 
       experiencia: new FormControl('', []),
-      
+
       pass: new FormControl('', [
         Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
       ]),
       repetirPass: new FormControl('', []),
+
+      activo: new FormControl('', []),
     }, [this.controlPass]);
 
   }
@@ -52,13 +54,13 @@ export class FormUsuariosComponent {
     const pass: string = formValue.get('pass')?.value;
     const repetirPass: string = formValue.get('repetirPass')?.value;
 
-    if(pass !== repetirPass) {
+    if (pass !== repetirPass) {
       return { 'controlpass': true }
     } else {
       return null
     }
   }
- 
+
 
   ngOnInit(): void {
     //TODO: Resolver problema de devolucion id: undefined.
@@ -66,14 +68,14 @@ export class FormUsuariosComponent {
       let id = params.usuarioId;
 
       this.usersServices.getById(id).subscribe(data => {
-          this.usuario = data[0];
+        this.usuario = data[0];
 
-          
+
 
         this.formUsuario = new FormGroup({
 
-          id: new FormControl(data.id, []),
-  
+          id: new FormControl(this.usuario.id, []),
+
           nombre: new FormControl(data[0].nombre, [
             Validators.minLength(3),
           ]),
@@ -89,37 +91,39 @@ export class FormUsuariosComponent {
             Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),
           ]),
           precio: new FormControl(data[0].pxh, []),
-    
+
           experiencia: new FormControl(data.experiencia, []),
-          
+
           pass: new FormControl(data[0].pass, [
             Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
           ]),
           repetirPass: new FormControl('', []),
+
+          activo: new FormControl(this.usuario.activo, []),
         }, [this.controlPass]);
       })
     })
 
   }
 
-  async getDataForm() { 
+  async getDataForm() {
 
-    try{
-      const response = await  this.usersServices.update(this.formUsuario.value);
-      
-      if(response){
-      this.router.navigate(['/home']);
-      
-    } 
-    
-  }catch (error) {
-    console.log(error);
-  }
-  
-  
+    try {
+      const response = await this.usersServices.update(this.formUsuario.value);
+
+      if (response.id) {
+        alert('Usuario actualizado correctamente');
+        this.router.navigate(['/home']);
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+
+
   }
 
-  checkControl(formControlName: string ): boolean | undefined {
+  checkControl(formControlName: string): boolean | undefined {
     return this.formUsuario.get(formControlName)?.touched && this.formUsuario.get(formControlName)?.invalid;
 
   }
