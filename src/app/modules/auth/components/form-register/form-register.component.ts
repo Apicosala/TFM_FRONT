@@ -27,7 +27,7 @@ export class FormRegisterComponent {
         ]),
         pass: new FormControl('', [
           Validators.required,
-          Validators.minLength(8),
+          Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
         ]),
         repeatpassword: new FormControl('', []),
       },

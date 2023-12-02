@@ -51,7 +51,7 @@ export class ClasesCardComponent {
     //3-buscar el id de la especialidad
     //4-traer de la ruta el id del alumno
 
-    this.terminarClasesServices.terminarClases(profesorId)
+    this.terminarClasesServices.terminarClases(profesorId, alumnoId)
       .then((response: any) => {
         console.log(response);
       })

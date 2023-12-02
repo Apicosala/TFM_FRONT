@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClasesAlumnosService } from '../services/clasesAlumnos.service';
-import { IUser } from 'src/app/core/models/user.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 
 
