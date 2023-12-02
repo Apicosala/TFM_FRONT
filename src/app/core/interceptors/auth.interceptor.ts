@@ -26,6 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
           authorization: tokenWithBearer,
         },
       });
+<<<<<<< HEAD
 
       // Decodifica el token JWT para obtener el userId y el user_rol
       const decodedToken = jwtDecode<PayLoad>(token);
@@ -38,6 +39,8 @@ export class AuthInterceptor implements HttpInterceptor {
           usuarioRol: userRol,
         },
       });
+=======
+>>>>>>> 8aab7f0a605af1bb0703171823b34c43092e9097
     }
 
     return next.handle(request);
