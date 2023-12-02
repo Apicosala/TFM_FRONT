@@ -18,7 +18,6 @@ export class ListaAlumnosComponent {
     this.activatedRoute.params.subscribe(async (params: any) => {
       try {
         let id = params.usuarioId;
-<<<<<<< HEAD
         this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(
           id
         );
@@ -27,14 +26,5 @@ export class ListaAlumnosComponent {
         console.log(error);
       }
     });
-=======
-        this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id);
-      } catch (error) {
-        //TODO: mostrar error al usuario
-        console.log(error)
-        
-      } 
-    })
->>>>>>> c313377acb3eddeda0fc5b93893b0af9c7920b46
   }
 }
