@@ -20,11 +20,11 @@ export class CancelacionClasesService {
     return this.httpClient.get<any>(`${this.baseUrl}${alumnoId}/clases`)
     }
 
-
+    // /:profesorId/alumnos
 
     // Método para cancelar la clase con un profesor.
-    terminarClases (profesorId: number, alumnoId: number, fecha: string): Promise<any> {
-
+    terminarClases (profesorId: number,alumnoId:number): Promise<any> {
+        
         return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}${profesorId}/alumnos`)
         )};
     
