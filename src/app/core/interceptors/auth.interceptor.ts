@@ -31,7 +31,6 @@ export class AuthInterceptor implements HttpInterceptor {
       const decodedToken = jwtDecode<PayLoad>(token);
       const userId = decodedToken.user_id;
       const userRol = decodedToken.user_rol;
-
       // Agrega el userId y el user_rol a la cabecera de la solicitud HTTP
       request = request.clone({
         setHeaders: {
