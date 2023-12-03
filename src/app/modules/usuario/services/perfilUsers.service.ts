@@ -11,7 +11,7 @@ import { IUser } from 'src/app/core/models/user.interface';
 export class perfilUsersService {
 
   private baseUrl: string = "http://localhost:3000/api/usuarios/"
-  private espUrl: string = "http://localhost:3000/api/especialidades/"
+  
 
   httpClient = inject(HttpClient);
 
@@ -30,9 +30,6 @@ export class perfilUsersService {
     return lastValueFrom(this.httpClient.put<IUser>(`${this.baseUrl}${usuario.id}`, usuario)); 
   }
 
-  getAllEspecialidades():Promise<any[]>{
-    console.log(this.espUrl)
-    return lastValueFrom(this.httpClient.get<any>(`${this.espUrl}`))
-  }
+  
 
 }

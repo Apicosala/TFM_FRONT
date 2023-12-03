@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { perfilUsersService } from '../usuario/services/perfilUsers.service';
+import { PpalService } from '../services/ppal.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,7 +7,7 @@ import { perfilUsersService } from '../usuario/services/perfilUsers.service';
   styleUrls: ['./ppal.component.css']
 })
 export class PrincipalComponent {
-  userService = inject(perfilUsersService)
+  userService = inject(PpalService)
   arrEspecialidades: any
   async ngOnInit():Promise<void>{
     try {

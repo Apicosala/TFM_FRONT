@@ -1,1 +1,6 @@
-<p>funca</p>
+<section class="container mt-3 mb-3">
+    <div class="row g-3 align-items-end">
+      <article class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3"  *ngFor="let esp of arrEspecialidades"> 
+        <app-especialidades-card [oneEspecialidad]="esp"></app-especialidades-card>
+      </article>
+    </div>
