@@ -36,6 +36,9 @@
         <p class="error" *ngIf="checkControl('nombre', 'required')">
           Este campo es requerido
         </p>
+        <p class="error" *ngIf="checkControl('nombre', 'minlength')">
+          Tu nombre debe de contener al menos 3 letras.
+        </p>
       </div>
 
       <div class="mb-3">
@@ -49,6 +52,9 @@
         />
         <p class="error" *ngIf="checkControl('apellidos', 'required')">
           Este campo es requerido
+        </p>
+        <p class="error" *ngIf="checkControl('apellidos', 'minlength')">
+          Tus apellidos debe de contener al menos 3 letras.
         </p>
       </div>
 
@@ -83,8 +89,9 @@
         <p class="error" *ngIf="checkControl('pass', 'required')">
           Este campo es requerido
         </p>
-        <p class="error" *ngIf="checkControl('pass', 'minlength')">
-          La contraseña debe tener al menos 8 caracteres
+        <p class="error" *ngIf="checkControl('pass', 'pattern')">
+          Tu contraseña debe de empezar por una letra, contener al menos un
+          dígito y contener al menos 8 caracteres.
         </p>
       </div>
 
