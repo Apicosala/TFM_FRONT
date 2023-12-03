@@ -1,5 +1,7 @@
-<div class="card">
-    
-    <img src="{{oneEspecialidad.foto}}"/>
+<div class="card" (mouseover)="applyOverlay=true" (mouseleave)="applyOverlay=false">
+    <img src="{{oneEspecialidad.foto}}" class="img-hover" />
+    <div class="overlay" *ngIf="applyOverlay">
+        <p>{{oneEspecialidad.especialidad}}</p>
+    </div>
 </div>
 
