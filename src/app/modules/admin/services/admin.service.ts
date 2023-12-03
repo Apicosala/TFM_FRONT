@@ -64,12 +64,11 @@ export class AdminService {
           users.filter((user) => user.activo && user.rol === 'prof')
         )
       );
-  } //TODO: Revisar que devuelva TODOS los ususarios inactivos, no solamente los 10 primeros
+  }
 
   activateTeacher(id: number, teacher: IUser): Observable<IUser> {
     const url = `${this.baseUrl}/${id}`;
     const updatedTeacher = { ...teacher, activo: true };
-
     return this.httpClient.put<IUser>(url, updatedTeacher);
   }
 
