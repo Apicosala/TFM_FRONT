@@ -94,7 +94,7 @@ export class FormUsuariosComponent {
 
           experiencia: new FormControl(data.experiencia, []),
 
-          pass: new FormControl(data[0].pass, [
+          pass: new FormControl('', [
             Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
           ]),
           repetirPass: new FormControl('', []),

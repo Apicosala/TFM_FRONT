@@ -15,9 +15,10 @@ export class PeticionCardComponent {
   aceptarSolicitud() {
     const profesorId = this.miUsuario.profesor_id;
     const usuarioId = this.miUsuario.alumno_id;
+    const especialidadId = this.miUsuario.especialidades_id;
 
     this.peticionClasesServices
-      .aceptarSolicitud(profesorId, usuarioId)
+      .aceptarSolicitud(profesorId, usuarioId, especialidadId)
       .then((response) => {
         console.log('conexion aceptada', response);
       })
