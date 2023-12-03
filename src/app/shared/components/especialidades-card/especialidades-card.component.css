@@ -7,8 +7,6 @@ img{
     width: 300px;
 }
 .card{
-    min-height: 560px;
-    min-width: 310px;
     border:none;
     align-items: center;
 }
