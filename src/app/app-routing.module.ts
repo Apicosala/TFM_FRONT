@@ -4,7 +4,11 @@ import { PpalModule } from './modules/ppal/ppal.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: PpalModule }, 
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./modules/ppal/ppal.module').then((m) => m.PpalModule),
+  },
   {
     path: 'auth',
     loadChildren: () =>
