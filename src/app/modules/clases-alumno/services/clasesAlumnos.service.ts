@@ -20,7 +20,7 @@ export class ClasesAlumnosService {
   constructor() { }
 
   getClasesByUsuarioId(usuarioId: number): Promise<any> {
-    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${usuarioId}/clases`));
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}/clases/${usuarioId}`));
   }
 
   getProfesorById(profesorId: number): Promise<IUser>{
