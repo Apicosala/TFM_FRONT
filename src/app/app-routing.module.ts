@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PrincipalComponent } from './modules/principal/principal.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', pathMatch: 'full', redirectTo: '' }, //TODO: Pendiente de vincular a la main page cuando esté lista
+  { path: 'home', component: PrincipalComponent }, 
   {
     path: 'auth',
     loadChildren: () =>

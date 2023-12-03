@@ -10,9 +10,10 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { PrincipalComponent } from './modules/principal/principal.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PrincipalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
