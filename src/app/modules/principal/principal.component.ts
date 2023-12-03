@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { perfilUsersService } from '../../../modules/usuario/services/perfilUsers.service';
+import { perfilUsersService } from '../usuario/services/perfilUsers.service';
 
 @Component({
   selector: 'app-principal',
