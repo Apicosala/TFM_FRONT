@@ -15,9 +15,9 @@ export class PeticionClasesService {
     constructor() { }
 
     // Metodo para aceptar la conexion profesor-alumno
-    aceptarSolicitud(profesorId: number, alumnoId: number): Promise<any> {
+    aceptarSolicitud(profesorId: number, alumnoId: number, especialidadId: number): Promise<any> {
 
-        return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}${profesorId}/alumnos/`, {alumnoId}))
+        return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}&${especialidadId}`, {} ))
             .then(response => {
                 if (response.succes) {
                     response.activo = true;
