@@ -9,6 +9,7 @@ import { PpalService } from '../services/ppal.service';
 export class PrincipalComponent {
   userService = inject(PpalService)
   arrEspecialidades: any
+  showOverlay: boolean = false;
   async ngOnInit():Promise<void>{
     try {
       this.arrEspecialidades = await this.userService.getAllEspecialidades()

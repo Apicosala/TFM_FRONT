@@ -1,0 +1,35 @@
+.card-container {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5); /* Superposición oscura con transparencia */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Color del texto del mensaje */
+    font-size: 20px; /* Tamaño del texto del mensaje */
+    opacity: 0; /* La superposición estará invisible inicialmente */
+    transition: opacity 0.3s; /* Efecto de transición suave */
+}
+
+.card-container img {
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s;
+    filter: grayscale(0%); /* Por defecto, la imagen no está en escala de grises */
+}
+
+.card-container:hover img {
+    filter: grayscale(100%); /* Aplica la escala de grises al pasar el ratón sobre la tarjeta */
+}
+
+.card-container:hover .overlay {
+    opacity: 1; /* Hace visible la superposición al pasar el ratón sobre la tarjeta */
+}
