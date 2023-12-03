@@ -14,8 +14,7 @@ import { EspecialidadesCardComponent } from './components/especialidades-card/es
   declarations: [
     NavBarComponent,
     FormUsuariosComponent,
-    PeticionCardComponent,
-    EspecialidadesCardComponent
+    PeticionCardComponent
   ],
   imports: [
     CommonModule,
