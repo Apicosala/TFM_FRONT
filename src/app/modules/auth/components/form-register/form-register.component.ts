@@ -1,5 +1,11 @@
-import { Component, inject} from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 
@@ -19,11 +25,19 @@ export class FormRegisterComponent {
     this.formRegister = new FormGroup(
       {
         rol: new FormControl('', [Validators.required]),
-        nombre: new FormControl('', [Validators.required]),
-        apellidos: new FormControl('', [Validators.required]),
+        nombre: new FormControl('', [
+          Validators.required,
+          Validators.minLength(3),
+        ]),
+        apellidos: new FormControl('', [
+          Validators.required,
+          Validators.minLength(3),
+        ]),
         mail: new FormControl('', [
           Validators.required,
-          Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/),
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ),
         ]),
         pass: new FormControl('', [
           Validators.required,

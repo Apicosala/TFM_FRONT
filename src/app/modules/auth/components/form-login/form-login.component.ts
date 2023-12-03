@@ -19,12 +19,9 @@ export class FormLoginComponent {
     this.formLogin = new FormGroup({
       mail: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/),
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
       ]),
-      pass: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
+      pass: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
   }
 
