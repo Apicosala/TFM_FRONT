@@ -7,9 +7,10 @@ img{
     width: 300px;
 }
 .card{
-    border:none;
     align-items: center;
     position: relative;
+    border-color: transparent;
+    background-color: transparent;
 }
 
 .overlay {
