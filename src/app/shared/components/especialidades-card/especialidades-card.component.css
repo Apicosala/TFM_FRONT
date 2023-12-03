@@ -1,0 +1,14 @@
+span{
+    font-size: 40px;
+}
+img{
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+}
+.card{
+    min-height: 560px;
+    min-width: 310px;
+    border:none;
+    align-items: center;
+}
