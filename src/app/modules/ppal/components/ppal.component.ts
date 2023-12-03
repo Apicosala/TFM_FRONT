@@ -3,8 +3,8 @@ import { perfilUsersService } from '../usuario/services/perfilUsers.service';
 
 @Component({
   selector: 'app-principal',
-  templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.css']
+  templateUrl: './ppal.component.html',
+  styleUrls: ['./ppal.component.css']
 })
 export class PrincipalComponent {
   userService = inject(perfilUsersService)

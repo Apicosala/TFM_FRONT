@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PrincipalComponent } from './modules/principal/principal.component';
+import { PpalModule } from './modules/ppal/ppal.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: PrincipalComponent }, 
+  { path: 'home', component: PpalModule }, 
   {
     path: 'auth',
     loadChildren: () =>
