@@ -1,3 +1,4 @@
+
 input.ng-invalid.ng-touched{
   border-bottom: 3px solid tomato;
 }
@@ -10,3 +11,4 @@ input.ng-valid.ng-touched{
   color: tomato;
   font-size: 12px;
 }
+

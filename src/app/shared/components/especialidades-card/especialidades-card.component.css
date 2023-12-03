@@ -1,3 +1,6 @@
+*{
+    background-color: transparent;
+  }
 span{
     font-size: 40px;
 }
@@ -12,7 +15,6 @@ img{
     border-color: transparent;
     background-color: transparent;
 }
-
 .overlay {
     position: absolute;
     border-radius: 50%;
