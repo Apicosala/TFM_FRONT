@@ -46,12 +46,13 @@ export class ClasesCardComponent {
     const profesorId = this.infoProfesor.id;
     const alumnoId = 3;
     const fecha = "01/10/2023";
+    const especialidadId = 1
     //1-traer de la card el id del profesor
     //2-traer el nombre de la clase (especialidad)
     //3-buscar el id de la especialidad
     //4-traer de la ruta el id del alumno
 
-    this.terminarClasesServices.terminarClases(profesorId, alumnoId)
+    this.terminarClasesServices.terminarClases(profesorId, alumnoId, especialidadId)
       .then((response: any) => {
         console.log(response);
       })
