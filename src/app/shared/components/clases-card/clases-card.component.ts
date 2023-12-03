@@ -44,7 +44,7 @@ export class ClasesCardComponent {
   terminarClases() {
 
     const profesorId = this.infoProfesor.id;
-    const alumnoId = 3;
+    const alumnoId = 134;
     const fecha = "01/10/2023";
     const especialidadId = 1
     //1-traer de la card el id del profesor
