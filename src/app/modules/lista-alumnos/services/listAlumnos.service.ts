@@ -15,6 +15,6 @@ export class ListaAlumnosService {
   constructor() {}
 
   getAlumnosByProfesorId(profesorId: number): Promise<SolicitudClase[]> {
-    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrl}${profesorId}/alumnos`));
+    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrl}/alumnos/${profesorId}`));
   }
 }

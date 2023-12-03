@@ -2,6 +2,7 @@ export interface SolicitudClase {
     id: number;
     alumno_id: number;
     profesor_id: number;
+    especialidades_id: number,
     nombre: string;
     apellidos: string;
     mail: string;

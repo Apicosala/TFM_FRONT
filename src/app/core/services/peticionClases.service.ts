@@ -28,8 +28,8 @@ export class PeticionClasesService {
 
 
     // Metodo para cancelar la conexion profesor-alumno
-    cancelarSolicitud(profesorId: number, alumnoId: number): Promise<any> {
+    cancelarSolicitud(profesorId: number, alumnoId: number, especialidadId: number): Promise<any> {
 
-        return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}${profesorId}/alumnos`, {body: { alumnoId } })
+        return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}/conexion/${profesorId}&${alumnoId}&${especialidadId}`)
         )};
     }

@@ -30,9 +30,10 @@ export class PeticionCardComponent {
     try {
       const profesorId = this.miUsuario.profesor_id;
       const usuarioId = this.miUsuario.alumno_id;
+      const especialidadId = this.miUsuario.especialidades_id;
 
       const response = await this.peticionClasesServices.cancelarSolicitud(
-        profesorId, usuarioId);
+        profesorId, usuarioId, especialidadId);
 
       console.log('conexion cancelada', response);
 
