@@ -10,10 +10,9 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { PrincipalComponent } from './modules/principal/principal.component';
 
 @NgModule({
-  declarations: [AppComponent, PrincipalComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +22,7 @@ import { PrincipalComponent } from './modules/principal/principal.component';
     MatExpansionModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
