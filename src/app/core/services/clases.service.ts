@@ -27,6 +27,10 @@ export class ClasesService {
         return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${usuarioId}`))
       }
 
+      getFechaByClases(profesorId:number, alumnoId:number):Promise<any>{
+        return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}`))
+      }
+
 
 //PUT      
 
