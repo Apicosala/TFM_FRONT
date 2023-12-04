@@ -11,7 +11,7 @@ import { CancelacionClasesService } from 'src/app/core/services/cancelarClases.s
 })
 export class ClasesCardComponent {
 
-  @Input() infoProfesor!: IUser;
+  @Input() infoUser!: IUser;
   @Input() iclases!: IClases;
 
   arrDatosClases: IClases[] = [];
@@ -27,11 +27,7 @@ export class ClasesCardComponent {
 
 
   obtenerDatosClases() {
-
-    const profesorId = this.infoProfesor.id;
-    const alumnoId = 3;
-  
-
+    const profesorId = this.infoUser.id;
     this.terminarClasesServices.obtenerDatosClases(profesorId)
       .subscribe((response: any) => {
         this.arrDatosClases = response;
@@ -42,16 +38,10 @@ export class ClasesCardComponent {
 
 
   terminarClases() {
-
-    const profesorId = this.infoProfesor.id;
-    const alumnoId = 134;
-    const fecha = "01/10/2023";
-    const especialidadId = 1
-    //1-traer de la card el id del profesor
-    //2-traer el nombre de la clase (especialidad)
-    //3-buscar el id de la especialidad
-    //4-traer de la ruta el id del alumno
-
+    const fecha = this.iclases.fecha;
+    const especialidadId = this.iclases.especialidades_id
+    const profesorId = this.infoUser.id;
+    const alumnoId = this.iclases.alumno_id
     this.terminarClasesServices.terminarClases(profesorId, alumnoId, especialidadId)
       .then((response: any) => {
         console.log(response);

@@ -1,15 +1,15 @@
 <div class="onlyCard shadow p-3 mb-5 bg-body-tertiary rounded">
     <div class="cardComponent">
 
-        <img class="imageProf" [src]="infoProfesor.foto" [alt]="infoProfesor.nombre">
+        <img class="imageProf" [src]="infoUser.foto" [alt]="infoUser.nombre">
         <div class="text">
             <h2 class="card-title">Nombre de la clase</h2>
             <p>Fecha:</p>
-            <h3 class="card-profesor">{{infoProfesor.nombre}} {{infoProfesor.apellidos}}</h3>
+            <h3 class="card-profesor">{{infoUser.nombre}} {{infoUser.apellidos}}</h3>
             <p class="card-clases">Clases realizadas:</p>
         </div>
 
-        //TODO: Crear funcionaliad de botones
+        <!--//TODO: Crear funcionaliad de botones -->
         <div class="buttons">
             <a class="button" type="submit" [routerLink]="['/foro/:usuarioId']">
                 <span>Contacta con tu profesor</span>

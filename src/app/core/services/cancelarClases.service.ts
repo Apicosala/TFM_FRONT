@@ -17,7 +17,7 @@ export class CancelacionClasesService {
 
     //Obtenemos datos de las clases del usuario.
     obtenerDatosClases(alumnoId: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.baseUrl}/${alumnoId}/clases`)
+    return this.httpClient.get<any>(`${this.baseUrl}/clases/${alumnoId}`)
     }
 
     // /:profesorId/alumnos

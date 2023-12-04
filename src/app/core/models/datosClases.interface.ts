@@ -3,4 +3,5 @@ export interface IClases {
     alumno_id: number,
     profesor_id: number,
     fecha: string,
+    especialidades_id:number
 }
