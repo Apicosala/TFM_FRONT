@@ -32,9 +32,17 @@ const routes: Routes = [
       import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
   },
   {
+    path: 'usuario/:userId',
+    loadChildren: () =>
+      import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
+  },
+
+  {
     path: 'alumnos',
     loadChildren: () =>
-      import('./modules/lista-alumnos/listaAlumnos.module').then((m) => m.ListaAlumnosModule),
+      import('./modules/lista-alumnos/listaAlumnos.module').then(
+        (m) => m.ListaAlumnosModule
+      ),
   },
   {
     path: 'foro',
@@ -46,6 +54,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

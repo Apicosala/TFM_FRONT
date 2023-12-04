@@ -12,16 +12,24 @@
     </div>
   </div>
 
-  <form [formGroup]="formForo" (ngSubmit)="getDataForm()">
-
+  <form [formGroup]="formForo" (ngSubmit)="enviarMensaje()">
     <div class="form">
       <label for="titulo">Título</label>
-      <input type="text" id="titulo" placeholder="Introduce tu título" formControlName="titulo" />
+      <input
+        type="text"
+        id="titulo"
+        placeholder="Introduce tu título"
+        formControlName="titulo"
+      />
     </div>
 
     <div class="form">
       <label for="contenido">Contenido</label>
-      <textarea id="contenido" placeholder="Introduce tu mensaje" formControlName="contenido"></textarea>
+      <textarea
+        id="contenido"
+        placeholder="Introduce tu mensaje"
+        formControlName="contenido"
+      ></textarea>
     </div>
 
     <div class="form">

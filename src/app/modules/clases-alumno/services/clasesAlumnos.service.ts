@@ -26,5 +26,4 @@ export class ClasesAlumnosService {
   getProfesorById(profesorId: number): Promise<IUser>{
     return lastValueFrom(this.httpClient.get<IUser>(`${this.baseUrl}${profesorId}`));
   } 
-
 }

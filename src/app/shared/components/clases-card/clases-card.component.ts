@@ -1,7 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { IClases } from 'src/app/core/models/datosClases.interface';
 import { IUser } from 'src/app/core/models/user.interface';
-import { CancelacionClasesService } from 'src/app/core/services/cancelarClases.service';
+import { ClasesService } from 'src/app/core/services/clases.service';
 
 
 @Component({
@@ -11,47 +11,36 @@ import { CancelacionClasesService } from 'src/app/core/services/cancelarClases.s
 })
 export class ClasesCardComponent {
 
-  @Input() infoProfesor!: IUser;
+  @Input() infoUser!: IUser;
   @Input() iclases!: IClases;
 
   arrDatosClases: IClases[] = [];
 
-  terminarClasesServices = inject(CancelacionClasesService);
+  terminarClasesServices = inject(ClasesService);
 
   constructor() { };
 
 
   ngOnInit(): void {
+    //Recuperacion de datos de las clases del usuario al iniciar el componente.
     this.obtenerDatosClases();
+
   }
 
 
   obtenerDatosClases() {
-
-    const profesorId = this.infoProfesor.id;
-    const alumnoId = 3;
-  
-
+    const profesorId = this.infoUser.id;
     this.terminarClasesServices.obtenerDatosClases(profesorId)
       .subscribe((response: any) => {
         this.arrDatosClases = response;
       })
   };
 
-
-
-
   terminarClases() {
-
-    const profesorId = this.infoProfesor.id;
-    const alumnoId = 134;
-    const fecha = "01/10/2023";
-    const especialidadId = 1
-    //1-traer de la card el id del profesor
-    //2-traer el nombre de la clase (especialidad)
-    //3-buscar el id de la especialidad
-    //4-traer de la ruta el id del alumno
-
+    const fecha = this.iclases.fecha;
+    const especialidadId = this.iclases.especialidades_id
+    const profesorId = this.infoUser.id;
+    const alumnoId = this.iclases.alumno_id
     this.terminarClasesServices.terminarClases(profesorId, alumnoId, especialidadId)
       .then((response: any) => {
         console.log(response);

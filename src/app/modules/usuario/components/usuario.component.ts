@@ -20,12 +20,10 @@ export class UsuarioComponent {
     /* Recuperacion de datos del usuario*/ 
 
     this.activatedRoute.params.subscribe((params: any) => {
-      console.log(params);
       let id = params.usuarioId;
       this.userService.getById(id).subscribe(data => {
         this.miUsuario = data[0];
       })
     })
   }
-
 }
