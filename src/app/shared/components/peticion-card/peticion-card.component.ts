@@ -51,7 +51,6 @@ export class PeticionCardComponent {
 
 
 
-
   //aceptar la conexion profesor-alumno
   aceptarSolicitud() {
     const profesorId = this.miUsuario.profesor_id;
