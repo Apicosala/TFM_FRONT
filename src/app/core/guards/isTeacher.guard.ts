@@ -6,5 +6,5 @@ export const isAdminGuard: CanActivateChildFn = (childRoute, state) => {
   const token = localStorage.getItem('auth_token');
   const tokenDecode: IUser = jwtDecode(token!);
 
-  return tokenDecode.id === 2 ? true : false;
+  return tokenDecode.rol === 'prof' ? true : false;
 };

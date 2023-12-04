@@ -1,13 +1,15 @@
 import { Component, inject } from '@angular/core';
 import {
-  AbstractControl,
-  FormControl,
   FormGroup,
-  ValidationErrors,
+  FormControl,
   Validators,
+  AbstractControl,
+  ValidationErrors,
 } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-form-register',
@@ -20,6 +22,7 @@ export class FormRegisterComponent {
 
   usersService = inject(UsersService);
   router = inject(Router);
+  http = inject(HttpClient);
 
   constructor() {
     this.formRegister = new FormGroup(
@@ -39,11 +42,18 @@ export class FormRegisterComponent {
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
           ),
         ]),
+        captureLocation: new FormControl(false),
+        lat: new FormControl(''),
+        lon: new FormControl(''),
         pass: new FormControl('', [
           Validators.required,
           Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
         ]),
-        repeatpassword: new FormControl('', []),
+        repeatpassword: new FormControl(''),
+        foto: new FormControl(''),
+        tel: new FormControl(''),
+        pxh: new FormControl(0),
+        experiencia: new FormControl(0),
       },
       [this.checkPassword]
     );
@@ -60,11 +70,11 @@ export class FormRegisterComponent {
       if (password && repeatPassword && password !== repeatPassword) {
         return { checkpassword: true };
       } else {
-        return null; // Sin error
+        return null;
       }
     }
 
-    return null; // Si alguno de los controles no existe
+    return null;
   }
 
   checkControl(
@@ -77,8 +87,28 @@ export class FormRegisterComponent {
     );
   }
 
+  async captureUserLocation() {
+    if (this.formRegister.get('captureLocation')?.value) {
+      const apiUrl = 'https://ipapi.co/json/';
+
+      try {
+        const locationData: any = await firstValueFrom(this.http.get(apiUrl));
+        const latitude = locationData.latitude;
+        const longitude = locationData.longitude;
+
+        this.formRegister.patchValue({
+          lat: latitude,
+          lon: longitude,
+        });
+      } catch (error) {
+        console.error('Error al obtener la ubicación:', error);
+      }
+    }
+  }
+
   async onSubmit() {
     try {
+      await this.captureUserLocation();
       const response = await this.usersService.register(
         this.formRegister.value
       );

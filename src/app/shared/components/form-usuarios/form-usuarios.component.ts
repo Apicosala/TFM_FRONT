@@ -103,6 +103,9 @@ export class FormUsuariosComponent {
             repetirPass: new FormControl('', []),
 
             activo: new FormControl(this.usuario.activo, []),
+
+            ubicacion: new FormControl(data[0].lat)
+
           },
           [this.controlPass]
         );
@@ -121,6 +124,20 @@ export class FormUsuariosComponent {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async getLocation() {
+      try {
+      const response = await this.perfilServices.getLocation();
+      console.log(response.latitude, response.longitude)
+
+      if (response.id) {
+        alert('Usuario actualizado correctamente');
+        this.router.navigate(['/home']);
+      }
+    } catch (error) {
+      console.log(error);
+    } 
   }
 
   checkControl(formControlName: string): boolean | undefined {
