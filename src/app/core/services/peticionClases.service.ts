@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, lastValueFrom } from 'rxjs';
-import { IEspecialidad } from '../models/Especialidad.interface';
 
 
 @Injectable({
@@ -10,7 +9,7 @@ import { IEspecialidad } from '../models/Especialidad.interface';
 export class PeticionClasesService {
 
     private baseUrl: string = "http://localhost:3000/api/usuarios/";
-    private baseUrlEspecialidades: string = "http://localhost:3000/api/especialidades/";
+
 
     httpClient = inject(HttpClient);
 
@@ -26,6 +25,7 @@ export class PeticionClasesService {
                 } 
                 return response;
             })
+
     }
 
 

@@ -11,25 +11,46 @@ import { PeticionClasesService } from 'src/app/core/services/peticionClases.serv
 })
 export class PeticionCardComponent {
   @Input() miUsuario!: SolicitudClase;
-  
-  especialidades!: IEspecialidad;
+
+  especialidades: IEspecialidad[] | any = [];
 
   activatedRoute = inject(ActivatedRoute);
   peticionClasesServices = inject(PeticionClasesService);
 
 
   async ngOnInit(): Promise<void> {
-    
+
     //recuperamos las especialidades del profesor
-      this.activatedRoute.params.subscribe((params: any) => {
-        let id = params.usuarioId;
-        this.peticionClasesServices.getEspecialidadesByProfesorId(id).subscribe(data => {
-          this.especialidades = data[0];
-        })
+    this.activatedRoute.params.subscribe((params: any) => {
+      let id = params.usuarioId;
+      this.peticionClasesServices.getEspecialidadesByProfesorId(id).subscribe(data => {
+        this.especialidades = data;
+        
+        this.mostrarNombreEspecialidad();
       })
-    
+    });
 
   }
+
+  // Método para obtener el nombre de la especialidad por su ID.
+  obtenerNombreEspecialidad(especialidadId: number): string {
+    const especialidad = this.especialidades.find((especialidad: IEspecialidad) => especialidad.id === especialidadId);
+
+    return especialidad ? especialidad.especialidad : 'Especialidad no encontrada';
+  }
+
+  // Método para mostrar el nombre de la especialidad al acceder a la página
+  mostrarNombreEspecialidad() {
+    const especialidadId = this.miUsuario.especialidades_id;
+    const nombreEspecialidad = this.obtenerNombreEspecialidad(especialidadId);
+
+    return nombreEspecialidad;
+
+    }
+
+
+
+
   //aceptar la conexion profesor-alumno
   aceptarSolicitud() {
     const profesorId = this.miUsuario.profesor_id;
@@ -45,6 +66,7 @@ export class PeticionCardComponent {
         console.log('error al aceptar', error);
       });
   }
+
   // Denegar la conexion profesor-alumno
   async cancelarSolicitud() {
     try {
@@ -61,4 +83,7 @@ export class PeticionCardComponent {
       console.log('error al cancelar', error);
     }
   }
+
+
+
 }
