@@ -8,7 +8,7 @@ import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 })
 export class ListaAlumnosService {
 
-  private baseUrl: string = 'http://localhost:3000/api/usuarios/';
+  private baseUrl: string = 'http://localhost:3000/api/usuarios';
 
   httpClient = inject(HttpClient);
 

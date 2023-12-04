@@ -27,6 +27,11 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'usuario/:userId',
+    loadChildren: () =>
+      import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
+  },
+  {
     path: 'usuario',
     loadChildren: () =>
       import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
@@ -34,7 +39,9 @@ const routes: Routes = [
   {
     path: 'alumnos',
     loadChildren: () =>
-      import('./modules/lista-alumnos/listaAlumnos.module').then((m) => m.ListaAlumnosModule),
+      import('./modules/lista-alumnos/listaAlumnos.module').then(
+        (m) => m.ListaAlumnosModule
+      ),
   },
   {
     path: 'foro',
@@ -46,6 +53,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
