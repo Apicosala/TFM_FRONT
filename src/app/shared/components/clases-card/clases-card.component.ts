@@ -1,5 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IClases } from 'src/app/core/models/datosClases.interface';
 import { IUser } from 'src/app/core/models/user.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
@@ -13,7 +13,6 @@ import { ClasesService } from 'src/app/core/services/clases.service';
 export class ClasesCardComponent {
 
   @Input() infoUser!: IUser;
-  @Input() iclases!: IClases;
 
   arrDatosClases: IClases[] = [];
   alumnoId:number|any

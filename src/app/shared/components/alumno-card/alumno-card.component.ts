@@ -15,45 +15,23 @@ export class AlumnoCardComponent {
 
   especialidades: IEspecialidad[] | any = [];
 
-  totalClases: number = 0;
-
   activatedRoute = inject(ActivatedRoute);
-  peticionclasesServices = inject(ClasesService);
+  peticionClasesServices = inject(ClasesService);
 
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(){
 
     //recuperamos las especialidades del profesor
     this.activatedRoute.params.subscribe(async (params: any) => {
       let id = params.usuarioId;
-      console.log(id)
       if(id){
-        await this.peticionclasesServices.getEspecialidadesByProfesorId(id).then(data => {
+        this.peticionClasesServices.getEspecialidadesByProfesorId(id).then(data => {
           this.especialidades = data;
+          
           this.mostrarNombreEspecialidad();
         })
       }
     });
-
-    //recuperamos las clases del usuario
-    this.activatedRoute.params.subscribe((params: any) => {
-
-      let profesorId = this.miUsuario.profesor_id;
-      let alumnoId = this.miUsuario.alumno_id;
-      let especialidadId = this.miUsuario.especialidades_id;
-
-
-      this.peticionclasesServices.obtenerClasesProfesorIdAlumnoId(profesorId, alumnoId, especialidadId).subscribe(data => {
-
-        // Filtramos las clases del alumno por especialidad.
-        const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
-
-
-        // Obtenemos el total de clases del alumno.
-        this.totalClases = clasesAlumno.length;
-
-      })
-    })
 
   }
 
@@ -70,13 +48,6 @@ export class AlumnoCardComponent {
     const nombreEspecialidad = this.obtenerNombreEspecialidad(especialidadId);
 
     return nombreEspecialidad;
+
+    }
   }
-
-
-
-}
-
-
-
-
-
