@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" [routerLink]="['/']">Inicio</a>
 
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -70,8 +70,7 @@
       <li
         class="nav-item"
         *ngIf="userService.isLogged()"
-        (click)="onClickLogOut()"
-      >
+        (click)="onClickLogOut()">
         <a class="nav-link logout">Desconectar</a>
       </li>
     </ul>
