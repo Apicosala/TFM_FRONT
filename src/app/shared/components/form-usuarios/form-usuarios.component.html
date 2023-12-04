@@ -152,10 +152,11 @@
                     <input class="input" type="number" id="precio" formControlName="precio" />
                     <label class="label" for="precio">Precio/h</label>
                   </div>
+                  
                   //TODO: crear funcion de localizacion para traer la long y lat.
                   <div class=" containerForm check">
                     <label class="title__check" for="localizacion">¿Deseas añadir la localización de tus clases?</label>
-                    <input class="input__ckeck" type="checkbox" id="localizacion" />
+                    <input class="input__ckeck" type="checkbox" id="localizacion" (click)="getLocation()"/>
                   </div>
 
 
