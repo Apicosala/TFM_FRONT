@@ -1,4 +1,4 @@
 export interface PayLoad {
-  user_id: string;
+  user_id: number;
   user_rol: string;
 }

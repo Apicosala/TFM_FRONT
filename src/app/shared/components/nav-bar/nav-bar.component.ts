@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
 import Swal from 'sweetalert2';
 
@@ -10,11 +12,18 @@ import Swal from 'sweetalert2';
 })
 export class NavBarComponent {
   //TODO: Poner los routerlink en HTML una vez tengamos todos los componentes definidos + Filtrar accesos por rol
+  public userId!: number;
   router = inject(Router);
-  public usersService = inject(UsersService);
+  public userService = inject(UsersService);
 
+  ngOnInit(): void {
+    let token = this.userService.token;
+    if (token) {
+      let decodedToken = jwtDecode<PayLoad>(token);
+      this.userId = decodedToken.user_id;
+    }
+  }
   onClickLogOut() {
-    // Utilizamos SweetAlert2 para mostrar un aviso
     Swal.fire({
       title: '¿Estás seguro?',
       text: '¿Quieres desconectarte?',
@@ -28,7 +37,9 @@ export class NavBarComponent {
       if (result.isConfirmed) {
         // El usuario ha confirmado la desconexión
         localStorage.removeItem('auth_token');
-        this.router.navigate(['auth', 'login']);
+        this.router.navigate(['auth', 'login'], {
+          queryParams: {},
+        });
       }
     });
   }
