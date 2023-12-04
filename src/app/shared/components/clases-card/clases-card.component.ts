@@ -22,6 +22,7 @@ export class ClasesCardComponent {
   profesorId:number|any
   alumno:IUser[]|any = []
   fecha:string|any
+  fechas:string[]|any
   foto:string|any
   router = inject(Router)
   
@@ -42,7 +43,8 @@ export class ClasesCardComponent {
       result = await this.clasesService.getDatosUsuario(this.alumnoId)
       this.alumno = result[0]
       result = await this.clasesService.getFechaByClases(this.profesorId,this.alumnoId)
-      this.fecha = result[0].fecha
+      this.fecha = result[result.length-1].fecha
+      this.fechas = result.length
       result = await this.clasesService.getDatosUsuario(this.alumnoId)
       this.foto = result[0].foto
     } catch (error) {
