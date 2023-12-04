@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PpalModule } from './modules/ppal/ppal.module';
+import { isAdminGuard } from './core/guards/isAdmin.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+      import('./modules/admin/admin.module').then((m) => m.AdminModule), canActivateChild: [], 
   },
   {
     path: 'clases',
@@ -31,12 +31,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
   },
-  {
-    path: 'usuario/:userId',
-    loadChildren: () =>
-      import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
-  },
-
   {
     path: 'alumnos',
     loadChildren: () =>
