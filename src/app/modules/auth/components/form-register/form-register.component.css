@@ -21,3 +21,11 @@ input.ng-valid.ng-touched{
   opacity: 1;
   transform: translateY(0);
 }
+
+.capture-location-label {
+  margin-top: 10px;
+}
+
+.lat-ocult {
+  display: none;
+}

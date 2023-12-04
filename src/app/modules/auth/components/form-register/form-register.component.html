@@ -15,7 +15,6 @@
       </p>
     </div>
 
-    <!-- Muestra el resto del formulario cuando se ha seleccionado un rol -->
     <div
       [ngClass]="{
         'form-container': true,
@@ -75,7 +74,36 @@
         </p>
       </div>
 
-      <!-- Resto del formulario -->
+      <div class="mb-3">
+        <label>
+          <input type="checkbox" formControlName="captureLocation" />
+          Capturar ubicación
+        </label>
+      </div>
+
+      <div class="mb-3" *ngIf="formRegister.get('captureLocation')?.value">
+        <label for="lat" class="form-label">Latitud</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lat"
+          placeholder="Latitud"
+          formControlName="lat"
+          readonly
+        />
+      </div>
+
+      <div class="mb-3" *ngIf="formRegister.get('captureLocation')?.value">
+        <label for="lon" class="form-label">Longitud</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lon"
+          placeholder="Longitud"
+          formControlName="lon"
+          readonly
+        />
+      </div>
 
       <div class="mb-3">
         <label for="pass" class="form-label">Contraseña</label>
@@ -90,15 +118,12 @@
           Este campo es requerido
         </p>
         <p class="error" *ngIf="checkControl('pass', 'pattern')">
-          Tu contraseña debe de empezar por una letra, contener al menos un
-          dígito y contener al menos 8 caracteres.
+          Tu contraseña debe de empezar por una letra, contener al menos un dígito y contener al menos 8 caracteres.
         </p>
       </div>
 
       <div class="mb-3">
-        <label for="repeatpassword" class="form-label"
-          >Repite la contraseña</label
-        >
+        <label for="repeatpassword" class="form-label">Repite la contraseña</label>
         <input
           type="password"
           class="form-control"
@@ -117,6 +142,54 @@
         </p>
       </div>
 
+      <!-- Nuevos campos -->
+
+      <div class="mb-3">
+        <label for="foto" class="form-label">Foto</label>
+        <input
+          type="text"
+          class="form-control"
+          id="foto"
+          placeholder="URL de la foto"
+          formControlName="foto"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="tel" class="form-label">Teléfono</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tel"
+          placeholder="Número de teléfono"
+          formControlName="tel"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="pxh" class="form-label">Precio por hora</label>
+        <input
+          type="number"
+          class="form-control"
+          id="pxh"
+          placeholder="Precio por hora"
+          formControlName="pxh"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="experiencia" class="form-label">Experiencia</label>
+        <input
+          type="number"
+          class="form-control"
+          id="experiencia"
+          placeholder="Años de experiencia"
+          formControlName="experiencia"
+        />
+      </div>
+
+      <!-- Resto del formulario -->
+
       <input
         type="submit"
         value="Enviar"
@@ -128,3 +201,6 @@
 
   <p class="error">{{ errorMessage }}</p>
 </section>
+
+
+
