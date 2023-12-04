@@ -34,6 +34,11 @@ export class ClasesService {
       obtenerClasesProfesorIdAlumnoId(profesorId: number, alumnoId: number, especialidadId: number ): Observable<IClases[]> {
         return this.httpClient.get<IClases[]>(`${this.baseUrl}/clases/${profesorId}&${alumnoId}`)}
 
+        
+      getFechaByClases(profesorId:number, alumnoId:number):Promise<any>{
+        return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}`))
+      }
+
 
 //PUT      
 
