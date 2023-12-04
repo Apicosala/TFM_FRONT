@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Observable, last, lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +15,18 @@ export class ClasesService {
 
 //GET
         // Metodo para recuperar las especialidades
-        getEspecialidadesByProfesorId(profesorId: number): Observable<any>{
-            return this.httpClient.get<any>(`${this.baseUrl}/especialidades/${profesorId}`);
+        getEspecialidadesByProfesorId(profesorId: number): Promise<any>{
+            return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}especialidades/${profesorId}`));
         }
 
-        //Obtenemos datos de las clases del usuario.
-    obtenerDatosClases(alumnoId: number): Observable<any> {
-      return this.httpClient.get<any>(`${this.baseUrl}/clases/${alumnoId}`)
+      getDatosProfesor(profesorId: number): Promise<any> {
+        return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}conexion/${profesorId}`))
       }
+
+      getDatosUsuario(usuarioId:number):Promise<any>{
+        return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${usuarioId}`))
+      }
+
 
 //PUT      
 
@@ -39,15 +43,14 @@ export class ClasesService {
   }
 
 //DELETE
-
           // Metodo para cancelar la conexion profesor-alumno
     cancelarSolicitud(profesorId: number, alumnoId: number, especialidadId: number): Promise<any> {
 
-      return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}/conexion/${profesorId}&${alumnoId}&${especialidadId}`)
+      return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}conexion/${profesorId}&${alumnoId}&${especialidadId}`)
       )};
   
       // Método para cancelar la clase con un profesor.
       terminarClases (profesorId: number,alumnoId:number, especialidadId:number): Promise<any> {
-          return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}/conexion/${profesorId}&${alumnoId}&${especialidadId}`)
+          return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}conexion/${profesorId}&${alumnoId}&${especialidadId}`)
           )};
 }
