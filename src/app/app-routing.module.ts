@@ -27,15 +27,16 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'usuario/:userId',
-    loadChildren: () =>
-      import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
-  },
-  {
     path: 'usuario',
     loadChildren: () =>
       import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
   },
+  {
+    path: 'usuario/:userId',
+    loadChildren: () =>
+      import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
+  },
+
   {
     path: 'alumnos',
     loadChildren: () =>

@@ -4,21 +4,28 @@ import { lastValueFrom } from 'rxjs';
 import { IForo } from 'src/app/core/models/foro.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ForoUsuarioService {
-
-  private baseUrl: string = "http://localhost:3000/api/usuarios/";
+  private baseUrl: string = 'http://localhost:3000/api/usuarios/';
 
   httpClient = inject(HttpClient);
 
-  constructor() { }
+  constructor() {}
 
   insert(mensaje: IForo): Promise<IForo> {
-
-       return lastValueFrom(this.httpClient.post<IForo>(`${this.baseUrl}${mensaje.profesor_id}/foro/${mensaje.alumno_id}`, mensaje));
-       
+    return lastValueFrom(
+      this.httpClient.post<IForo>(
+        `${this.baseUrl}${mensaje.profesor_id}/foro/${mensaje.alumno_id}`,
+        mensaje
+      )
+    );
   }
-
-
+  getMensajes(profesorId: number, alumnoId: number): Promise<IForo[]> {
+    return lastValueFrom(
+      this.httpClient.get<IForo[]>(
+        `${this.baseUrl}${profesorId}/foro/${alumnoId}`
+      )
+    );
+  }
 }
