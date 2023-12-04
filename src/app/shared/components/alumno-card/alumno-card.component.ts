@@ -15,6 +15,8 @@ export class AlumnoCardComponent {
 
   especialidades: IEspecialidad[] | any = [];
 
+  totalClases: number = 0;
+
   activatedRoute = inject(ActivatedRoute);
   peticionclasesServices = inject(ClasesService);
 
