@@ -17,6 +17,7 @@
   text-decoration: none;
   color: white;
   transition: color 0.3s ease;
+  font-size: 20px; /* Se puede cambiar el tamaño de la font atacando a esta clase @Maria*/
 }
 
 .nav-link:hover {
@@ -29,8 +30,8 @@
 }
 
 .nav-link.logout:hover {
-  color: #dc3545; /* Puedes cambiar este color según tu preferencia */
-  cursor: pointer; /* Cambiar el cursor a pointer al pasar el ratón */
+  color: #dc3545;
+  cursor: pointer; 
 }
 
 .nav-link.active {
