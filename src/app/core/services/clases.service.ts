@@ -20,14 +20,17 @@ export class ClasesService {
             return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}especialidades/${profesorId}`));
         }
 
+        // Metodo para recuperar los datos del profesor
       getDatosProfesor(profesorId: number): Promise<any> {
         return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}conexion/${profesorId}`))
       }
 
+      // Metodo para recuperar los datos del alumno
       getDatosUsuario(usuarioId:number):Promise<any>{
         return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${usuarioId}`))
       }
 
+      // Metodo para recuperar las clases del alumno
       obtenerClasesProfesorIdAlumnoId(profesorId: number, alumnoId: number, especialidadId: number ): Observable<IClases[]> {
         return this.httpClient.get<IClases[]>(`${this.baseUrl}/clases/${profesorId}&${alumnoId}`)}
 
@@ -47,6 +50,7 @@ export class ClasesService {
   }
 
 //DELETE
+
           // Metodo para cancelar la conexion profesor-alumno
     cancelarSolicitud(profesorId: number, alumnoId: number, especialidadId: number): Promise<any> {
 
