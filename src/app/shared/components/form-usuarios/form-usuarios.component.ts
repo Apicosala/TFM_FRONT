@@ -127,9 +127,9 @@ export class FormUsuariosComponent {
   }
 
   async getLocation() {
-    console.log("getlocation")
-    /* try {
-      const response = await this.perfilServices.update(this.formUsuario.value);
+      try {
+      const response = await this.perfilServices.getLocation();
+      console.log(response.latitude, response.longitude)
 
       if (response.id) {
         alert('Usuario actualizado correctamente');
@@ -137,7 +137,7 @@ export class FormUsuariosComponent {
       }
     } catch (error) {
       console.log(error);
-    } */
+    } 
   }
 
   checkControl(formControlName: string): boolean | undefined {
