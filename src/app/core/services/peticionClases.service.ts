@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
+import { IEspecialidad } from '../models/Especialidad.interface';
 
 
 @Injectable({
@@ -9,6 +10,7 @@ import { lastValueFrom } from 'rxjs';
 export class PeticionClasesService {
 
     private baseUrl: string = "http://localhost:3000/api/usuarios/";
+    private baseUrlEspecialidades: string = "http://localhost:3000/api/especialidades/";
 
     httpClient = inject(HttpClient);
 
@@ -32,4 +34,10 @@ export class PeticionClasesService {
 
         return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}/conexion/${profesorId}&${alumnoId}&${especialidadId}`)
         )};
+
+
+        // Metodo para recuperar las especialidades
+        getEspecialidadesByProfesorId(profesorId: number): Observable<any>{
+            return this.httpClient.get<any>(`${this.baseUrl}/especialidades/${profesorId}`);
+        }
     }

@@ -1,4 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IEspecialidad } from 'src/app/core/models/Especialidad.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { PeticionClasesService } from 'src/app/core/services/peticionClases.service';
 
@@ -9,9 +11,26 @@ import { PeticionClasesService } from 'src/app/core/services/peticionClases.serv
 })
 export class PeticionCardComponent {
   @Input() miUsuario!: SolicitudClase;
+  
+  especialidades!: IEspecialidad;
 
+  activatedRoute = inject(ActivatedRoute);
   peticionClasesServices = inject(PeticionClasesService);
 
+
+  async ngOnInit(): Promise<void> {
+    
+    //recuperamos las especialidades del profesor
+      this.activatedRoute.params.subscribe((params: any) => {
+        let id = params.usuarioId;
+        this.peticionClasesServices.getEspecialidadesByProfesorId(id).subscribe(data => {
+          this.especialidades = data[0];
+        })
+      })
+    
+
+  }
+  //aceptar la conexion profesor-alumno
   aceptarSolicitud() {
     const profesorId = this.miUsuario.profesor_id;
     const usuarioId = this.miUsuario.alumno_id;
@@ -26,7 +45,7 @@ export class PeticionCardComponent {
         console.log('error al aceptar', error);
       });
   }
-
+  // Denegar la conexion profesor-alumno
   async cancelarSolicitud() {
     try {
       const profesorId = this.miUsuario.profesor_id;
