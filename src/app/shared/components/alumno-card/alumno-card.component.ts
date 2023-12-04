@@ -2,7 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IEspecialidad } from 'src/app/core/models/Especialidad.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
-import { PeticionClasesService } from 'src/app/core/services/peticionClases.service';
+import { ClasesService } from 'src/app/core/services/clases.service';
 
 @Component({
   selector: 'app-alumno-card',
@@ -16,7 +16,7 @@ export class AlumnoCardComponent {
   especialidades: IEspecialidad[] | any = [];
 
   activatedRoute = inject(ActivatedRoute);
-  peticionClasesServices = inject(PeticionClasesService);
+  peticionClasesServices = inject(ClasesService);
 
 
   async ngOnInit(): Promise<void> {

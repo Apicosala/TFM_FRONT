@@ -26,7 +26,6 @@ export class perfilUsersService {
   }
 
   update(usuario: IUser) : Promise<IUser> {
-    console.log(usuario)
     return lastValueFrom(this.httpClient.put<IUser>(`${this.baseUrl}${usuario.id}`, usuario)); 
   }
 

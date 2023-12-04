@@ -1,7 +1,7 @@
 import { Component, Input, inject } from '@angular/core';
 import { IClases } from 'src/app/core/models/datosClases.interface';
 import { IUser } from 'src/app/core/models/user.interface';
-import { CancelacionClasesService } from 'src/app/core/services/cancelarClases.service';
+import { ClasesService } from 'src/app/core/services/clases.service';
 
 
 @Component({
@@ -16,13 +16,15 @@ export class ClasesCardComponent {
 
   arrDatosClases: IClases[] = [];
 
-  terminarClasesServices = inject(CancelacionClasesService);
+  terminarClasesServices = inject(ClasesService);
 
   constructor() { };
 
 
   ngOnInit(): void {
+    //Recuperacion de datos de las clases del usuario al iniciar el componente.
     this.obtenerDatosClases();
+
   }
 
 
@@ -33,9 +35,6 @@ export class ClasesCardComponent {
         this.arrDatosClases = response;
       })
   };
-
-
-
 
   terminarClases() {
     const fecha = this.iclases.fecha;
