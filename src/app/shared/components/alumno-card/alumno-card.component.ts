@@ -16,20 +16,45 @@ export class AlumnoCardComponent {
   especialidades: IEspecialidad[] | any = [];
 
   activatedRoute = inject(ActivatedRoute);
-  peticionClasesServices = inject(ClasesService);
+  clasesServices = inject(ClasesService);
 
+  totalClases: number = 0;
 
   async ngOnInit(): Promise<void> {
+
+    
 
     //recuperamos las especialidades del profesor
     this.activatedRoute.params.subscribe((params: any) => {
       let id = params.usuarioId;
-      this.peticionClasesServices.getEspecialidadesByProfesorId(id).subscribe(data => {
+      this.clasesServices.getEspecialidadesByProfesorId(id).subscribe(data => {
         this.especialidades = data;
-        
-        this.mostrarNombreEspecialidad();
+
+        this.mostrarNombreEspecialidad()
       })
+
     });
+    
+        //recuperamos las clases del usuario
+        this.activatedRoute.params.subscribe((params: any) => {
+
+          let profesorId = this.miUsuario.profesor_id;
+          let alumnoId = this.miUsuario.alumno_id;
+          let especialidadId = this.miUsuario.especialidades_id;
+          
+          
+          this.clasesServices.obtenerClasesProfesorIdAlumnoId(profesorId, alumnoId, especialidadId).subscribe(data => {
+            
+            // Filtramos las clases del alumno por especialidad.
+            const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
+
+
+            // Obtenemos el total de clases del alumno.
+            this.totalClases = clasesAlumno.length;
+ 
+          })
+    
+        })
 
   }
 
@@ -47,5 +72,9 @@ export class AlumnoCardComponent {
 
     return nombreEspecialidad;
 
-    }
   }
+
+
+
+
+}
