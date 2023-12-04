@@ -20,9 +20,10 @@ export class isAdminGuard implements CanActivateChild {
     if (token) {
       const tokenDecode: IUser = jwtDecode(token);
 
-      if (tokenDecode.rol === 'admin') {
+      if (tokenDecode.rol == "admin") {
         return true;
       } else {
+        console.log(tokenDecode);
         Swal.fire({
           icon: 'error',
           title: 'Acceso denegado',
