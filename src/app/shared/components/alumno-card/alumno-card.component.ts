@@ -23,7 +23,7 @@ export class AlumnoCardComponent {
   ngOnInit() {
 
     //recuperamos las especialidades del profesor
-    this.activatedRoute.params.subscribe(async (params: any) => {
+    this.activatedRoute.params.subscribe((params: any) => {
       let id = params.usuarioId;
       if (id) {
         this.peticionClasesServices.getEspecialidadesByProfesorId(id).then(data => {
@@ -35,24 +35,31 @@ export class AlumnoCardComponent {
     });
 
     //recuperamos las clases del usuario
-    this.activatedRoute.params.subscribe((params: any) => {
+    this.activatedRoute.params.subscribe( async (params: any) => {
 
       let profesorId = this.miUsuario.profesor_id;
       let alumnoId = this.miUsuario.alumno_id;
       let especialidadId = this.miUsuario.especialidades_id;
 
+      try{
+        const data = await this.peticionClasesServices.getFechaByClases(profesorId, alumnoId);
 
-      this.peticionClasesServices.obtenerClasesProfesorIdAlumnoId(profesorId, alumnoId, especialidadId).subscribe(data => {
+          // Filtramos las clases del alumno por especialidad.
+          const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
+  
+  
+          // Obtenemos el total de clases del alumno.
+          this.totalClases = clasesAlumno.length;
 
-        // Filtramos las clases del alumno por especialidad.
-        const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
-
-
-        // Obtenemos el total de clases del alumno.
-        this.totalClases = clasesAlumno.length;
-      })
-
+      
+      
+      } catch(error) {
+        console.log(error);
+      
+      }
+    
     })
+  
   }
   // Método para obtener el nombre de la especialidad por su ID.
   obtenerNombreEspecialidad(especialidadId: number): string {
