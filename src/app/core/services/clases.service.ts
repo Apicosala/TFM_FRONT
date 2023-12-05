@@ -45,9 +45,9 @@ export class ClasesService {
 
   //POST
 
-  // Metodo para insertar la fecha de las clases
-  insertarFechaClases(profesorId: number, alumnoId: number, especialidadId: number, fecha: string): Promise<any> {
-    return lastValueFrom(this.httpClient.post<any>(`${this.baseUrl}agenda/${profesorId}/clases`, {body: {alumnoId, especialidadId, fecha} }))
+  // Metodo para insertar las fechas de las clases
+  insertarFechaClases(profesorId: number, alumnoId: number, fecha: string, especialidadId: number): Promise<IClases> {
+    return lastValueFrom(this.httpClient.post<IClases>(`${this.baseUrl}agenda/${profesorId}/clases`, { alumno_id: alumnoId, fecha: fecha, especialidades_id: especialidadId }))
   }
 
   //PUT      

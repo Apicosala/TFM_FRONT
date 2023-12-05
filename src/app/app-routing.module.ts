@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { isAdminGuard } from './core/guards/isAdmin.guard';
+import { authGuard } from './core/guards/auth.guard';
+import { isTeacherGuard } from './core/guards/isTeacher.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,7 +19,8 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule), canActivateChild: [isAdminGuard], 
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+    canActivateChild: [isAdminGuard],
   },
   {
     path: 'clases',
@@ -25,11 +28,13 @@ const routes: Routes = [
       import('./modules/clases-alumno/clasesAlumnos.module').then(
         (m) => m.clasesAlumnosModule
       ),
+    canActivateChild: [authGuard],
   },
   {
     path: 'usuario',
     loadChildren: () =>
       import('./modules/usuario/usuario.module').then((m) => m.UsuarioModule),
+    canActivateChild: [authGuard],
   },
   {
     path: 'alumnos',
@@ -37,21 +42,29 @@ const routes: Routes = [
       import('./modules/lista-alumnos/listaAlumnos.module').then(
         (m) => m.ListaAlumnosModule
       ),
+    canActivateChild: [isTeacherGuard],
   },
   {
     path: 'foro',
     loadChildren: () =>
       import('./modules/foroUsuarios/foro.module').then((m) => m.ForoModule),
+    canActivateChild: [authGuard],
   },
   {
     path: 'especialidades',
     loadChildren: () =>
-      import('./modules/lista-profesores/listaProfesores.module').then((m) => m.ListaProfesoresModule),
+      import('./modules/lista-profesores/listaProfesores.module').then(
+        (m) => m.ListaProfesoresModule
+      ),
+    canActivateChild: [authGuard],
   },
   {
     path: 'detalles',
     loadChildren: () =>
-      import('./modules/detalles-profesor/detallesProfesor.module').then((m) => m.DetallesProfesorModule),
+      import('./modules/detalles-profesor/detallesProfesor.module').then(
+        (m) => m.DetallesProfesorModule
+      ),
+    canActivateChild: [authGuard],
   },
   { path: '**', redirectTo: 'home' },
 ];
