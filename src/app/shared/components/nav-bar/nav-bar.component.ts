@@ -25,7 +25,10 @@ export class NavBarComponent {
       let decodedToken = jwtDecode<PayLoad>(token);
       this.userId = decodedToken.user_id;
     }
-    this.obtenerDatos()
+    if(this.userId){
+      this.obtenerDatos()
+    }
+    
   }
   async obtenerDatos():Promise<any>{
     try {
