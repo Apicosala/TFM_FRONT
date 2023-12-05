@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class EspecialidadesCardComponent {
   @Input() oneEspecialidad: any
-  applyOverlay: boolean = false;
+  applyOverlay: boolean = false; 
 }

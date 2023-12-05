@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClasesAlumnosService } from '../services/clasesAlumnos.service';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
+import { ClasesService } from 'src/app/core/services/clases.service';
 
 
 @Component({
@@ -13,11 +14,12 @@ export class ClasesAlumnoComponent {
 
   arrUsuarioClases: SolicitudClase[] = [];
   arrProfesores: any[] = [];
-
+  clasesService = inject(ClasesService)
   activatedRoute = inject(ActivatedRoute);
   clasesAlumnoService = inject(ClasesAlumnosService);
 
-  async ngOnInit(): Promise<void> {
+
+  ngOnInit(){
 
     this.activatedRoute.params.subscribe(async (params: any) => {
 
@@ -32,12 +34,9 @@ export class ClasesAlumnoComponent {
         // traemos todos los datos de los profesores
         const allDataProfesor = profesorIds.map((profesorId: number) => this.clasesAlumnoService.getProfesorById(profesorId));
         this.arrProfesores = await Promise.all(allDataProfesor);
-
       } catch (error) {
-        console.log(error)
-        //TODO: mostrar un mensaje de error al usuario.
+        alert(error)
       }
     });
   }
-
 }

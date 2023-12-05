@@ -254,3 +254,6 @@
     transform-origin: 19vw 4vh;
     box-shadow: 100vmin 0 13.418565109121086vmin currentColor;
 }
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

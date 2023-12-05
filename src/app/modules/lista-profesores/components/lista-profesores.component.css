@@ -1,0 +1,21 @@
+.title {
+    text-align: center;
+    color: rgb(162, 80, 255);
+    font-size: 70px;
+    margin: 1% 0 1% 0;
+}
+
+.profesor {
+    text-align: center;
+    margin: auto;
+    max-width: 70%;
+}
+
+.mapaProfesores {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10%;
+  }

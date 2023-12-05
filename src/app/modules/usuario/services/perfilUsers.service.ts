@@ -11,6 +11,7 @@ import { IUser } from 'src/app/core/models/user.interface';
 export class perfilUsersService {
 
   private baseUrl: string = "http://localhost:3000/api/usuarios/"
+  private locationUrl: string = "https://ipapi.co/json/"
   
 
   httpClient = inject(HttpClient);
@@ -27,6 +28,10 @@ export class perfilUsersService {
 
   update(usuario: IUser) : Promise<IUser> {
     return lastValueFrom(this.httpClient.put<IUser>(`${this.baseUrl}${usuario.id}`, usuario)); 
+  }
+
+  getLocation(): Promise<any>{
+    return lastValueFrom(this.httpClient.get<any>(`${this.locationUrl}`));
   }
 
   

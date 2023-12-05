@@ -1,19 +1,24 @@
 <div class="onlyCard shadow p-3 mb-5 bg-body-tertiary rounded">
     <div class="cardComponent">
-
-        <img class="imageProf" [src]="infoUser.foto" [alt]="infoUser.nombre">
+        <img class="imageProf" [src]="this.usuario.foto" [alt]="this.usuario.nombre">
         <div class="text">
-            <h2 class="card-title">Nombre de la clase</h2>
-            <p>Fecha:</p>
-            <h3 class="card-profesor">{{infoUser.nombre}} {{infoUser.apellidos}}</h3>
-            <p class="card-clases">Clases realizadas:</p>
+            <h2 class="card-title">{{this.especialidad}}</h2>
+            <h3 class="card-profesor">{{this.usuario.nombre}} {{this.usuario.apellidos}}</h3>
+            <p class="card-clases" >Cantidad total de clases: {{this.fechas}}</p>
+            <p class="card-clases">Última clase agendada: {{this.fecha}}</p>
         </div>
 
-        <!--//TODO: Crear funcionaliad de botones -->
         <div class="buttons">
-            <a class="button" type="submit" [routerLink]="['/foro/:usuarioId']">
-                <span>Contacta con tu profesor</span>
-            </a>
+            <ng-container *ngIf="this.esAlumno; else elseBlock">
+                <a class="button" type="submit" (click)="routeAlForo()">
+                    <span>Contacta con tu profesor</span>
+                </a>
+            </ng-container>
+            <ng-template #elseBlock>
+                <a class="button" type="submit" (click)="routeAlForo()">
+                    <span>Contacta con tu alumno</span>
+                </a>
+            </ng-template>
             <a class="button" type="submit" (click)="terminarClases()">
                 <span>Terminé mis clases</span>
             </a>
