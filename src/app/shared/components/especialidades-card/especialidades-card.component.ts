@@ -8,4 +8,8 @@ import { Component, Input } from '@angular/core';
 export class EspecialidadesCardComponent {
   @Input() oneEspecialidad: any
   applyOverlay: boolean = false;
+
+  getProfesores(){
+     console.log("Go to profesores")
+  }
 }

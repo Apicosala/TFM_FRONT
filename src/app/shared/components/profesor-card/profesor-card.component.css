@@ -1,0 +1,41 @@
+.onlyCard {
+    background-image: url(https://marketplace.canva.com/EAEK4dC2olw/1/0/1600w/canva-arcoíris-gradiente-rosa-y-naranja-fondo-virtual-c3PYha1JI9M.jpg);
+    background-size: auto;
+    margin-top: 5%;
+    margin:auto;
+    width: 70%;
+    border: 2px solid #7768ff; 
+    border-radius: 40px;
+}
+
+.cardComponent {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.imageProfesor {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 7px solid #cfb3fc;
+    object-fit: cover; 
+}
+
+.text {
+    text-align: center;
+}
+
+.card-nombre {
+    font-size: 60px;
+    color: rgb(207, 111, 251);
+}
+
+.card-clases, .card-recibidas {
+    margin-top: 10px;
+}
+
+.card-clases {
+    font-size: 35px;
+}
