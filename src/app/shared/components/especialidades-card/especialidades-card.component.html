@@ -1,4 +1,4 @@
-<div class="card" (mouseover)="applyOverlay=true" (mouseleave)="applyOverlay=false">
+<div class="card" (mouseover)="applyOverlay=true" (mouseleave)="applyOverlay=false" (click)="getProfesores()">
     <img src="{{oneEspecialidad.foto}}" class="img-hover" />
     <div class="overlay" *ngIf="applyOverlay">
         <p>{{oneEspecialidad.especialidad}}</p>

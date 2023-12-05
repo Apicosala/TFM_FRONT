@@ -1,0 +1,40 @@
+.nombre {
+    font-size: 60px;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .usuario {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10%;
+  }
+  
+  .imagenUsuario {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 7px solid #cfb3fc;
+  }
+  
+  .list {
+    list-style: none;
+  }
+  
+  .list__item {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .mapa {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10%;
+  }

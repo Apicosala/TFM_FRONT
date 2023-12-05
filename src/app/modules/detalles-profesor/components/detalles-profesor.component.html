@@ -1,0 +1,20 @@
+<main>
+    <div class="usuario">
+      <img class="imagenUsuario mt-5" [src]="miProfesor?.foto" [alt]="miProfesor?.nombre">
+      <h1 class="nombre mt-5">{{miProfesor?.nombre}} {{miProfesor?.apellidos}}</h1>
+      <ul class="list">
+        <li class="list__item">Nº Profesor: {{miProfesor?.id}}</li>
+        <li class="list__item">{{miProfesor?.experiencia}} años de experiencia como docente</li>
+        <li class="list__item">Especialidades: {{miEspecialidad?.join(', ')}}</li>
+        <li class="list__item">Precio de la clase: {{miProfesor?.pxh}}€</li>      
+      </ul>
+    </div>
+    <div class="mapa">
+        <google-map
+        [zoom]="zoom"
+        [center]="miUbicacion">
+        <map-circle [center]="miUbicacion" [radius]="1000" [options]="circleOptions"></map-circle>
+        </google-map>
+    </div>
+  
+</main>

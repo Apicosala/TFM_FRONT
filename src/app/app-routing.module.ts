@@ -43,6 +43,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/foroUsuarios/foro.module').then((m) => m.ForoModule),
   },
+  {
+    path: 'especialidades',
+    loadChildren: () =>
+      import('./modules/lista-profesores/listaProfesores.module').then((m) => m.ListaProfesoresModule),
+  },
+  {
+    path: 'detalles',
+    loadChildren: () =>
+      import('./modules/detalles-profesor/detallesProfesor.module').then((m) => m.DetallesProfesorModule),
+  },
   { path: '**', redirectTo: 'home' },
 ];
 
