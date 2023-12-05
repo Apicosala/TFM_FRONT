@@ -57,5 +57,7 @@ export class NavBarComponent {
         });
       }
     });
+    this.msg =undefined
   }
+  
 }
