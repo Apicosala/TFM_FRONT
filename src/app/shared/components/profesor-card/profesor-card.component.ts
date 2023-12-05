@@ -19,14 +19,5 @@ export class ProfesorCardComponent {
 
   ngOnInit() {
 
- /* //recuperamos los datos del profesor
-    this.activatedRoute.params.subscribe(async (params: any) => {
-      let id = params.especialidadId;
-      if (id) {
-        this.listaProfesoresService.getProfesoresByEspecialidadId(id).then(data => {
-          this.profesores = data;
-        })
-      }
-    });*/ 
   }
 }

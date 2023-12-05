@@ -16,4 +16,8 @@ export class ListaProfesoresService {
   getProfesoresByEspecialidadId(especialidadId: number): Promise<any[]> {
     return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrl}/${especialidadId}/profesores`));
   }
+
+  getNombreEspecialidad(): Promise<any[]> {
+    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrl}`));
+  }
 }
