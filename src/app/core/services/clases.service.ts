@@ -14,33 +14,39 @@ export class ClasesService {
 
   constructor() { }
 
-//GET
-        // Metodo para recuperar las especialidades
-        getEspecialidadesByProfesorId(profesorId: number): Promise<any>{
-            return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}especialidades/${profesorId}`));
-        }
+  //GET
+  // Metodo para recuperar las especialidades
+  getEspecialidadesByProfesorId(profesorId: number): Promise<any> {
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}especialidades/${profesorId}`));
+  }
 
-        // Metodo para recuperar los datos del profesor
-      getDatosProfesor(profesorId: number): Promise<any> {
-        return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}conexion/${profesorId}`))
-      }
+  // Metodo para recuperar los datos del profesor
+  getDatosProfesor(profesorId: number): Promise<any> {
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}conexion/${profesorId}`))
+  }
 
-      // Metodo para recuperar los datos del alumno
-      getDatosUsuario(usuarioId:number):Promise<any>{
-        return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${usuarioId}`))
-      }
+  // Metodo para recuperar los datos del alumno
+  getDatosUsuario(usuarioId: number): Promise<any> {
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${usuarioId}`))
+  }
 
-      // Metodo para recuperar las clases del alumno
-      obtenerClasesProfesorIdAlumnoId(profesorId: number, alumnoId: number, especialidadId: number ): Observable<IClases[]> {
-        return this.httpClient.get<IClases[]>(`${this.baseUrl}/clases/${profesorId}&${alumnoId}`)}
+  //Obtenemos datos de las clases del usuario.
+  obtenerDatosClases(alumnoId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/clases/${alumnoId}`)
+  }
 
-        
-      getFechaByClases(profesorId:number, alumnoId:number):Promise<any>{
-        return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}`))
-      }
+  // Metodo para recuperar las clases del alumno
+  obtenerClasesProfesorIdAlumnoId(profesorId: number, alumnoId: number, especialidadId: number): Observable<IClases[]> {
+    return this.httpClient.get<IClases[]>(`${this.baseUrl}/clases/${profesorId}&${alumnoId}`)
+  }
 
 
-//PUT      
+  getFechaByClases(profesorId: number, alumnoId: number): Promise<any> {
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}`))
+  }
+
+
+  //PUT      
 
   // Metodo para aceptar la conexion profesor-alumno
   aceptarSolicitud(profesorId: number, alumnoId: number, especialidadId: number): Promise<any> {
@@ -54,16 +60,18 @@ export class ClasesService {
       })
   }
 
-//DELETE
+  //DELETE
 
-          // Metodo para cancelar la conexion profesor-alumno
-    cancelarSolicitud(profesorId: number, alumnoId: number, especialidadId: number): Promise<any> {
+  // Metodo para cancelar la conexion profesor-alumno
+  cancelarSolicitud(profesorId: number, alumnoId: number, especialidadId: number): Promise<any> {
 
-      return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}conexion/${profesorId}&${alumnoId}&${especialidadId}`)
-      )};
-  
-      // Método para cancelar la clase con un profesor.
-      terminarClases (profesorId: number,alumnoId:number, especialidadId:number): Promise<any> {
-          return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}conexion/${profesorId}&${alumnoId}&${especialidadId}`)
-          )};
+    return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}conexion/${profesorId}&${alumnoId}&${especialidadId}`)
+    )
+  };
+
+  // Método para cancelar la clase con un profesor.
+  terminarClases(profesorId: number, alumnoId: number, especialidadId: number): Promise<any> {
+    return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}conexion/${profesorId}&${alumnoId}&${especialidadId}`)
+    )
+  };
 }

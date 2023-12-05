@@ -14,27 +14,46 @@ export class AlumnoCardComponent {
   @Input() miUsuario!: SolicitudClase;
 
   especialidades: IEspecialidad[] | any = [];
+  totalClases: number = 0;
 
   activatedRoute = inject(ActivatedRoute);
   peticionClasesServices = inject(ClasesService);
 
 
-  ngOnInit(){
+  ngOnInit() {
 
     //recuperamos las especialidades del profesor
     this.activatedRoute.params.subscribe(async (params: any) => {
       let id = params.usuarioId;
-      if(id){
+      if (id) {
         this.peticionClasesServices.getEspecialidadesByProfesorId(id).then(data => {
           this.especialidades = data;
-          
+
           this.mostrarNombreEspecialidad();
         })
       }
     });
 
-  }
+    //recuperamos las clases del usuario
+    this.activatedRoute.params.subscribe((params: any) => {
 
+      let profesorId = this.miUsuario.profesor_id;
+      let alumnoId = this.miUsuario.alumno_id;
+      let especialidadId = this.miUsuario.especialidades_id;
+
+
+      this.peticionClasesServices.obtenerClasesProfesorIdAlumnoId(profesorId, alumnoId, especialidadId).subscribe(data => {
+
+        // Filtramos las clases del alumno por especialidad.
+        const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
+
+
+        // Obtenemos el total de clases del alumno.
+        this.totalClases = clasesAlumno.length;
+      })
+
+    })
+  }
   // Método para obtener el nombre de la especialidad por su ID.
   obtenerNombreEspecialidad(especialidadId: number): string {
     const especialidad = this.especialidades.find((especialidad: IEspecialidad) => especialidad.id === especialidadId);
@@ -49,5 +68,9 @@ export class AlumnoCardComponent {
 
     return nombreEspecialidad;
 
-    }
   }
+
+}
+
+
+

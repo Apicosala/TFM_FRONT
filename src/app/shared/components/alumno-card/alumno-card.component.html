@@ -1,9 +1,22 @@
-<div class="onlyCard shadow p-3 mb-5 bg-body-tertiary rounded" [routerLink]="['/foro/:usuarioId']">
+<div class="onlyCard shadow p-3 mb-5 bg-body-tertiary rounded">
 
-        <img class="imageAlumno" [src]="miUsuario.foto" [alt]="miUsuario.nombre">
-        <div class="text">
-            <h2 class="card-nombre">{{miUsuario.nombre}} {{miUsuario.apellidos}}</h2>
-            <h3 class="card-clase">{{obtenerNombreEspecialidad(miUsuario.especialidades_id)}}</h3>
-            <p class="card-realizadas">Clases:</p>
+    <img class="imageAlumno" [src]="miUsuario.foto" [alt]="miUsuario.nombre">
+    <div class="text">
+        <h2 class="card-nombre">{{miUsuario.nombre}} {{miUsuario.apellidos}}</h2>
+        <h3 class="card-clase">{{obtenerNombreEspecialidad(miUsuario.especialidades_id)}}</h3>
+        <p class="card-realizadas">Clases: {{totalClases}}</p>
+    </div>
+    <div class="buttons">
+        <div>
+            <button class="button1" [routerLink]="['/foro/:usuarioId']">
+                <span>Dudas de {{miUsuario.nombre}}</span>
+            </button>
+        </div>
+
+        <div class="form-container formFecha">
+            <label class="labelFecha" for="fecha">Introduce la fecha</label>
+            <input class="inputFecha" type="fecha" id="fecha"/>
+            <input class="button2" type="submit" value="Añade la fecha">
         </div>
     </div>
+</div>

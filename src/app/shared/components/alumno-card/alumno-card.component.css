@@ -40,3 +40,82 @@
 .card-clases {
     font-size: 35px;
 }
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button1 {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    color: #a47dff;
+    background-color: #42a769;
+    border-radius: 0.15rem;
+    margin-top: 9px;
+  }
+  
+  .button1:hover span {
+    background-color: #40ff70;
+    color: #d747ff;
+  }
+  
+  .button1:active span {
+    translate: none;
+  }
+  
+  .button1 span {
+    display: inherit;
+    border-radius: inherit;
+    background-color: #a0ffae;
+    padding: 0.5rem 1.5rem;
+    translate: 0.25rem -0.15rem;
+    border: 2px solid #3fb84d;
+    transition: translate 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275 background-color 250ms);
+  
+  }
+
+  .button2 {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    color: #f82b46;
+    background-color: #a95552;
+    border-radius: 0.15rem;
+    margin-top: 9px;
+  }
+  
+  .button2:hover span {
+    background-color: #ff290d;
+    color: #ffe1f6;
+  }
+  
+  .button2:active span {
+    translate: none;
+  }
+  
+  .button2 span {
+    display: inherit;
+    border-radius: inherit;
+    background-color: #ffb8a0;
+    padding: 0.5rem 1.5rem;
+    translate: 0.25rem -0.15rem;
+    border: 2px solid #ca4343;
+    transition: translate 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275 background-color 250ms);
+  
+  }
+
+  .formFecha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
