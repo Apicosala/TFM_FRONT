@@ -1,39 +1,27 @@
-<main>
-  <div>
-    <h1>Nombre del alumno</h1>
-
-    <div>
-      <img class="imagenUsuario mt-5" src="" [alt]="" />
-      <h2 class="nombre mt-5">nombre de la clase</h2>
-      <ul class="list">
-        <li class="list__item">correo</li>
-        <li class="list__item">telefóno</li>
-      </ul>
-    </div>
+<form [formGroup]="formForo" (ngSubmit)="enviarMensaje()" class="mb-4">
+  <div class="mb-3">
+    <label for="titulo" class="form-label">Título:</label>
+    <input
+      id="titulo"
+      type="text"
+      formControlName="titulo"
+      class="form-control"
+    />
   </div>
-
-  <form [formGroup]="formForo" (ngSubmit)="enviarMensaje()">
-    <div class="form">
-      <label for="titulo">Título</label>
-      <input
-        type="text"
-        id="titulo"
-        placeholder="Introduce tu título"
-        formControlName="titulo"
-      />
-    </div>
-
-    <div class="form">
-      <label for="contenido">Contenido</label>
-      <textarea
-        id="contenido"
-        placeholder="Introduce tu mensaje"
-        formControlName="contenido"
-      ></textarea>
-    </div>
-
-    <div class="form">
-      <input type="submit" value="Enviar" />
-    </div>
-  </form>
-</main>
+  <div class="mb-3">
+    <label for="contenido" class="form-label">Contenido:</label>
+    <textarea
+      id="contenido"
+      formControlName="contenido"
+      class="form-control"
+    ></textarea>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [routerLink]="['/usuario', userId]"
+    routerLinkActive="active"
+  >
+    Enviar
+  </button>
+</form>

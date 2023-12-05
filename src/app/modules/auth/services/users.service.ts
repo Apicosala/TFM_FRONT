@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { Subject, firstValueFrom } from 'rxjs';
 
 type FormLoginValue = { email: string; password: string };
 type FormLoginResponse = { success: string; token: string; fatal: string };
@@ -21,6 +21,7 @@ export class UsersService {
   private httpClient = inject(HttpClient);
   token: string | null;
   userId: number | null;
+  tokenChange = new Subject<string | null>();
 
   constructor() {
     this.token = localStorage.getItem('auth_token');
@@ -32,7 +33,11 @@ export class UsersService {
   login(values: FormLoginValue): Promise<FormLoginResponse> {
     return firstValueFrom(
       this.httpClient.post<FormLoginResponse>(`${this.baseUrl}/login`, values)
-    );
+    ).then((response) => {
+      this.token = response.token;
+      this.tokenChange.next(this.token);
+      return response;
+    });
   }
 
   register(values: FormRegisterValue) {
@@ -41,11 +46,20 @@ export class UsersService {
         `${this.baseUrl}/register`,
         values
       )
-    );
+    ).then((response) => {
+      this.token = response.token;
+      this.tokenChange.next(this.token);
+      return response;
+    });
   }
 
   isLogged(): boolean {
     return localStorage.getItem('auth_token') ? true : false;
+  }
+  logOut() {
+    this.token = null;
+    this.tokenChange.next(null);
+    localStorage.removeItem('auth_token');
   }
 
   clearUserId() {

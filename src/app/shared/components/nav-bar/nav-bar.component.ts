@@ -12,15 +12,25 @@ import Swal from 'sweetalert2';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent {
-  //TODO: Poner los routerlink en HTML una vez tengamos todos los componentes definidos + Filtrar accesos por rol
   public userId!: number;
   router = inject(Router);
   public userService = inject(UsersService);
+  private token: string | null = null;
+
+  ngOnInit(): void {
+    this.userService.tokenChange.subscribe((newToken) => {
+      this.token = newToken;
+      if (this.token) {
+        let decodedToken = jwtDecode<PayLoad>(this.token);
+        this.userId = decodedToken.user_id;
+      }
+    });
+
   clasesService = inject(ClasesService)
   msg:string|any
 
   ngOnInit(): void {
-    let token = this.userService.token;
+    this.token = this.userService.token;
     if (token) {
       let decodedToken = jwtDecode<PayLoad>(token);
       this.userId = decodedToken.user_id;
@@ -38,6 +48,7 @@ export class NavBarComponent {
       alert(error)
     }
   }
+
   onClickLogOut() {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -51,9 +62,10 @@ export class NavBarComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         // El usuario ha confirmado la desconexión
-        localStorage.removeItem('auth_token');
+        this.userService.logOut();
+        this.userService.clearUserId();
         this.router.navigate(['auth', 'login'], {
-          queryParams: {},
+          queryParams: [],
         });
       }
     });
