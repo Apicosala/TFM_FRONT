@@ -1,6 +1,6 @@
-<div class="card" (mouseover)="applyOverlay=true" (mouseleave)="applyOverlay=false" (click)="getProfesores()">
+<div class="card" (mouseover)="applyOverlay=true" (mouseleave)="applyOverlay=false" [routerLink]="['/especialidades',':especialidadId','profesores']">
     <img src="{{oneEspecialidad.foto}}" class="img-hover" />
-    <div class="overlay" *ngIf="applyOverlay">
+        <div class="overlay" *ngIf="applyOverlay">
         <p>{{oneEspecialidad.especialidad}}</p>
     </div>
 </div>
