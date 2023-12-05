@@ -15,9 +15,10 @@ export class AlumnoCardComponent {
 
   especialidades: IEspecialidad[] | any = [];
   totalClases: number = 0;
+  fechaInput: string = "";
 
   activatedRoute = inject(ActivatedRoute);
-  peticionClasesServices = inject(ClasesService);
+  clasesServices = inject(ClasesService);
 
 
   ngOnInit() {
@@ -26,7 +27,7 @@ export class AlumnoCardComponent {
     this.activatedRoute.params.subscribe((params: any) => {
       let id = params.usuarioId;
       if (id) {
-        this.peticionClasesServices.getEspecialidadesByProfesorId(id).then(data => {
+        this.clasesServices.getEspecialidadesByProfesorId(id).then(data => {
           this.especialidades = data;
 
           this.mostrarNombreEspecialidad();
@@ -35,31 +36,31 @@ export class AlumnoCardComponent {
     });
 
     //recuperamos las clases del usuario
-    this.activatedRoute.params.subscribe( async (params: any) => {
+    this.activatedRoute.params.subscribe(async (params: any) => {
 
       let profesorId = this.miUsuario.profesor_id;
       let alumnoId = this.miUsuario.alumno_id;
       let especialidadId = this.miUsuario.especialidades_id;
 
-      try{
-        const data = await this.peticionClasesServices.getFechaByClases(profesorId, alumnoId);
+      try {
+        const data = await this.clasesServices.getFechaByClases(profesorId, alumnoId);
 
-          // Filtramos las clases del alumno por especialidad.
-          const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
-  
-  
-          // Obtenemos el total de clases del alumno.
-          this.totalClases = clasesAlumno.length;
+        // Filtramos las clases del alumno por especialidad.
+        const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
 
-      
-      
-      } catch(error) {
+
+        // Obtenemos el total de clases del alumno.
+        this.totalClases = clasesAlumno.length;
+
+
+
+      } catch (error) {
         console.log(error);
-      
+
       }
-    
+
     })
-  
+
   }
   // Método para obtener el nombre de la especialidad por su ID.
   obtenerNombreEspecialidad(especialidadId: number): string {
@@ -77,8 +78,28 @@ export class AlumnoCardComponent {
 
   }
 
+  // Método para insertar la fecha de las clases
+  anadirFechaClases() {
+    const profesorId = this.miUsuario.profesor_id;
+    const alumnoId = this.miUsuario.alumno_id;
+    const especialidadId = this.miUsuario.especialidades_id;
+
+
+console.log(especialidadId)
+    if (!this.fechaInput) {
+      alert('Debes introducir una fecha');
+      return
+    }
+
+    this.clasesServices.insertarFechaClases(profesorId, alumnoId, this.fechaInput, especialidadId)
+    .then(response => {
+      console.log('Fecha añadida con éxito', response);
+    })
+    .catch(error => {
+      console.log('error al añadir la fecha', error);
+    })
+
+  }
 
 }
-
-
 

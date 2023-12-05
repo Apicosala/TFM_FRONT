@@ -13,10 +13,11 @@
             </button>
         </div>
 
-        <div class="form-container formFecha">
-            <label class="labelFecha" for="fecha">Introduce la fecha de la clase</label>
-            <input class="inputFecha" type="fecha" id="fecha"/>
-            <input class="button2" type="submit" value="Añadir">
-        </div>
+        <form class="form-container formFecha">
+
+            <label class="labelFecha" for="fecha" placeholder="DD/MM/AAAA">Introduce la fecha de la clase</label>
+            <input class="inputFecha" type="text" id="fecha" name="fecha" [(ngModel)]="fechaInput"/>
+            <input class="button2" type="submit" value="Añadir" (click)="anadirFechaClases()">
+        </form>
     </div>
 </div>

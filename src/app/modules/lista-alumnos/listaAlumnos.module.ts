@@ -4,6 +4,7 @@ import { AlumnoCardComponent } from 'src/app/shared/components/alumno-card/alumn
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ListaAlumnosRoutingModule } from './listaAlumnos-routing.module';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     SharedModule,
     ListaAlumnosRoutingModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
   ]
 })
 export class ListaAlumnosModule {}
