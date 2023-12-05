@@ -38,4 +38,13 @@
   font-weight: bold;
   color: #000000;
 }
+.margin{
+  padding-bottom: 0;
+}
+.user{
+  margin-top: 0;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  color: white;
+}
 

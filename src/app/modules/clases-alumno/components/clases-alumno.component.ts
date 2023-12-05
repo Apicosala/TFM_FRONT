@@ -1,9 +1,8 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClasesAlumnosService } from '../services/clasesAlumnos.service';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
-import { IUser } from 'src/app/core/models/user.interface';
 
 
 @Component({
@@ -35,7 +34,6 @@ export class ClasesAlumnoComponent {
         // traemos todos los datos de los profesores
         const allDataProfesor = profesorIds.map((profesorId: number) => this.clasesAlumnoService.getProfesorById(profesorId));
         this.arrProfesores = await Promise.all(allDataProfesor);
-
       } catch (error) {
         alert(error)
       }
