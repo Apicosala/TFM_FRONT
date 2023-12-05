@@ -57,7 +57,7 @@
   @media (max-width: 767px) {
     .main{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
     }
     .nombre {
       font-size: 40px; /* Ajustado para dispositivos móviles */
