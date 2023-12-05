@@ -2,18 +2,14 @@
     <h1 class="title">PROFESORES DE ESPECIALIDAD</h1>
     <div class="mapaProfesores">
         <google-map></google-map>
-    </div>
-    
+    </div>    
   
-    <!-- <div class="profesor">
-        <div *ngFor="let usuario of arrUsuario">
-        <ng-container *ngIf="!usuario.activo">
-          <app-profesor-card [miUsuario]="usuario"></app-profesor-card>
+    <div class="profesor">
+        <div *ngFor="let profesor of arrProfesores">
+        <ng-container *ngIf="profesor.activo">
+          <app-profesor-card [miProfesor]="profesor"></app-profesor-card>
         </ng-container>
       </div>
-    </div> -->
+    </div>
   
   </main>
-  
-
-<app-profesor-card></app-profesor-card>
