@@ -19,16 +19,18 @@ export class AlumnoCardComponent {
   peticionClasesServices = inject(ClasesService);
 
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(){
 
     //recuperamos las especialidades del profesor
-    this.activatedRoute.params.subscribe((params: any) => {
+    this.activatedRoute.params.subscribe(async (params: any) => {
       let id = params.usuarioId;
-      this.peticionClasesServices.getEspecialidadesByProfesorId(id).subscribe(data => {
-        this.especialidades = data;
-        
-        this.mostrarNombreEspecialidad();
-      })
+      if(id){
+        this.peticionClasesServices.getEspecialidadesByProfesorId(id).then(data => {
+          this.especialidades = data;
+          
+          this.mostrarNombreEspecialidad();
+        })
+      }
     });
 
   }
