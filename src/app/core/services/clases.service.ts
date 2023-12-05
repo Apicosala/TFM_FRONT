@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, lastValueFrom } from 'rxjs';
 import { IClases } from '../models/datosClases.interface';
+import { SolicitudClase } from '../models/peticion.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -35,14 +36,10 @@ export class ClasesService {
     return this.httpClient.get<any>(`${this.baseUrl}/clases/${alumnoId}`)
   }
 
-  // Metodo para recuperar las clases del alumno
-  obtenerClasesProfesorIdAlumnoId(profesorId: number, alumnoId: number, especialidadId: number): Observable<IClases[]> {
-    return this.httpClient.get<IClases[]>(`${this.baseUrl}/clases/${profesorId}&${alumnoId}`)
-  }
 
-  // Metodo para recuperar la fecha de las clases
-  getFechaByClases(profesorId: number, alumnoId: number): Promise<any> {
-    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}`))
+  // Metodo para recuperar la fecha de las clases y las clases del alumno
+  getFechaByClases(profesorId: number, alumnoId: number): Promise<SolicitudClase[]> {
+    return lastValueFrom(this.httpClient.get<SolicitudClase[]>(`${this.baseUrl}clases/${profesorId}&${alumnoId}`))
   }
 
 

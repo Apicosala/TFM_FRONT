@@ -7,17 +7,22 @@ import { lastValueFrom } from 'rxjs';
 })
 export class ListaProfesoresService {
 
-  private baseUrl: string = "http://localhost:3000/api/especialidades";
+  private baseUrlEspecialidades: string = "http://localhost:3000/api/especialidades";
+  private baseUrlUsuarios: string = "http://localhost:3000/api/usuarios";
 
   httpClient = inject(HttpClient);
 
   constructor() {}
 
   getProfesoresByEspecialidadId(especialidadId: number): Promise<any[]> {
-    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrl}/${especialidadId}/profesores`));
+    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrlEspecialidades}/${especialidadId}/profesores`));
   }
 
   getNombreEspecialidad(): Promise<any[]> {
-    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrl}`));
+    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrlEspecialidades}`));
+  }
+
+  getPuntuacionesByProfesorId(profesorId: number): Promise<any[]> {
+    return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrlUsuarios}/puntuaciones/${profesorId}`));
   }
 }
