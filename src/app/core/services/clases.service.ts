@@ -38,8 +38,8 @@ export class ClasesService {
 
 
   // Metodo para recuperar la fecha de las clases y las clases del alumno
-  getFechaByClases(profesorId: number, alumnoId: number): Promise<SolicitudClase[]> {
-    return lastValueFrom(this.httpClient.get<SolicitudClase[]>(`${this.baseUrl}clases/${profesorId}&${alumnoId}`))
+  getFechaByClases(profesorId: number, alumnoId: number, especialidadId:number): Promise<SolicitudClase[]> {
+    return lastValueFrom(this.httpClient.get<SolicitudClase[]>(`${this.baseUrl}clases/${profesorId}&${alumnoId}&${especialidadId}`))
   }
 
 

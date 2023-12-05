@@ -1,24 +1,14 @@
-import { CanActivateChild, Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { CanActivateChildFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
-
-// Importa SweetAlert
 import Swal from 'sweetalert2';
 import { DecodedToken } from '../models/decodedToken.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class isAdminGuard implements CanActivateChild {
-  constructor(private router: Router) {}
+export const isAdminGuard: CanActivateChildFn = (childRoute, state) => {
 
-  canActivateChild(
-    childRoute: import('@angular/router').ActivatedRouteSnapshot,
-    state: import('@angular/router').RouterStateSnapshot
-  ): boolean {
     // Obtiene el token desde el almacenamiento local
     const token = localStorage.getItem('auth_token');
-
+    const router = inject(Router);
     if (token) {
       try {
         // Intenta decodificar el token
@@ -34,9 +24,9 @@ export class isAdminGuard implements CanActivateChild {
           Swal.fire({
             icon: 'error',
             title: 'Acceso denegado',
-            text: 'No tienes los permisos necesarios para acceder a esta sección',
+            text: 'No tienes los permisos necesarios para acceder a esta sección.',
           }).then(() => {
-            this.router.navigate(['/']);
+            router.navigate(['/']);
           });
           return false; // Deniega el acceso
         }
@@ -48,7 +38,7 @@ export class isAdminGuard implements CanActivateChild {
           title: 'Error de autenticación',
           text: 'Ha ocurrido un error al verificar tus permisos. Por favor, vuelve a iniciar sesión.',
         }).then(() => {
-          this.router.navigate(['/auth', 'login']);
+          router.navigate(['/auth', 'login']);
         });
         return false; // Deniega el acceso
       }
@@ -57,11 +47,11 @@ export class isAdminGuard implements CanActivateChild {
       Swal.fire({
         icon: 'error',
         title: 'Acceso denegado',
-        text: 'Debes iniciar sesión para acceder a esta URL',
+        text: 'Debes iniciar sesión para acceder a esta URL.',
       }).then(() => {
-        this.router.navigate(['/auth', 'login']);
+        router.navigate(['/auth', 'login']);
       });
       return false; // Deniega el acceso
     }
   }
-}
+
