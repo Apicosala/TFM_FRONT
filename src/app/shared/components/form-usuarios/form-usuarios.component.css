@@ -1,165 +1,170 @@
 /* Acordeon */
-  
+
 .container-fluid {
-    padding: 0;
+  padding: 0;
+}
+
+.styles {
+  background-color: black;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  font-size: 2.5rem;
+}
+
+.h3Titulo {
+  text-align: center;
+  font-size: 3rem;
+  background-color: #b6a0ff;
+  color: #ffffff;
+}
+
+.nombreH3 {
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+}
+
+.accordion-item {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.accordion-button {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.accordion-button:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+/* FORMULARIO */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 90%; /* Cambiado para ser más receptivo */
+  margin-bottom: 3%;
+}
+
+.todoForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  max-width: 90%; /* Cambiado para ser más receptivo */
+  margin-bottom: 3%;
+}
+
+.formName {
+  text-align: center;
+  font-size: 32px; /* Ajustado para ser más receptivo */
+  font-family: "Times New Roman", Times, serif;
+  color: #000000;
+}
+
+.form {
+  padding: 4%;
+}
+
+.containerForm {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  position: relative;
+  --primary: rgba(0, 0, 0, 0.75);
+}
+
+.input {
+  all: unset;
+  color: #000000;
+  padding: 1rem;
+  border: 1px solid #9e9e9e;
+  border-radius: 10px;
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: #d4d4d4;
+  pointer-events: none;
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus {
+  border: 1px solid var(--primary);
+}
+
+.input:is(:focus, :valid) ~ label {
+  transform: translateY(-110%) scale(0.7);
+  background-color: white;
+  padding-inline: 0.3rem;
+  color: var(--primary);
+}
+
+.check {
+  display: flex;
+  flex-direction: column; /* Cambiado para ser más receptivo */
+  padding: 3px;
+}
+
+.title__check {
+  color: #897afd;
+  font-size: 15px;
+  margin-top: 5px; /* Ajustado para ser más receptivo */
+}
+
+/* ERROR EN EL FORMULARIO */
+
+input.ng-invalid.ng-touched {
+  border: 2px solid rgb(255, 141, 121);
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid rgb(199, 255, 115);
+}
+
+.error {
+  color: rgb(255, 141, 121);
+  font-size: 12px;
+}
+
+.button:hover {
+  background-color: rgba(0, 0, 255, 0.25);
+  color: rgba(0, 0, 0, 1);
+}
+
+.button:active {
+  translate: none;
+}
+
+.button {
+  display: inherit;
+  border-radius: 5%;
+  background-color: rgba(168, 168, 205, 0.75);
+  padding: 0.5rem 1.5rem;
+  translate: 0.25rem -0.15rem;
+  border: 2px solid rgba(0, 0, 0, 0.75);
+  transition: translate 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275 background-color 250ms);
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 767px) {
+  .containerForm {
+      font-size: 1rem; /* Ajustado para dispositivos móviles */
   }
   
-  .header {
-      display: flex;
-      flex-direction: column;
-      font-size: 2.5rem;
-    }
+  .formName {
+      font-size: 24px; /* Ajustado para dispositivos móviles */
+  }
   
-    .h3Titulo {
-      text-align: center;
-      font-size: 3rem;
-      background-color: #b6a0ff;
-      color: #feffb5;
-    }
-    
-    .nombreH3 {
-      text-align: center;
-      font-size: 3rem;
-    }
-    
-    .accordion-item {
-      border:3px solid #c496f1;
-    }
-    
-    .accordion-button {
-      background-color: #b6a0ff;
-      color: #feffb5;
-    }
-    
-    .accordion-button:hover {
-      background-color: #8665f5 ;
-    }
-    
-    /* FORMULARIO*/
-  
-    .formulario {
-      display: flex;
-      flex-direction: column;
-      margin: auto;  
-      max-width: 50%;
-      margin-bottom: 3%;
-      border:3px solid #c496f1;
-    }
-    
-    .todoForm {
-      display: flex;
-      flex-direction: column;
-      margin: auto;  
-      max-width: 50%;
-      margin-bottom: 3%;
-    }
-    
-    .formName {
-      text-align: center;
-      font-size: 48px;
-      font-family: "Times New Roman", Times, serif;
-      color: #fd7acb;
-    }
-    
-    .form {
-      padding: 4%;
-    }
-    
-    .containerForm {
-      margin-bottom: 15px;
-      display: flex;
-      flex-direction: column;
-      font-size: 1.25rem;
-      position: relative;
-      --primary: #f597d1;
-    }
-    
-    .input {
-      all: unset;
-      color: #000000;
-      padding: 1rem;
-      border: 1px solid #9e9e9e;
-      border-radius: 10px;
-      transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .label {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      color: #d4d4d4;
-      pointer-events: none;
-      transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .input:focus {
-      border: 1px solid var(--primary);
-    }
-    
-    .input:is(:focus, :valid) ~ label {
-      transform: translateY(-110%) scale(0.7);
-      background-color: white;
-      padding-inline: 0.3rem;
-      color: var(--primary);
-    }
-
-    .check {
-      display: flex;
-      flex-direction: row;
-      padding: 3px;
-    }
-    
-    .title__check {
-      color: #fd7acb;
-      font-size: 15px;
-      margin-right: 5px;  
-    }
-  
-    /* ERROR EN EL FORMULARIO */
-  
-    input.ng-invalid.ng-touched {
-      border: 2px solid rgb(255, 141, 121);
-    }
-  
-    input.ng-valid.ng-touched {
-      border: 2px solid rgb(199, 255, 115);
-    }
-  
-    .error {
-      color: rgb(255, 141, 121);
-      font-size: 12px;
-    }
-    
-    /* botones */
-    
-    .button {
-      display: inline-block;
-      font-size: 18px;
-      font-weight: 600;
-      text-align: center;
-      text-decoration: none;
-      color: #ffffff;
-      background-color: #8c69ff;
-      border-radius: 0.15rem;
-      margin-top: 9px;
-    }
-    
-    .button:hover  {
-      background-color: #8371be;
-      color: #fca7e4;
-    }
-    
-    .button:active {
-      translate: none;
-    }
-    
-    .button {
-      display: inherit;
-      border-radius: inherit;
-      background-color: #b6a0ff;
-      padding: 0.5rem 1.5rem;
-      translate: 0.25rem -0.15rem;
-      border: 2px solid #7a3598;
-      transition: translate 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275 background-color 250ms);
-    
-    }
+  .button {
+      padding: 0.5rem 1rem; /* Ajustado para dispositivos móviles */
+  }
+}

@@ -1,13 +1,18 @@
 <main>
-    <div class="usuario">
-      <img class="imagenUsuario mt-5" [src]="miUsuario?.foto" [alt]="miUsuario?.nombre" />
-      <h1 class="nombre mt-5">{{miUsuario?.nombre}} {{miUsuario?.apellidos}}</h1>
+  <div class="align-items-center justify-content-around m-5">
+    <div class="container estilo-transparente d-flex flex-column align-items-center justify-content-center">
+      <h1 class="nombre align">{{miUsuario?.nombre}} {{miUsuario?.apellidos}}</h1>
       <ul class="list">
-        <li class="list__item">{{miUsuario?.mail}}</li>
-        <li class="list__item">{{miUsuario?.tel}}</li>
+        <li class="list__item">Email: {{miUsuario?.mail}}</li>
+        <li class="list__item">Móvil: {{miUsuario?.tel}}</li>
       </ul>
     </div>
-  
-    <app-form-usuarios></app-form-usuarios>
-  
-  </main>
+    <div class="usuario align-items-center">
+      <img class="imagenUsuario estilo-3d" [src]="miUsuario?.foto" [alt]="miUsuario?.nombre" />
+    </div>
+  </div>
+
+<div class="d-flex row-cols-2 justify-content-center">
+  <app-form-usuarios></app-form-usuarios>
+</div>
+</main>

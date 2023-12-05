@@ -61,7 +61,7 @@
 <ng-template #profesorTemplate>
   <!-- FORMULARIO PROFESOR-->
 
-  <div class="todoForm">
+  <div class="todoForm flex-column">
     <h3 class="nombreH3">Actualiza tus datos</h3>
 
     <!-- ACORDEON1 -->
@@ -121,7 +121,7 @@
                     <label class="label" for="repetirPass">Repite tu contraseña</label>
                     <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
                   </div>
-                  <input class="button span" type="submit" value="actualizar">
+                  <input class="button span" type="submit" value="Actualizar">
                 </form>
               </div>
             </div>
