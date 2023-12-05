@@ -4,6 +4,7 @@ import { ListaProfesoresComponent } from './components/lista-profesores.componen
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ListaProfesoresRoutingModule } from './listaProfesores-routing.module';
 import { ProfesorCardComponent } from 'src/app/shared/components/profesor-card/profesor-card.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -15,7 +16,8 @@ import { ProfesorCardComponent } from 'src/app/shared/components/profesor-card/p
   imports: [
     SharedModule,    
     CommonModule,
-    ListaProfesoresRoutingModule
+    ListaProfesoresRoutingModule,
+    GoogleMapsModule
   ]
 })
 export class ListaProfesoresModule {}
