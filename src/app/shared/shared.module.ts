@@ -9,11 +9,12 @@ import { PeticionCardComponent } from './components/peticion-card/peticion-card.
 
 
 
+
 @NgModule({
   declarations: [
     NavBarComponent,
     FormUsuariosComponent,
-    PeticionCardComponent
+    PeticionCardComponent,
   ],
   imports: [
     CommonModule,
