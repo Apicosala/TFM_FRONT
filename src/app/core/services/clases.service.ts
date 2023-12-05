@@ -40,11 +40,18 @@ export class ClasesService {
     return this.httpClient.get<IClases[]>(`${this.baseUrl}/clases/${profesorId}&${alumnoId}`)
   }
 
-
+  // Metodo para recuperar la fecha de las clases
   getFechaByClases(profesorId: number, alumnoId: number): Promise<any> {
     return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}`))
   }
 
+
+  //POST
+
+  // Metodo para insertar la fecha de las clases
+  insertarFechaClases(profesorId: number, alumnoId: number, especialidadId: number, fecha: string): Promise<any> {
+    return lastValueFrom(this.httpClient.post<any>(`${this.baseUrl}agenda/${profesorId}/clases`, {body: {alumnoId, especialidadId, fecha} }))
+  }
 
   //PUT      
 
