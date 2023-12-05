@@ -1,54 +1,63 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ForoUsuarioService } from '../services/foroUsuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IForo } from 'src/app/core/models/foro.interface';
-import { lastValueFrom } from 'rxjs';
+import { UsersService } from '../../auth/services/users.service';
+import { jwtDecode } from 'jwt-decode';
+import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-foro-usuario',
   templateUrl: './foro-usuario.component.html',
   styleUrls: ['./foro-usuario.component.css'],
 })
-export class ForoUsuarioComponent {
+export class ForoUsuarioComponent implements OnInit {
   formForo: FormGroup;
+  mensajes: IForo[] = [];
   foroUsuariosServices = inject(ForoUsuarioService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
-  mensajes: IForo[] = [];
-
+  public userService = inject(UsersService);
+  public userId!: number;
   constructor() {
-    (this.formForo = new FormGroup({
+    this.formForo = new FormGroup({
       titulo: new FormControl('', []),
       contenido: new FormControl('', [Validators.required]),
-    })),
-      [];
+      userId: new FormControl('', []),
+    });
   }
 
-  async obtenerMensajes() {
-    try {
-      // Supongamos que tienes las IDs del profesor y el alumno
-      const profesorId = 1; // Reemplaza con la ID del profesor
-      const alumnoId = 2; // Reemplaza con la ID del alumno
-      this.mensajes = await this.foroUsuariosServices.getMensajes(
-        profesorId,
-        alumnoId
-      );
-    } catch (error) {
-      console.error(error);
+  ngOnInit(): void {
+    let token = this.userService.token;
+    if (token) {
+      let decodedToken = jwtDecode<PayLoad>(token);
+      this.userId = decodedToken.user_id;
     }
   }
+  enviarMensaje() {
+    const mensaje = this.formForo.value;
+    mensaje.userId = this.userId;
+    this.foroUsuariosServices.insert(mensaje).then(
+      (response: IForo) => {
+        this.mensajes.push(response);
+        this.formForo.reset();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
-  async enviarMensaje() {
-    try {
-      const mensaje = this.formForo.value;
-      const response = await this.foroUsuariosServices.insert(mensaje);
-      console.log(response);
-      this.mensajes.push(response); // Agregar el nuevo mensaje a la lista de mensajes mostrados
-      this.formForo.reset(); // Limpiar el formulario después de enviar el mensaje
-    } catch (error) {
-      console.error(error);
-      // Mostrar un mensaje de error al usuario si falla el envío del mensaje
-    }
+  obtenerMensajes() {
+    this.foroUsuariosServices.getMensajes().then(
+      (mensajes: IForo[]) => {
+        this.mensajes = mensajes;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

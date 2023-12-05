@@ -16,16 +16,12 @@ export class ForoUsuarioService {
   insert(mensaje: IForo): Promise<IForo> {
     return lastValueFrom(
       this.httpClient.post<IForo>(
-        `${this.baseUrl}${mensaje.profesor_id}/foro/${mensaje.alumno_id}`,
+        `${this.baseUrl}${mensaje.userId}/foro`,
         mensaje
       )
     );
   }
-  getMensajes(profesorId: number, alumnoId: number): Promise<IForo[]> {
-    return lastValueFrom(
-      this.httpClient.get<IForo[]>(
-        `${this.baseUrl}${profesorId}/foro/${alumnoId}`
-      )
-    );
+  getMensajes(): Promise<IForo[]> {
+    return lastValueFrom(this.httpClient.get<IForo[]>(`${this.baseUrl}/foro`));
   }
 }
