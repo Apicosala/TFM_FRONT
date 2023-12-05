@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
+import { ClasesService } from 'src/app/core/services/clases.service';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
 import Swal from 'sweetalert2';
 
@@ -15,12 +16,23 @@ export class NavBarComponent {
   public userId!: number;
   router = inject(Router);
   public userService = inject(UsersService);
+  clasesService = inject(ClasesService)
+  usuario:string|any
 
   ngOnInit(): void {
     let token = this.userService.token;
     if (token) {
       let decodedToken = jwtDecode<PayLoad>(token);
       this.userId = decodedToken.user_id;
+    }
+    this.obtenerDatos()
+  }
+  async obtenerDatos():Promise<any>{
+    try {
+      const response = await this.clasesService.getDatosUsuario(this.userId)
+      this.usuario = `${response[0].rol == "prof" ? "profesor" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`
+    } catch (error) {
+      alert(error)
     }
   }
   onClickLogOut() {
