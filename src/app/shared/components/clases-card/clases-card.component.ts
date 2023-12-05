@@ -33,6 +33,7 @@ export class ClasesCardComponent {
 
  async ngOnInit(): Promise<void> {
     try {
+      //hacer condicion de que si entra el profesor, traiga el alumno, y si no, traiga el profesor.
       this.profesorId=this.infoUser.id
       this.arrDatosClases = await this.clasesService.getDatosProfesor(this.profesorId)
       this.alumnoId = this.arrDatosClases[0].alumno_id
@@ -75,5 +76,4 @@ export class ClasesCardComponent {
       console.log(error)
     })
   }
-
 }
