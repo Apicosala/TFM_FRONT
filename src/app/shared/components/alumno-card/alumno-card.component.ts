@@ -42,7 +42,7 @@ export class AlumnoCardComponent {
       let especialidadId = this.miUsuario.especialidades_id;
 
       try{
-        const data = await this.peticionClasesServices.getFechaByClases(profesorId, alumnoId);
+        const data = await this.peticionClasesServices.getFechaByClases(profesorId, alumnoId,especialidadId);
 
           // Filtramos las clases del alumno por especialidad.
           const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);

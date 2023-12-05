@@ -55,7 +55,7 @@ export class ClasesCardComponent {
         result = await this.clasesService.getDatosUsuario(this.rol=="alumn" ? this.profesorId : this.alumnoId)
         this.usuario = result[0]
         //tengo las fechas
-        result = await this.clasesService.getFechaByClases(this.profesorId, this.alumnoId)
+        result = await this.clasesService.getFechaByClases(this.profesorId, this.alumnoId, this.especialidadId)
         this.fecha = result[result.length - 1].fecha
         this.fechas = result.length
       } catch (error) {
