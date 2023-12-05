@@ -17,7 +17,7 @@ export class NavBarComponent {
   router = inject(Router);
   public userService = inject(UsersService);
   clasesService = inject(ClasesService)
-  usuario:string|any
+  msg:string|any
 
   ngOnInit(): void {
     let token = this.userService.token;
@@ -33,7 +33,7 @@ export class NavBarComponent {
   async obtenerDatos():Promise<any>{
     try {
       const response = await this.clasesService.getDatosUsuario(this.userId)
-      this.usuario = `${response[0].rol == "prof" ? "profesor" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`
+      this.msg = `Bienvenido ${response[0].rol == "prof" ? "profesor" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`
     } catch (error) {
       alert(error)
     }
