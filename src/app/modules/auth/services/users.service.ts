@@ -1,6 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, firstValueFrom } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { DecodedToken } from 'src/app/core/models/decodedToken.interface';
 
 type FormLoginValue = { email: string; password: string };
 type FormLoginResponse = { success: string; token: string; fatal: string };
@@ -53,9 +55,26 @@ export class UsersService {
     });
   }
 
+  isAdmin(): boolean {
+    let token = localStorage.getItem('auth_token');
+    let decodedToken: DecodedToken = jwtDecode(token!);
+  
+    return decodedToken.user_rol === 'admin';
+  }
+
+  
+  isTeacher(): boolean {
+    let token = localStorage.getItem('auth_token');
+    let decodedToken: DecodedToken = jwtDecode(token!);
+  
+    return decodedToken.user_rol === 'prof';
+
+  }
+  
   isLogged(): boolean {
     return localStorage.getItem('auth_token') ? true : false;
   }
+
   logOut() {
     this.token = null;
     this.tokenChange.next(null);
