@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormUsuariosComponent } from './components/form-usuarios/form-usuarios.component';
 import { PeticionCardComponent } from './components/peticion-card/peticion-card.component';
-import { EspecialidadesCardComponent } from './components/especialidades-card/especialidades-card.component';
 
 
 
