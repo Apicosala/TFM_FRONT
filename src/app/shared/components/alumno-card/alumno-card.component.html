@@ -1,23 +1,37 @@
-<div class="onlyCard shadow p-3 mb-5 bg-body-tertiary rounded">
-
-    <img class="imageAlumno" [src]="miUsuario.foto" [alt]="miUsuario.nombre">
-    <div class="text">
-        <h2 class="card-nombre">{{miUsuario.nombre}} {{miUsuario.apellidos}}</h2>
-        <h3 class="card-clase">{{obtenerNombreEspecialidad(miUsuario.especialidades_id)}}</h3>
-        <p class="card-realizadas">Clases: {{totalClases}}</p>
-    </div>
-    <div class="buttons">
-        <div>
-            <button class="button1" [routerLink]="['/foro/:usuarioId']">
-                <span>Dudas de {{miUsuario.nombre}}</span>
-            </button>
+<div class="container-fluid text-white p-3">  
+    <!-- Card principal -->
+    <div class="card m-3 card-alumno">
+      <div class="row g-0">
+        <!-- Imagen a la izquierda -->
+        <div class="col-12 col-md-4">
+          <img [src]="miUsuario.foto" [alt]="miUsuario.nombre" class="img-fluid rounded-start w-100" />
         </div>
-
-        <form class="form-container formFecha">
-
-            <label class="labelFecha" for="fecha">Introduce la fecha de la clase</label>
-            <input class="inputFecha" type="text" id="fecha" name="fecha"  placeholder="dd/mm/aaaa" [(ngModel)]="fechaInput"/>
-            <input class="button2" type="submit" value="Añadir" (click)="anadirFechaClases()">
-        </form>
+  
+        <!-- Datos en el centro -->
+        <div class="col-12 col-md-5 mt-3 mt-md-0">
+          <div class="card-body text-center">
+            <h1 class="text-white mb-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 2rem;">{{mostrarNombreEspecialidad()}}</h1>
+            <h3 class="card-profesor text-white mb-3" style="font-size: 1.5rem;">{{miUsuario.nombre}} {{miUsuario.apellidos}}</h3>
+            <div class="flex-row">
+              <span class="text-white" style="font-weight: bold;">Clases: </span>
+              <span class="text-white">{{totalClases}}</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Botones en la tercera columna -->
+        <div class="col-12 col-md-3 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+          <div class="text-center">
+            <button class="btn btn-custom mb-3" [routerLink]="['/foro/:usuarioId']">
+              <span class="text-white">Dudas de {{miUsuario.nombre}}</span>
+            </button>
+          </div>
+          <form class="text-center">
+            <label for="fecha" class="text-white mb-2">Introduce la fecha de la clase</label>
+            <input class="form-control mb-2" type="text" id="fecha" name="fecha" placeholder="dd/mm/aaaa" [(ngModel)]="fechaInput" />
+            <input type="submit" value="Añadir" class="btn btn-custom" (click)="anadirFechaClases()" />
+          </form>
+        </div>
+      </div>
     </div>
-</div>
+  </div>

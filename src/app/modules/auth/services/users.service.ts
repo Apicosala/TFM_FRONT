@@ -69,6 +69,11 @@ export class UsersService {
     const decodedToken = this.getDecodedToken();
     return decodedToken ? decodedToken.user_rol === 'prof' : false;
   }
+
+  isTeacherOrStudent(): boolean {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken ? decodedToken.user_rol === 'prof' || decodedToken.user_rol === 'alumn' : false;
+  }
   
   
   isLogged(): boolean {
