@@ -15,7 +15,7 @@
       }
 
       .card:hover {
-        background-color: rgba(0, 0, 0, 0.2); /* Ajusta el tono de oscurecimiento según sea necesario */
+        background-color: rgba(0, 0, 0, 0.2);
       }
 
       .estilo {
