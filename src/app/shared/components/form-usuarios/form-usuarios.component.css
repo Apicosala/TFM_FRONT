@@ -31,6 +31,7 @@
 
 .accordion-item {
   color: rgba(0, 0, 0, 0.75);
+  background-color: transparent;
 }
 
 .accordion-button {
@@ -162,18 +163,18 @@ input.ng-valid.ng-touched {
   left: -12px;
 }
 
-/* Media Query para dispositivos móviles */
+
 @media (max-width: 767px) {
   .containerForm {
-      font-size: 1rem; /* Ajustado para dispositivos móviles */
+      font-size: 1rem; 
   }
   
   .formName {
-      font-size: 24px; /* Ajustado para dispositivos móviles */
+      font-size: 24px; 
   }
   
   .button {
-      padding: 0.5rem 1rem; /* Ajustado para dispositivos móviles */
+      padding: 0.5rem 1rem; 
   }
 
   .accordion-button {

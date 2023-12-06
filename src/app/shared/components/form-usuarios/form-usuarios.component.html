@@ -2,7 +2,7 @@
   <!-- FORMULARIO PERSONAL -->
 
   <div class="container-fluid formulario">
-    <h3 class="h3Titulo">Actualiza tus datos personales</h3>
+    <h3 class="h3Titulo mt-4 mb-4 text-white font-weight-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Actualiza tus datos personales</h3>
     <div class="form">
       <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
 
@@ -60,14 +60,14 @@
   <!-- FORMULARIO PROFESOR-->
 
   <div class="todoForm flex-column">
-    <h3 class="nombreH3">Actualiza tus datos</h3>
+    <h3 class="nombreH3 h3Titulo mt-4 mb-4 text-white font-weight-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Actualiza tus datos</h3>
 
     <!-- ACORDEON1 -->
 
     <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button header" type="button" data-bs-toggle="collapse"
+          <button class="accordion-button header text-white" type="button" data-bs-toggle="collapse"
             data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
             aria-controls="panelsStayOpen-collapseOne">
             Personales
@@ -116,7 +116,7 @@
 
                   <div class="containerForm">
                     <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
-                    <label class="label" for="repetirPass">Repite tu contraseña</label>
+                    <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
                     <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
                   </div>
                   <input class="button span" type="submit" value="Actualizar">
@@ -131,7 +131,7 @@
 
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed header" type="button" data-bs-toggle="collapse"
+          <button class="accordion-button collapsed header text-white" type="button" data-bs-toggle="collapse"
             data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
             aria-controls="panelsStayOpen-collapseTwo">
             Profesionales
