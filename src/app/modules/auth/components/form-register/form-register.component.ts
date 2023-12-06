@@ -20,7 +20,7 @@ export class FormRegisterComponent {
   formRegister: FormGroup;
   errorMessage: string = '';
 
-  usersService = inject(UsersService);
+  public usersService = inject(UsersService);
   router = inject(Router);
   http = inject(HttpClient);
 
@@ -85,6 +85,10 @@ export class FormRegisterComponent {
       this.formRegister.get(formcontrolName)?.hasError(validator) &&
       this.formRegister.get(formcontrolName)?.touched
     );
+  }
+
+  isTeacher() {
+    return this.formRegister.get('rol')?.value === 'prof';
   }
 
   async captureUserLocation() {

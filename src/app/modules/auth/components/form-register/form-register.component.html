@@ -75,44 +75,13 @@
       </div>
 
       <div class="mb-3">
-        <label>
-          <input type="checkbox" formControlName="captureLocation" />
-          Capturar ubicación
-        </label>
-      </div>
-
-      <div class="mb-3" *ngIf="formRegister.get('captureLocation')?.value">
-        <label for="lat" class="form-label">Latitud</label>
-        <input
-          type="text"
-          class="form-control"
-          id="lat"
-          placeholder="Latitud"
-          formControlName="lat"
-          readonly
-        />
-      </div>
-
-      <div class="mb-3" *ngIf="formRegister.get('captureLocation')?.value">
-        <label for="lon" class="form-label">Longitud</label>
-        <input
-          type="text"
-          class="form-control"
-          id="lon"
-          placeholder="Longitud"
-          formControlName="lon"
-          readonly
-        />
-      </div>
-
-      <div class="mb-3">
         <label for="pass" class="form-label">Contraseña</label>
         <input
-          type="password"
-          class="form-control"
-          id="pass"
-          placeholder="Introduce tu contraseña"
-          formControlName="pass"
+        type="password"
+        class="form-control"
+        id="pass"
+        placeholder="Introduce tu contraseña"
+        formControlName="pass"
         />
         <p class="error" *ngIf="checkControl('pass', 'required')">
           Este campo es requerido
@@ -121,26 +90,58 @@
           Tu contraseña debe de empezar por una letra, contener al menos un dígito y contener al menos 8 caracteres.
         </p>
       </div>
-
+      
       <div class="mb-3">
         <label for="repeatpassword" class="form-label">Repite la contraseña</label>
         <input
-          type="password"
-          class="form-control"
-          id="repeatpassword"
-          placeholder="Repite tu contraseña"
-          formControlName="repeatpassword"
+        type="password"
+        class="form-control"
+        id="repeatpassword"
+        placeholder="Repite tu contraseña"
+        formControlName="repeatpassword"
         />
         <p
-          class="error"
-          *ngIf="
+        class="error"
+        *ngIf="
             formRegister.get('repeatpassword')?.touched &&
             formRegister.hasError('checkpassword')
           "
         >
-          Los campos contraseña y repite la contraseña no coinciden
-        </p>
+        Los campos contraseña y repite la contraseña no coinciden
+      </p>
+    </div>
+    <div *ngIf="isTeacher()">
+      <div class="mb-3">
+        <label>
+          <input type="checkbox" formControlName="captureLocation" />
+          Acepto que se capture mi ubicación.
+        </label>
       </div>
+      <span class="d-none">
+    <div class="mb-3" *ngIf="formRegister.get('captureLocation')?.value">
+      <label for="lat" class="form-label">Latitud</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lat"
+        placeholder="Latitud"
+        formControlName="lat"
+        readonly
+      />
+    </div>
+
+    <div class="mb-3" *ngIf="formRegister.get('captureLocation')?.value">
+      <label for="lon" class="form-label">Longitud</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lon"
+        placeholder="Longitud"
+        formControlName="lon"
+        readonly
+      />
+    </div>
+  </span>
 
       <div class="mb-3">
         <label for="foto" class="form-label">Foto</label>
@@ -185,14 +186,15 @@
           formControlName="experiencia"
         />
       </div>
-
-      <input
-        type="submit"
-        value="Enviar"
-        class="btn btn-info"
-        [disabled]="!formRegister.valid"
-      />
     </div>
+    
+    <input
+    type="submit"
+    value="Enviar"
+    class="btn btn-info"
+    [disabled]="!formRegister.valid"
+    />
+  </div>
   </form>
 
   <p class="error">{{ errorMessage }}</p>
