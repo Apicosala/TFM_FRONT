@@ -55,21 +55,21 @@ export class UsersService {
     });
   }
 
-  isAdmin(): boolean {
-    let token = localStorage.getItem('auth_token');
-    let decodedToken: DecodedToken = jwtDecode(token!);
-  
-    return decodedToken.user_rol === 'admin';
+  getDecodedToken(): DecodedToken | null {
+    const token = localStorage.getItem('auth_token');
+    return token ? jwtDecode(token) : null;
   }
-
+  
+  isAdmin(): boolean {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken ? decodedToken.user_rol === 'admin' : false;
+  }
   
   isTeacher(): boolean {
-    let token = localStorage.getItem('auth_token');
-    let decodedToken: DecodedToken = jwtDecode(token!);
-  
-    return decodedToken.user_rol === 'prof';
-
+    const decodedToken = this.getDecodedToken();
+    return decodedToken ? decodedToken.user_rol === 'prof' : false;
   }
+  
   
   isLogged(): boolean {
     return localStorage.getItem('auth_token') ? true : false;
