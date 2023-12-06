@@ -1,6 +1,10 @@
 <main>
     <h1 class="title">PROFESORES DE {{nombreEspecialidad}}</h1>
-    <button class="button">Ver en el mapa</button>
+
+    <!-- Button trigger modal -->
+   
+    <button class="button" (click) = "toggleModal()">{{toggleButtonText}}</button>
+    <ng-container *ngIf="modalSwitch == true">
     <div class="mapaProfesores">
         
         <google-map [center]="centro" [zoom]="zoom">
@@ -8,8 +12,10 @@
             <map-circle *ngFor="let marcador of marcadores" [center]="marcador.coordenadas" [radius]="1000" [options]="circleOptions"> 
             </map-circle>
         </google-map>
-    </div>    
+    </div>
+    </ng-container>    
   
+    <ng-container *ngIf="modalSwitch == false">
     <div class="profesor">
         <div *ngFor="let profesor of arrProfesores">
         <ng-container *ngIf="profesor.activo">
@@ -17,5 +23,6 @@
         </ng-container>
       </div>
     </div>
+    </ng-container>
   
   </main>
