@@ -3,7 +3,8 @@
     <img class="imageProfesor" [src]="miProfesor?.foto" [alt]="miProfesor?.nombre">
     <div class="text">
         <h2 class="card-nombre">{{miProfesor?.nombre}} {{miProfesor?.apellidos}}</h2>
-        <h3 class="card-puntuacion">Valoración: {{puntuacion}}</h3>
-        <button class="button" [routerLink]="['/detalles/:profesorId']">+ Info</button>
+        <h2 class="card-id">Nº profesor: {{miProfesor?.id}}</h2>
+        <h3 class="card-puntuacion">Valoración: {{miProfesor?.puntuacion}}</h3>
+        <button class="button" [routerLink]="['/detalles/:profesorId']">Detalles</button>
     </div>
 </div>

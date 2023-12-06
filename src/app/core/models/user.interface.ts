@@ -12,6 +12,7 @@ export interface IUser {
   lat: number;
   lon: number;
   activo: boolean;
+  puntuacion: string;
 }
 
 type UserRole = 'admin' | 'alumn' | 'prof';
