@@ -12,6 +12,12 @@ type FormRegisterValue = {
   mail: string;
   pass: string;
   rol: string;
+  foto?: string;
+  tel?: string;
+  pxh?: number;
+  experiencia?: number;
+  lat?: number;
+  lon?: number;
 };
 type FormRegisterResponse = { success: string; token: string; fatal: string };
 
