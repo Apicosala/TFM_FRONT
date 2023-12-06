@@ -6,46 +6,48 @@
     <div class="form">
       <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
 
-        <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input class="form-control" type="text" id="nombre" formControlName="nombre" />
+        <div class="mb-3 containerForm">
+          <label class="label" for="nombre">Nombre</label>
+          <input class="input" type="text" id="nombre" formControlName="nombre" />
           <p class="error" *ngIf="checkControl('nombre')">Tu nombre debe contener al menos 3 letras.</p>
         </div>
 
-        <div class="mb-3">
-          <label for="apellidos" class="form-label">Apellidos</label>
-          <input class="form-control" type="text" id="apellidos" formControlName="apellidos" />
-          <p class="error" *ngIf="checkControl('apellidos')">Tus apellidos deben contener al menos 3 letras.</p>
+        <div class="mb-3 containerForm">
+          <label class="label" for="apellidos">Apellidos</label>
+          <input class="input" type="text" id="apellidos" formControlName="apellidos" />
+          <p class="error" *ngIf="checkControl('apellidos')">Tus apellidos deben contener al menos 3 letras.
+          </p>
         </div>
 
-        <div class="containerForm">
+        <div class="mb-3 containerForm">
           <input class="input" type="email" id="mail" formControlName="mail" />
-          <label class="label" for="mail">correo</label>
+          <label class="label" for="mail">Correo</label>
           <p class="error" *ngIf="checkControl('mail')">Tu correo electrónico es incorrecto.</p>
         </div>
 
-        <div class="containerForm">
+        <div class="mb-3 containerForm">
           <input class="input" type="text" id="tel" formControlName="tel" />
           <label class="label" for="tel">Teléfono</label>
-          <p class="error" *ngIf="checkControl('tel')">Tu teléfono no puede contener ni espacios ni caracteres
-            especiales.</p>
+          <p class="error" *ngIf="checkControl('tel')">Tu teléfono no puede contener ni espacios ni
+            caracteres especiales.</p>
         </div>
 
-        <div class="containerForm">
+        <div class="mb-3 containerForm">
           <input class="input" type="text" id="foto" formControlName="foto" />
           <label class="label" for="foto">Fotografía</label>
         </div>
 
-        <div class="containerForm">
+        <div class="mb-3 containerForm">
           <input class="input" type="password" id="pass" formControlName="pass" />
           <label class="label" for="pass">Contraseña</label>
-          <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra, contener al menos
-            un dígito y contener al menos 8 caracteres.</p>
+          <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra,
+            contener al menos un dígito y contener al menos 8 caracteres.</p>
         </div>
-        <div class="containerForm">
-          <input class="input" type="password" id="repetirPass" formControlName="repetirPass" />
+
+        <div class="mb-3 containerForm">
+          <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
           <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
-          <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden.</p>
+          <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
         </div>
 
 

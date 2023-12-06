@@ -92,18 +92,16 @@
   transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.label {
+.label { 
   position: absolute;
   top: 1rem;
   left: 0px;
   pointer-events: none;
-  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: white;
-}
-
-
-.input:focus {
-  border: 1px solid var(--primary);
+  color: white; 
+  transform: translateY(-110%) scale(0.7);
+  background-color: rgba(0, 0, 0,0.6);
+  padding-inline: 0.3rem;
+  border-radius: 10px;
 }
 
 .input:is(:focus, :valid) ~ label {
