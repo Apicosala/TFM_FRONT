@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +19,9 @@ export class DetallesProfesorService {
   getEspecialidades(usuarioId: number): Observable<any>{
     return this.httpClient.get<any>(`${this.baseUrl}especialidades/${usuarioId}`)
   }
+
+  createClase(profesorId: number,usuarioId: number, especialidadId: number,): Promise<any>{
+    return lastValueFrom(this.httpClient.post<any>(`${this.baseUrl}solicitud/${profesorId}&${usuarioId}&${especialidadId}`, ''))    
+  }
+
 }
