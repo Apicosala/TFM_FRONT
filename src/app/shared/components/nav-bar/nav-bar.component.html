@@ -27,7 +27,7 @@
           >Mi perfil</a
         >
       </li>
-      <li class="nav-item" *ngIf="userService.isLogged()">
+      <li class="nav-item" *ngIf="userService.isTeacherOrStudent()">
         <a
           class="nav-link"
           [routerLink]="['/foro', userId]"
@@ -35,7 +35,7 @@
           >Foro</a
         >
       </li>
-      <li class="nav-item" *ngIf="userService.isLogged()">
+      <li class="nav-item" *ngIf="userService.isTeacherOrStudent()">
         <a
           class="nav-link"
           [routerLink]="['/clases',userId]"
