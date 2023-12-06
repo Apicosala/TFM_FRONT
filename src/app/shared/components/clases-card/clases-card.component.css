@@ -16,3 +16,11 @@
       .card:hover {
         background-color: rgba(0, 0, 0, 0.2); /* Ajusta el tono de oscurecimiento según sea necesario */
       }
+
+      .estilo {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      span{
+        font-size: 1.5rem;
+      }
