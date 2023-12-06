@@ -42,16 +42,14 @@
           <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra, contener al menos
             un dígito y contener al menos 8 caracteres.</p>
         </div>
-
         <div class="containerForm">
-          <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
-          <label class="label" for="repetirPass">Repite tu contraseña</label>
-          <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
-
+          <input class="input" type="password" id="repetirPass" formControlName="repetirPass" />
+          <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
+          <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden.</p>
         </div>
 
 
-        <input class="button span" type="submit" value="actualizar">
+        <input class="button" type="submit" value="Actualizar">
 
       </form>
     </div>
@@ -93,7 +91,7 @@
 
                   <div class="containerForm">
                     <input class="input" type="email" id="mail" formControlName="mail" />
-                    <label class="label" for="mail">correo</label>
+                    <label class="label" for="mail">Correo</label>
                     <p class="error" *ngIf="checkControl('mail')">Tu correo electrónico es incorrecto.</p>
                   </div>
 
@@ -160,7 +158,7 @@
                   </div>
 
 
-                  <input class="button span" type="submit" value="actualizar">
+                  <input class="button span" type="submit" value="Actualizar">
                 </form>
               </div>
             </div>
