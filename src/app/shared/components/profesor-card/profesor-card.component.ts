@@ -18,16 +18,6 @@ export class ProfesorCardComponent {
   puntuacion: string | any;
 
   ngOnInit() {
-
-    this.listaProfesoresService.getPuntuacionesByProfesorId(this.miProfesor!.id).then(data => {
-      let puntuacionMedia = 0;
-      data.forEach(puntuacion => {
-        puntuacionMedia = puntuacion.puntuacion + puntuacionMedia
-      });
-      
-      this.puntuacion = (puntuacionMedia/data.length).toFixed(1);
-    })
-    
-
+   
   }
 }

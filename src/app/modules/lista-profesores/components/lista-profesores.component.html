@@ -1,7 +1,12 @@
 <main>
     <h1 class="title">PROFESORES DE {{nombreEspecialidad}}</h1>
+    <button class="button">Ver en el mapa</button>
     <div class="mapaProfesores">
-        <google-map>
+        
+        <google-map [center]="centro" [zoom]="zoom">
+            <map-marker *ngFor="let marcador of marcadores" [position]="marcador.centroMarcador" [label]="marcador.label" [icon]="icono"></map-marker>
+            <map-circle *ngFor="let marcador of marcadores" [center]="marcador.coordenadas" [radius]="1000" [options]="circleOptions"> 
+            </map-circle>
         </google-map>
     </div>    
   
