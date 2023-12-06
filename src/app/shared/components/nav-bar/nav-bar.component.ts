@@ -4,6 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
 import Swal from 'sweetalert2';
+import { ClasesService } from 'src/app/core/services/clases.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,6 +17,9 @@ export class NavBarComponent {
   public userService = inject(UsersService);
   private token: string | null = null;
 
+  clasesService = inject(ClasesService)
+  msg:string|any
+
   ngOnInit(): void {
     this.userService.tokenChange.subscribe((newToken) => {
       this.token = newToken;
@@ -24,6 +28,15 @@ export class NavBarComponent {
         this.userId = decodedToken.user_id;
       }
     });
+  }
+
+  async obtenerDatos():Promise<any>{
+    try {
+      const response = await this.clasesService.getDatosUsuario(this.userId)
+      this.msg = `Bienvenido ${response[0].rol == "prof" ? "profesor" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`
+    } catch (error) {
+      alert(error)
+    }
   }
 
   onClickLogOut() {
