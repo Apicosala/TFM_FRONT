@@ -18,22 +18,26 @@ export class perfilUsersService {
 
   constructor() { }
 
+  // GET
+
+  // recupera los alumnos de un profesor
   getAlumnosByProfesorId(profesorId: number): Promise<SolicitudClase[]> {
     return lastValueFrom(this.httpClient.get<SolicitudClase[]>(`${this.baseUrl}${profesorId}/alumnos`));
   }
-
+  // recupera los datos de un usuario segun su Id
   getById(usuarioId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.baseUrl}${usuarioId}`);
-  }
-
-  update(usuario: IUser) : Promise<IUser> {
-    return lastValueFrom(this.httpClient.put<IUser>(`${this.baseUrl}${usuario.id}`, usuario)); 
   }
 
   getLocation(): Promise<any>{
     return lastValueFrom(this.httpClient.get<any>(`${this.locationUrl}`));
   }
 
-  
+  // PUT
+
+  // Actualiza los datos de un usuario
+  update(usuario: IUser) : Promise<IUser> {
+    return lastValueFrom(this.httpClient.put<IUser>(`${this.baseUrl}${usuario.id}`, usuario)); 
+  } 
 
 }

@@ -26,6 +26,6 @@ input.ng-valid.ng-touched{
   margin-top: 10px;
 }
 
-.lat-ocult {
-  display: none;
+section {
+  color: antiquewhite;
 }
