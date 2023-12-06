@@ -1,8 +1,6 @@
-<main>
-  <h1 class="title">MIS ALUMNOS</h1>
-
-  <div class="solicitud">
-    <h2 class="solicitud-title">SOLICITUD DE CLASES</h2>
+<main class="d-flex flex-column align-items-center justify-content-center">
+  <div class="div-style text-center mb-4">
+    <h2 class="section-title">SOLICITUD DE CLASES</h2>
     <div *ngFor="let usuario of arrUsuario">
       <ng-container *ngIf="!usuario.activo">
         <app-peticion-card [miUsuario]="usuario"></app-peticion-card>
@@ -10,8 +8,8 @@
     </div>
   </div>
 
-  <div class="aceptados">
-    <h2 class="aceptados-title">ACEPTADOS</h2>
+  <div class="div-style text-center">
+    <h2 class="section-title">ACEPTADOS</h2>
     <div *ngFor="let usuario of arrUsuario">
       <ng-container *ngIf="usuario.activo">
         <app-alumno-card [miUsuario]="usuario"></app-alumno-card>
