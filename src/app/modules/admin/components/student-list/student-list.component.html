@@ -1,55 +1,56 @@
-<h1 class="mt-4 mb-4">ALUMNOS</h1>
-<h3>Alumnos activos</h3>
-<mat-accordion>
-  <div *ngFor="let student of arrActiveStudents" class="mb-3">
-    <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
-      <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-          <img class="card-img-top rounded-circle img-fluid mr-3 w-25" src="{{student.foto}}" alt="Imagen de perfil de: {{student.nombre}}">
-          <div class="card-body">
-            <h5 class="card-title mb-0">{{student.nombre}} {{student.apellidos}}</h5>
+<div>
+  <h3>Activos</h3>
+  <mat-accordion>
+    <div *ngFor="let student of arrActiveStudents" class="mb-3">
+      <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
+        <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <img src="{{student.foto}}" alt="Imagen de perfil de: {{student.nombre}}" class="mr-3">
+            <div>
+              <h5>{{student.nombre}} {{student.apellidos}}</h5>
+            </div>
+          </div>
+          <div>
+            <button (click)="deactivateStudent(student)" class="btn btn-dark">Dar de baja al alumno</button>
+          </div>
+        </mat-expansion-panel-header>
+        <!-- Contenido del panel de expansión -->
+        <div>
+          <div>
+            <p><strong>Correo electrónico:</strong> {{student.mail}}</p>
+            <p><strong>Teléfono:</strong> {{student.tel}}</p>
           </div>
         </div>
-        <div>
-          <button class="btn btn-danger" (click)="deactivateStudent(student)">Dar de baja al alumno</button>
-        </div>
-      </mat-expansion-panel-header>
-      <!-- Contenido del panel de expansión -->
-      <div class="d-flex p-3 justify-content-around">
-        <div class="mr-3">
-          <p class="mb-1"><strong>Correo electrónico:</strong> {{student.mail}}</p>
-          <p class="mb-0"><strong>Teléfono:</strong> {{student.tel}}</p>
-        </div>
-      </div>
-    </mat-expansion-panel>
-  </div>
-</mat-accordion>
+      </mat-expansion-panel>
+    </div>
+  </mat-accordion>
 
-<h3>Alumnos inactivos</h3>
-<mat-accordion>
-  <div *ngFor="let student of arrDeactivatedStudents" class="mb-3">
-    <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
-      <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-          <img class="card-img-top rounded-circle img-fluid mr-3 w-25" src="{{student.foto}}" alt="Imagen de perfil de: {{student.nombre}}">
-          <div class="card-body">
-            <h5 class="card-title mb-0">{{student.nombre}} {{student.apellidos}}</h5>
+  <h3>Inactivos</h3>
+  <mat-accordion>
+    <div *ngFor="let student of arrDeactivatedStudents" class="mb-3">
+      <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
+        <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <img src="{{student.foto}}" alt="Imagen de perfil de: {{student.nombre}}" class="mr-3">
+            <div>
+              <h5>{{student.nombre}} {{student.apellidos}}</h5>
+            </div>
+          </div>
+          <div>
+            <button (click)="activateStudent(student)" class="btn btn-dark">Dar de alta al alumno</button>
+          </div>
+        </mat-expansion-panel-header>
+        <!-- Contenido del panel de expansión -->
+        <div>
+          <div>
+            <p><strong>Correo electrónico:</strong> {{student.mail}}</p>
+            <p><strong>Teléfono:</strong> {{student.tel}}</p>
           </div>
         </div>
-        <div>
-          <button class="btn btn-success" (click)="activateStudent(student)">Dar de alta al alumno</button>
-        </div>
-      </mat-expansion-panel-header>
-      <!-- Contenido del panel de expansión -->
-      <div class="d-flex p-3 justify-content-around">
-        <div class="mr-3">
-          <p class="mb-1"><strong>Correo electrónico:</strong> {{student.mail}}</p>
-          <p class="mb-0"><strong>Teléfono:</strong> {{student.tel}}</p>
-        </div>
-      </div>
-    </mat-expansion-panel>
-  </div>
-</mat-accordion>
+      </mat-expansion-panel>
+    </div>
+  </mat-accordion>
+</div>
 
 
 

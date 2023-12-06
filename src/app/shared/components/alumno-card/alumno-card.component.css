@@ -1,125 +1,26 @@
-.onlyCard {
-    background-image: url(https://marketplace.canva.com/EAEK4dC2olw/1/0/1600w/canva-arcoíris-gradiente-rosa-y-naranja-fondo-virtual-c3PYha1JI9M.jpg);
-    background-size: auto;
-    margin-top: 5%;
-    margin:auto;
-    width: 70%;
-    border: 2px solid #7768ff; 
-    border-radius: 40px;
+.card-alumno {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-
-.cardComponent {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-
+span {
+  font-size: 1.5rem;
 }
 
-.imageAlumno {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 7px solid #cfb3fc;
-    object-fit: cover; 
+.btn-custom,
+.custom-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+  color: white;
+  border-color: black;
+  transform: perspective(600px) translateZ(0);
 }
 
-.text {
-    text-align: center;
+.btn-custom:hover,
+.custom-input:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: perspective(600px) rotateX(20deg) translateZ(0);
 }
 
-.card-nombre {
-    font-size: 60px;
-    color: rgb(207, 111, 251);
+.card-alumno:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
-
-.card-clases, .card-recibidas {
-    margin-top: 10px;
-}
-
-.card-clases {
-    font-size: 35px;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.button1 {
-    display: inline-block;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    color: #a47dff;
-    background-color: #42a769;
-    border-radius: 0.15rem;
-    margin-top: 9px;
-  }
-  
-  .button1:hover span {
-    background-color: #40ff70;
-    color: #d747ff;
-  }
-  
-  .button1:active span {
-    translate: none;
-  }
-  
-  .button1 span {
-    display: inherit;
-    border-radius: inherit;
-    background-color: #a0ffae;
-    padding: 0.6rem 1.5rem;
-    translate: 0.20rem -0.15rem;
-    border: 2px solid #3fb84d;
-    transition: translate 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275 background-color 250ms);
-  
-  }
-
-  .button2 {
-    display: inline-block;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    color: #daf782;
-    background-color: #2b8ef8;
-    border-radius: 0.15rem;
-    margin-top: 9px;
-  }
-  
-  .button2:hover span {
-    background-color: #ff290d;
-    color: #ffe1f6;
-  }
-  
-  .button2:active span {
-    translate: none;
-  }
-  
-  .button2 span {
-    display: inherit;
-    border-radius: inherit;
-    background-color: #ffb8a0;
-    padding: 0.5rem 1.5rem;
-    translate: 0.25rem -0.15rem;
-    border: 2px solid #ca4343;
-    transition: translate 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275 background-color 250ms);
-  
-  }
-
-  .formFecha {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
-
-  .inputFecha {
-    text-align: center;
-  }

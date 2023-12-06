@@ -1,75 +1,27 @@
-.onlyCard {
-    background-image: url(https://marketplace.canva.com/EAEK4dC2olw/1/0/1600w/canva-arcoíris-gradiente-rosa-y-naranja-fondo-virtual-c3PYha1JI9M.jpg);
-    background-size: auto;
-    margin-top: 5%;
-    margin:auto;
-    width: 70%;
-    border: 2px solid #7768ff; 
-    border-radius: 40px;
-}
 
+    .card {
+        border: none;
+        transform: perspective(1000px);
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      
+      .btn-opacity-1 {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      .btn-opacity-1:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+        transform: perspective(600px) rotateX(20deg) translateZ(0);
+      }
 
-.cardComponent {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+      .card:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
 
-}
-
-.imageProf {
-    width: 10%;
-    border-radius: 100%;
-    border: 7px solid #cfb3fc;
-}
-
-.text {
-    text-align: center;
-}
-
-.card-title {
-    font-size: 60px;
-    color: rgb(207, 111, 251);
-}
-
-.card-profesor, .card-clases {
-    margin-top: 10px;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    max-width: 15%;
-}
-
-.button {
-    display: inline-block;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #8c69ff;
-    border-radius: 0.15rem;
-    margin-top: 9px;
-  }
-  
-  .button:hover span {
-    background-color: #8371be;
-    color: #fca7e4;
-  }
-  
-  .button:active span {
-    translate: none;
-  }
-  
-  .button span {
-    display: inherit;
-    border-radius: inherit;
-    background-color: #b6a0ff;
-    padding: 0.5rem 1.5rem;
-    translate: 0.25rem -0.15rem;
-    border: 2px solid #7a3598;
-    transition: translate 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275 background-color 250ms);
-  
-  }
+      .estilo {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      span{
+        font-size: 1.5rem;
+      }

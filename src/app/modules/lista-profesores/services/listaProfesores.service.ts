@@ -9,6 +9,8 @@ export class ListaProfesoresService {
 
   private baseUrlEspecialidades: string = "http://localhost:3000/api/especialidades";
   private baseUrlUsuarios: string = "http://localhost:3000/api/usuarios";
+  private locationUrl: string = "https://ipapi.co/json/"
+
 
   httpClient = inject(HttpClient);
 
@@ -24,5 +26,9 @@ export class ListaProfesoresService {
 
   getPuntuacionesByProfesorId(profesorId: number): Promise<any[]> {
     return lastValueFrom(this.httpClient.get<any[]> (`${this.baseUrlUsuarios}/puntuaciones/${profesorId}`));
+  }
+
+  getUserLocation(): Promise<any[]> {
+    return lastValueFrom(this.httpClient.get<any[]> (`${this.locationUrl}`));
   }
 }
