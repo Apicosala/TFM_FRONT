@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListaProfesoresService } from '../services/listaProfesores.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -97,9 +98,41 @@ export class ListaProfesoresComponent {
   toggleModal(){
     this.modalSwitch = !this.modalSwitch;
     if (this.modalSwitch == true) {
+      this.onClickOpenMap();
       this.toggleButtonText = "Volver al listado"
     }else{
       this.toggleButtonText = "Ver en el mapa"
     } 
   }
+
+  onClickOpenMap() {
+    Swal.fire({
+      title: '¿Nos permites conocer tu ubicación?',
+      text: 'Para mostrarte los profesores más cercanos necesitamos conocer tu ubicación. No te preocupes, no los guardaremos.',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, permitir',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed){
+        this.getUserLocation()
+        
+      }
+    }); 
+  }
+
+  async getUserLocation() {
+    try {
+    const location: any = await this.listaProfesoresService.getUserLocation();
+    console.log(location.latitude, location.longitude)
+    this.centro = new google.maps.LatLng(location.latitude, location.longitude)
+    
+    
+  } catch (error) {
+    console.log(error);
+  } 
+}
+
 }
