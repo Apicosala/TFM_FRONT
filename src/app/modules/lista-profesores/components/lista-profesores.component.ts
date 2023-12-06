@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ListaProfesoresService } from '../services/listaProfesores.service';
 
 
+
 @Component({
   selector: 'app-lista-profesores',
   templateUrl: './lista-profesores.component.html',
@@ -14,11 +15,14 @@ export class ListaProfesoresComponent {
   public id: number | any;
   nombreEspecialidad: string | any;
   puntuacion: string = "";
+
+  modalSwitch: boolean = false;
+  toggleButtonText:string = "Ver en el mapa"
+
   marcadores: any[] = [];
   centro: google.maps.LatLng | any;
   zoom: number = 10;
-  icono: string = "."
-    
+  icono: string = "."    
     
   circleOptions: any = {
     fillColor: '#cfb3fc',
@@ -90,4 +94,12 @@ export class ListaProfesoresComponent {
     });
   }
 
+  toggleModal(){
+    this.modalSwitch = !this.modalSwitch;
+    if (this.modalSwitch == true) {
+      this.toggleButtonText = "Volver al listado"
+    }else{
+      this.toggleButtonText = "Ver en el mapa"
+    } 
+  }
 }
