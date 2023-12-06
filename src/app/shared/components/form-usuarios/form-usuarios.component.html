@@ -1,4 +1,4 @@
-<div *ngIf="usuario?.rol === 'alumn'; else profesorTemplate">
+<div *ngIf="usuario?.rol === 'alumn' || usuario?.rol === 'admin' ; else profesorTemplate">
   <!-- FORMULARIO PERSONAL -->
 
   <div class="container-fluid formulario">
