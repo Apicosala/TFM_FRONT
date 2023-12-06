@@ -3,8 +3,6 @@ import { DetallesProfesorService } from '../services/detalles-profesor.service';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
 import { ActivatedRoute } from '@angular/router';
 import { IUser } from 'src/app/core/models/user.interface';
-import { jwtDecode } from 'jwt-decode';
-import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
 
 
 @Component({
