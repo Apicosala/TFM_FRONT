@@ -1,5 +1,6 @@
-<div class="m-2">
-<mat-accordion>
+<div class="container col-12 col-md-6">
+  <div class="m-2">
+    <mat-accordion>
   <div *ngFor="let teacher of arrUnactiveTeachers" class="mb-3">
     <mat-expansion-panel [expanded]="isPanelExpanded(teacher.id)">
       <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
@@ -12,7 +13,7 @@
           </div>
         </div>
         <div class="d-flex align-items-center">
-          <button class="btn btn-success" (click)="activateTeacher(teacher)">Dar de alta al profesor</button>
+          <button class="btn btn-success position-absolute top-0 btn__style" (click)="activateTeacher(teacher)">Dar de alta al profesor</button>
         </div>
       </mat-expansion-panel-header>
       <!-- Contenido del panel de expansión -->
@@ -40,7 +41,7 @@
           </div>
         </div>
         <div class="d-flex align-items-center">
-          <button class="btn btn-dark" (click)="deactivateTeacher(teacher)">Dar de baja al profesor</button>
+          <button class="btn btn-dark position-absolute top-0 btn__style" (click)="deactivateTeacher(teacher)">Dar de baja al profesor</button>
         </div>
       </mat-expansion-panel-header>
       <!-- Contenido del panel de expansión -->

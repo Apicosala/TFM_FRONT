@@ -21,4 +21,24 @@
   span{
     font-weight: bold;
   }
+
+  .btn__style{
+    margin-top: 4px; 
+    right: 50px;
+  }
+
   
+@media (max-width: 600px) {
+  *{
+    font-size: 0.9rem;
+  }
+  .btn__style {
+    display: inline-block; 
+    position: absolute;
+    top: 100px!important;
+    left: 120px!important;
+  }
+  .mat-expansion-panel-header:not(.mat-expanded) .btn__style {
+    display: none;
+  }
+}

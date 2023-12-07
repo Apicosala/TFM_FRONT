@@ -1,4 +1,4 @@
-<div>
+<div class="container col-12 col-md-6">
 <div class="m-2">
   <h3 class="title-style">Activos</h3>
   <mat-accordion>
@@ -10,11 +10,11 @@
               <img src="{{student.foto}}" alt="Imagen de perfil de: {{student.nombre}}">
             </div>
             <div>
-              <h5 class="general-style">{{student.nombre}} {{student.apellidos}}</h5>
+              <h5 class="general-style mb-2">{{student.nombre}} {{student.apellidos}}</h5>
             </div>
           </div>
           <div class="d-flex align-items-center">
-            <button (click)="deactivateStudent(student)" class="btn btn-dark">Dar de baja al alumno</button>
+            <button (click)="deactivateStudent(student)" class="btn btn-dark position-absolute top-0 btn__style">Dar de baja al alumno</button>
           </div>
         </mat-expansion-panel-header>
         <!-- Contenido del panel de expansión -->
@@ -40,7 +40,9 @@
             </div>
           </div>
           <div class="d-flex align-items-center">
-            <button (click)="activateStudent(student)" class="btn btn-success">Dar de alta al alumno</button>
+            <button (click)="activateStudent(student)" class="btn btn-success position-absolute top-0 btn__style">
+              Dar de alta al alumno
+            </button>
           </div>
         </mat-expansion-panel-header>
         <!-- Contenido del panel de expansión -->
