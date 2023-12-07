@@ -38,11 +38,10 @@
           <label class="label" for="foto">Fotografía</label>
         </div>
 
-        <div class="mb-3 containerForm">
-          <input class="input" type="password" id="pass" formControlName="pass" />
-          <label class="label" for="pass">Contraseña</label>
-          <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra,
-            contener al menos un dígito y contener al menos 8 caracteres.</p>
+        <div class="containerForm">
+          <input class="input" type="password" id="newPass" formControlName="newPass" />
+          <label class="label" for="newPass">Nueva contraseña</label>
+          <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
         </div>
 
         <div class="mb-3 containerForm">
@@ -108,9 +107,9 @@
                   </div>
 
                   <div class="containerForm">
-                    <input class="input" type="password" id="pass" formControlName="pass" />
-                    <label class="label" for="pass">Contraseña</label>
-                    <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
+                    <input class="input" type="password" id="newPass" formControlName="newPass" />
+                    <label class="label" for="newPass">Nueva contraseña</label>
+                    <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
                   </div>
 
                   <div class="containerForm">
