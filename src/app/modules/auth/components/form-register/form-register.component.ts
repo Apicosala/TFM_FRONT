@@ -19,6 +19,7 @@ import { firstValueFrom } from 'rxjs';
 export class FormRegisterComponent {
   formRegister: FormGroup;
   errorMessage: string = '';
+  
 
   public usersService = inject(UsersService);
   router = inject(Router);
@@ -58,7 +59,6 @@ export class FormRegisterComponent {
       [this.checkPassword]
     );
   }
-
   checkPassword(formValue: AbstractControl): ValidationErrors | null {
     const passwordControl = formValue.get('pass');
     const repeatPasswordControl = formValue.get('repeatpassword');

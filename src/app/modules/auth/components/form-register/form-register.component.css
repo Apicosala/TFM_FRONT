@@ -1,3 +1,4 @@
+
 input.ng-invalid.ng-touched{
   border-bottom: 3px solid tomato;
 }
@@ -28,4 +29,46 @@ input.ng-valid.ng-touched{
 
 section {
   color: antiquewhite;
+}
+
+input{
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white!important;
+}
+
+input:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.h3__style{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 4rem;
+}
+
+input::placeholder{
+  color: gray;
+}
+.btn-custom {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+  color: white;
+  border-color: black;
+  transform: perspective(600px) translateZ(0);
+}
+
+.btn-custom:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: perspective(600px) rotateX(20deg) translateZ(0);
+}
+@keyframes vibrar {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px) rotate(1deg); }
+  50% { transform: translateX(2px) rotate(-1deg); }
+  75% { transform: translateX(-2px) rotate(1deg); }
+  100% { transform: translateX(2px) rotate(-1deg); }
+}
+
+.vibrar:enabled {
+  animation: vibrar 0.3s ease-in-out 1;
 }

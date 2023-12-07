@@ -26,7 +26,7 @@
 }
 
 .register-button {
-  margin-top: 10px; /* Ajusta el margen según sea necesario */
+  margin-top: 10px; 
 }
 input::placeholder{
   color: gray
