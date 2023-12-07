@@ -1,8 +1,9 @@
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IEspecialidad } from 'src/app/core/models/Especialidad.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-peticion-card',
@@ -16,6 +17,7 @@ export class PeticionCardComponent {
 
   activatedRoute = inject(ActivatedRoute);
   peticionClasesServices = inject(ClasesService);
+  actualizarCambios = inject(ChangeDetectorRef);
 
 
   async ngOnInit(): Promise<void> {
@@ -23,7 +25,7 @@ export class PeticionCardComponent {
     //recuperamos las especialidades del profesor
     this.activatedRoute.params.subscribe(async (params: any) => {
       let id = params.usuarioId;
-      if(id){
+      if (id) {
         await this.peticionClasesServices.getEspecialidadesByProfesorId(id).then(data => {
           this.especialidades = data;
           this.mostrarNombreEspecialidad();
@@ -47,9 +49,7 @@ export class PeticionCardComponent {
 
     return nombreEspecialidad;
 
-    }
-
-
+  }
 
   //aceptar la conexion profesor-alumno
   aceptarSolicitud() {
@@ -57,33 +57,92 @@ export class PeticionCardComponent {
     const usuarioId = this.miUsuario.alumno_id;
     const especialidadId = this.miUsuario.especialidades_id;
 
-    this.peticionClasesServices
-      .aceptarSolicitud(profesorId, usuarioId, especialidadId)
-      .then((response) => {
-        console.log('conexion aceptada', response);
-      })
-      .catch((error) => {
-        console.log('error al aceptar', error);
-      });
-  }
 
-  // Denegar la conexion profesor-alumno
-  async cancelarSolicitud() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "¿Quieres ser su profeser?",
+      text: "El alumno tiene muchas ganas de aprender contigo",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Acepto el desafio",
+      cancelButtonText: "Prefiero pensarlo",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.peticionClasesServices
+          .aceptarSolicitud(profesorId, usuarioId, especialidadId)
+          .then((response) => {
+            // Si el profesor acepta la operación
+            swalWithBootstrapButtons.fire({
+              title: "Enhorabuena",
+              text: "Ya tienes un alumno más",
+              icon: "success"
+
+            });
+            this.actualizarCambios.detectChanges();
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Ha ocurrido un error al aceptar al alumno",
+            });;
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Si el profesor cancela la operación
+        swalWithBootstrapButtons.fire({
+          title: "Tómate tu tiempo",
+          text: "El alumno te espera con muchas ganas",
+          icon: "error"
+
+        });
+      }
+    });
+  }
+   // Denegar la conexion profesor-alumno
+   async cancelarSolicitud() {
     try {
       const profesorId = this.miUsuario.profesor_id;
       const usuarioId = this.miUsuario.alumno_id;
       const especialidadId = this.miUsuario.especialidades_id;
-
+  
       const response = await this.peticionClasesServices.cancelarSolicitud(
         profesorId, usuarioId, especialidadId);
-
-      console.log('conexion cancelada', response);
-
+  
+      Swal.fire({
+        title: "¿Seguro que no admites a este alumno?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, no lo admito",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Rechazado",
+            text: "El alumno ha sido rechazado",
+            icon: "success"
+          });
+        }
+      });
+  
+  
+  
     } catch (error) {
-      console.log('error al cancelar', error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ha ocurrido un erros en la cancelación de la solicitud",
+      });
     }
   }
-
-
-
 }
+ 

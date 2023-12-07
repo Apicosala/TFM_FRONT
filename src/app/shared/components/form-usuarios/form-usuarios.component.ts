@@ -11,6 +11,7 @@ import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
 import { IUser } from 'src/app/core/models/user.interface';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
 import { perfilUsersService } from 'src/app/modules/usuario/services/perfilUsers.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-usuarios',
@@ -118,11 +119,21 @@ export class FormUsuariosComponent {
       const response = await this.perfilServices.update(this.formUsuario.value);
 
       if (response.id) {
-        alert('Usuario actualizado correctamente');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Datos actualizados correctamente",
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.router.navigate(['/home']);
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ha ocurrido un error al actualizar el usuario",
+      });
     }
   }
 
@@ -132,11 +143,21 @@ export class FormUsuariosComponent {
       console.log(response.latitude, response.longitude)
 
       if (response.id) {
-        alert('Usuario actualizado correctamente');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Datos actualizados correctamente",
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.router.navigate(['/home']);
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ha ocurrido un error al actualizar el usuario",
+      });
     } 
   }
 
