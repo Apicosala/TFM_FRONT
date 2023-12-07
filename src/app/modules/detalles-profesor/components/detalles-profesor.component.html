@@ -9,12 +9,22 @@
         <li class="list__item">Precio de la clase: {{miProfesor?.pxh}}€</li>      
       </ul>
     </div>
+    <div class="buttons" *ngFor="let especialidad of miEspecialidad">
+    <button class="button" (click)="solicitarClase(especialidad)">Solicitar clase de {{especialidad}} </button>
+    </div>
     <div class="mapa">
         <google-map
         [zoom]="zoom"
         [center]="miUbicacion">
         <map-circle [center]="miUbicacion" [radius]="1000" [options]="circleOptions"></map-circle>
         </google-map>
+    </div>
+    <div class="valoraciones">
+      <h2>Valoraciones de otros alumnos</h2>
+      <ng-container class="valoraciones" *ngFor="let especialidad of miEspecialidad">
+        <app-valoracion-card></app-valoracion-card>
+      </ng-container>
+      
     </div>
   
 </main>

@@ -11,6 +11,7 @@ import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
 import { IUser } from 'src/app/core/models/user.interface';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
 import { perfilUsersService } from 'src/app/modules/usuario/services/perfilUsers.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-usuarios',
@@ -28,14 +29,19 @@ export class FormUsuariosComponent {
   constructor() {
     this.formUsuario = new FormGroup(
       {
-        nombre: new FormControl('', [Validators.minLength(3)]),
-        apellidos: new FormControl('', [Validators.minLength(3)]),
+        nombre: new FormControl('',
+         [Validators.minLength(3)]),
+
+        apellidos: new FormControl('',
+         [Validators.minLength(3)]),
+
         mail: new FormControl('', [
           Validators.pattern(
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
           ),
         ]),
         foto: new FormControl('', []),
+
         tel: new FormControl('', [
           Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),
         ]),
@@ -44,63 +50,86 @@ export class FormUsuariosComponent {
         experiencia: new FormControl('', []),
 
         pass: new FormControl('', [
-          Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
+          Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+          ),
         ]),
+
+        newPass: new FormControl('', [
+          Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+          ),]),
+
         repetirPass: new FormControl('', []),
 
         activo: new FormControl('', []),
       },
-      [this.controlPass]
-    );
+      [this.controlPass]);
   }
 
   controlPass(formValue: AbstractControl) {
-    const pass: string = formValue.get('pass')?.value;
+    const pass: string = formValue.get('newPass')?.value;
     const repetirPass: string = formValue.get('repetirPass')?.value;
 
     if (pass !== repetirPass) {
       return { controlpass: true };
     } else {
+      // Verificar si es necesario actualizar el valor (evitamos buvle infinito)
+      if(formValue.get('pass')?.value !== pass) {
+
+        // actualizamos el valor del campo pass
+        formValue.get('pass')?.setValue(pass, { emitEvent: false });
+      }
       return null;
     }
   }
+  
+  
+  
 
   ngOnInit(): void {
-    //TODO: Resolver problema de devolucion id: undefined.
+    
     let token = this.userService.token;
 
     if (token) {
       let decodedToken = jwtDecode<PayLoad>(token);
       let id = decodedToken.user_id;
       this.perfilServices.getById(id).subscribe((data) => {
+
         this.usuario = data[0];
 
-        this.formUsuario = new FormGroup(
-          {
+        this.formUsuario = new FormGroup({
+
             id: new FormControl(this.usuario.id, []),
 
-            nombre: new FormControl(data[0].nombre, [Validators.minLength(3)]),
-            apellidos: new FormControl(data[0].apellidos, [
-              Validators.minLength(3),
+            nombre: new FormControl(data[0].nombre, 
+              [Validators.minLength(3)]),
+
+            apellidos: new FormControl(data[0].apellidos, 
+              [Validators.minLength(3),]),
+
+            mail: new FormControl(data[0].mail, 
+              [Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
             ]),
-            mail: new FormControl(data[0].mail, [
-              Validators.pattern(
-                /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-              ),
-            ]),
+
             foto: new FormControl(data[0].foto, []),
 
-            tel: new FormControl(data[0].tel, [
-              Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),
-            ]),
+            tel: new FormControl(data[0].tel, 
+              [Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),]),
+
             precio: new FormControl(data[0].pxh, []),
 
             experiencia: new FormControl(data.experiencia, []),
 
-            pass: new FormControl('', [
-              Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
-            ]),
-            repetirPass: new FormControl('', []),
+            pass: new FormControl(data[0].pass, [
+              Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+              ),]),
+
+            newPass: new FormControl('', [
+              Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+              ),]),
+
+            repetirPass: new FormControl('', [
+              Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+          ),]),
 
             activo: new FormControl(this.usuario.activo, []),
 
@@ -115,14 +144,26 @@ export class FormUsuariosComponent {
 
   async getDataForm() {
     try {
+      
       const response = await this.perfilServices.update(this.formUsuario.value);
-
+      
       if (response.id) {
-        alert('Usuario actualizado correctamente');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Datos actualizados correctamente",
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.router.navigate(['/home']);
       }
     } catch (error) {
-      console.log(error);
+      console.error('aqui el error', error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ha ocurrido un error al actualizar el usuario",
+      });
     }
   }
 
@@ -132,11 +173,21 @@ export class FormUsuariosComponent {
       console.log(response.latitude, response.longitude)
 
       if (response.id) {
-        alert('Usuario actualizado correctamente');
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Datos actualizados correctamente",
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.router.navigate(['/home']);
       }
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ha ocurrido un error al actualizar el usuario",
+      });
     } 
   }
 

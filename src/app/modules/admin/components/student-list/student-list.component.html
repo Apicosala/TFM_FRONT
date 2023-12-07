@@ -1,61 +1,77 @@
-<div>
-  <h3>Activos</h3>
-  <mat-accordion>
-    <div *ngFor="let student of arrActiveStudents" class="mb-3">
-      <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
-        <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-center">
-            <img src="{{student.foto}}" alt="Imagen de perfil de: {{student.nombre}}" class="mr-3">
+<div class="container col-12 col-md-6">
+<div class="mt-3">
+  <mat-accordion class="custom-accordion">
+    <mat-expansion-panel class="custom-accordion">
+      <mat-expansion-panel-header class="custom-accordion">
+        <mat-panel-title>
+          <h3 class="title-style">Activos</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <!-- Contenido del panel de expansión -->
+      <div *ngFor="let student of arrActiveStudents" class="mb-3">
+        <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
+          <mat-expansion-panel-header>
+            <div class="d-flex align-items-center">
+              <div class="img-container mr-3">
+                <img [src]="student.foto" alt="Imagen de perfil de: {{student.nombre}}">
+              </div>
+              <div>
+                <h5 class="general-style mb-2">{{student.nombre}} {{student.apellidos}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <button (click)="deactivateStudent(student)" class="btn btn-dark position-absolute top-0 btn__style">
+                Dar de baja al alumno
+              </button>
+            </div>
+          </mat-expansion-panel-header>
+          <!-- Contenido del panel de expansión -->
+          <div>
+            <span>Correo electrónico:</span><p class="mb-2"> {{student.mail}}</p>
+            <span>Teléfono:</span> <p class="mb-0">{{student.tel}}</p>
+          </div>
+        </mat-expansion-panel>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+<div class="mt-3">
+  <mat-accordion class="custom-accordion">
+    <mat-expansion-panel class="custom-accordion">
+      <mat-expansion-panel-header class="custom-accordion">
+        <mat-panel-title>
+          <h3 class="title-style">Inactivos</h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <!-- Contenido del panel de expansión -->
+      <div *ngFor="let student of arrDeactivatedStudents" class="mb-3">
+        <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
+          <mat-expansion-panel-header class="d-flex align-items-center">
+            <div class="d-flex align-items-center">
+              <div class="img-container mr-3">
+                <img [src]="student.foto" alt="Imagen de perfil de: {{student.nombre}}">
+              </div>
+              <div>
+                <h5 class="general-style">{{student.nombre}} {{student.apellidos}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <button (click)="activateStudent(student)" class="btn btn-success position-absolute top-0 btn__style">
+                Dar de alta al alumno
+              </button>
+            </div>
+          </mat-expansion-panel-header>
+          <!-- Contenido del panel de expansión -->
+          <div>
             <div>
-              <h5>{{student.nombre}} {{student.apellidos}}</h5>
+              <span>Correo electrónico:</span><p class="mb-2"> {{student.mail}}</p>
+              <span>Teléfono:</span> <p class="mb-0">{{student.tel}}</p>
             </div>
           </div>
-          <div>
-            <button (click)="deactivateStudent(student)" class="btn btn-dark">Dar de baja al alumno</button>
-          </div>
-        </mat-expansion-panel-header>
-        <!-- Contenido del panel de expansión -->
-        <div>
-          <div>
-            <p><strong>Correo electrónico:</strong> {{student.mail}}</p>
-            <p><strong>Teléfono:</strong> {{student.tel}}</p>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </div>
+        </mat-expansion-panel>
+      </div>
+    </mat-expansion-panel>
   </mat-accordion>
-
-  <h3>Inactivos</h3>
-  <mat-accordion>
-    <div *ngFor="let student of arrDeactivatedStudents" class="mb-3">
-      <mat-expansion-panel [expanded]="isPanelExpanded(student.id)">
-        <mat-expansion-panel-header class="d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-center">
-            <img src="{{student.foto}}" alt="Imagen de perfil de: {{student.nombre}}" class="mr-3">
-            <div>
-              <h5>{{student.nombre}} {{student.apellidos}}</h5>
-            </div>
-          </div>
-          <div>
-            <button (click)="activateStudent(student)" class="btn btn-dark">Dar de alta al alumno</button>
-          </div>
-        </mat-expansion-panel-header>
-        <!-- Contenido del panel de expansión -->
-        <div>
-          <div>
-            <p><strong>Correo electrónico:</strong> {{student.mail}}</p>
-            <p><strong>Teléfono:</strong> {{student.tel}}</p>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </div>
-  </mat-accordion>
+  </div>
+  
 </div>
-
-
-
-
-
-
-
-

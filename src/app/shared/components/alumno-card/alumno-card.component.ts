@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { IEspecialidad } from 'src/app/core/models/Especialidad.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-alumno-card',
@@ -17,12 +19,13 @@ export class AlumnoCardComponent {
   totalClases: number = 0;
   fechaInput: string = "";
 
+
   activatedRoute = inject(ActivatedRoute);
   clasesServices = inject(ClasesService);
 
 
   ngOnInit() {
-
+    
     //recuperamos las especialidades del profesor
     this.activatedRoute.params.subscribe((params: any) => {
       let id = params.usuarioId;
@@ -43,6 +46,7 @@ export class AlumnoCardComponent {
       let especialidadId = this.miUsuario.especialidades_id;
 
       try {
+ 
         const data = await this.clasesServices.getFechaByClases(profesorId, alumnoId,especialidadId);
 
         // Filtramos las clases del alumno por especialidad.
@@ -52,14 +56,12 @@ export class AlumnoCardComponent {
         // Obtenemos el total de clases del alumno.
         this.totalClases = clasesAlumno.length;
 
-
-
       } catch (error) {
         console.log(error);
-
       }
 
     })
+
 
   }
   // Método para obtener el nombre de la especialidad por su ID.
@@ -85,21 +87,32 @@ export class AlumnoCardComponent {
     const especialidadId = this.miUsuario.especialidades_id;
 
 
-console.log(especialidadId)
     if (!this.fechaInput) {
-      alert('Debes introducir una fecha');
+      Swal.fire("Debes de introducir una fecha");
       return
     }
 
     this.clasesServices.insertarFechaClases(profesorId, alumnoId, this.fechaInput, especialidadId)
     .then(response => {
-      console.log('Fecha añadida con éxito', response);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Fehca añadida correctamente",
+        showConfirmButton: false,
+        timer: 1500
+      });
+
     })
     .catch(error => {
-      console.log('error al añadir la fecha', error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Formato de fecha incorrecto",
+      });
     })
 
   }
+
 
 }
 

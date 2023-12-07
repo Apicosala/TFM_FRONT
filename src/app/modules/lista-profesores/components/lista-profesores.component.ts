@@ -54,9 +54,7 @@ export class ListaProfesoresComponent {
               this.puntuacion = (puntuacionMedia/data.length).toFixed(1);
               profesor.puntuacion = this.puntuacion;
               })
-
-              console.log(this.arrProfesores)
-            
+           
               if (profesor.activo == 1){
                 this.marcadores.push({coordenadas: new google.maps.LatLng(profesor.lat,profesor.lon), centroMarcador: new google.maps.LatLng(profesor.lat+0.01,profesor.lon+0.01), label: {text: profesor.nombre, color: "#cfb3fc"}});
               }
@@ -80,8 +78,6 @@ export class ListaProfesoresComponent {
             return 0;
   
           })
-          console.log(this.arrProfesores)
-
           })
         this.listaProfesoresService.getNombreEspecialidad().then(nombre => {
           let especialidad = nombre.find((esp)=> esp.id == this.id);
@@ -126,7 +122,6 @@ export class ListaProfesoresComponent {
   async getUserLocation() {
     try {
     const location: any = await this.listaProfesoresService.getUserLocation();
-    console.log(location.latitude, location.longitude)
     this.centro = new google.maps.LatLng(location.latitude, location.longitude)
     
     
