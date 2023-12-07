@@ -145,7 +145,7 @@ export class FormUsuariosComponent {
     try {
       
       const response = await this.perfilServices.update(this.formUsuario.value);
-      console.log('despues de actualizar')
+      
       if (response.id) {
         Swal.fire({
           position: "top-end",
@@ -169,6 +169,7 @@ export class FormUsuariosComponent {
   async getLocation() {
       try {
       const response = await this.perfilServices.getLocation();
+      console.log(response.latitude, response.longitude)
 
       if (response.id) {
         Swal.fire({
