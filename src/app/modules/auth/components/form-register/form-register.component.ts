@@ -50,7 +50,10 @@ export class FormRegisterComponent {
           Validators.required,
           Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
         ]),
-        repeatpassword: new FormControl(''),
+        repeatpassword: new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
+        ]),
         foto: new FormControl(''),
         tel: new FormControl(''),
         pxh: new FormControl(0),

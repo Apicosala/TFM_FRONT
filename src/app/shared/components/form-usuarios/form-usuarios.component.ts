@@ -62,8 +62,7 @@ export class FormUsuariosComponent {
 
         activo: new FormControl('', []),
       },
-      [this.controlPass.bind(this)]
-    );
+      [this.controlPass]);
   }
 
   controlPass(formValue: AbstractControl) {
@@ -128,7 +127,9 @@ export class FormUsuariosComponent {
               Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
               ),]),
 
-            repetirPass: new FormControl('', []),
+            repetirPass: new FormControl('', [
+              Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+          ),]),
 
             activo: new FormControl(this.usuario.activo, []),
 
