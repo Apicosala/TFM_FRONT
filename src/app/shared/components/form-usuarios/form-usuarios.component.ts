@@ -53,24 +53,38 @@ export class FormUsuariosComponent {
           Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
           ),
         ]),
+
+        newPass: new FormControl('', [
+          Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+          ),]),
+
         repetirPass: new FormControl('', []),
 
         activo: new FormControl('', []),
       },
-      [this.controlPass]
+      [this.controlPass.bind(this)]
     );
   }
 
   controlPass(formValue: AbstractControl) {
-    const pass: string = formValue.get('pass')?.value;
+    const pass: string = formValue.get('newPass')?.value;
     const repetirPass: string = formValue.get('repetirPass')?.value;
 
     if (pass !== repetirPass) {
       return { controlpass: true };
     } else {
+      // Verificar si es necesario actualizar el valor (evitamos buvle infinito)
+      if(formValue.get('pass')?.value !== pass) {
+
+        // actualizamos el valor del campo pass
+        formValue.get('pass')?.setValue(pass, { emitEvent: false });
+      }
       return null;
     }
   }
+  
+  
+  
 
   ngOnInit(): void {
     
@@ -106,7 +120,11 @@ export class FormUsuariosComponent {
 
             experiencia: new FormControl(data.experiencia, []),
 
-            pass: new FormControl('', [
+            pass: new FormControl(data[0].pass, [
+              Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+              ),]),
+
+            newPass: new FormControl('', [
               Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
               ),]),
 
@@ -125,8 +143,9 @@ export class FormUsuariosComponent {
 
   async getDataForm() {
     try {
+      
       const response = await this.perfilServices.update(this.formUsuario.value);
-
+      console.log('despues de actualizar')
       if (response.id) {
         Swal.fire({
           position: "top-end",
@@ -134,12 +153,11 @@ export class FormUsuariosComponent {
           title: "Datos actualizados correctamente",
           showConfirmButton: false,
           timer: 1500
-          
         });
-        console.log(response)
         this.router.navigate(['/home']);
       }
     } catch (error) {
+      console.error('aqui el error', error);
       Swal.fire({
         icon: "error",
         title: "Oops...",
