@@ -1,21 +1,21 @@
-<section>
-<h1>Incio de sesión</h1>
-<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="text" class="form-control" placeholder = "Introduce tu email" formControlName="mail">
+<section class="container d-flex flex-column align-items-center justify-content-center">
+    <h1 class="title text-white">Inicio de sesión</h1>
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="mb-3">
+      <div class="mb-3">
+        <label>Email</label>
+        <input type="text" placeholder="Introduce tu email" formControlName="mail" class="form-control input__style input-lg input-md">
         <p class="error" *ngIf="checkControl('mail', 'required')">Este campo es requerido</p>
         <p class="error" *ngIf="checkControl('mail', 'pattern')">El email tiene formato incorrecto</p>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Contraseña</label>
-        <input type="password" class="form-control" placeholder = "Introduce tu contraseña" formControlName="pass">
+      </div>
+      <div class="mb-3">
+        <label>Contraseña</label>
+        <input type="password" placeholder="Introduce tu contraseña" formControlName="pass" class="form-control input__style input-lg input-md">
         <p class="error" *ngIf="checkControl('pass', 'required')">Este campo es requerido</p>
         <p class="error" *ngIf="checkControl('pass', 'minlength')">La contraseña debe tener al menos 8 caracteres</p>
-    </div>
-    <input type="submit" value="Enviar" class="btn btn-info" [disabled]="!formLogin.valid">
-</form>
-    <p class="error">{{errorMessage}}</p>
-
-<button [routerLink]="['/auth', 'register']">¿Aún no eres usuario? ¡Regístrate!</button>
-</section>
+      </div>
+      <input type="submit" value="Enviar" [disabled]="!formLogin.valid" class="btn btn-primary submit-button">
+    </form>
+    <p class="error text-white">{{errorMessage}}</p>
+    <button [routerLink]="['/auth', 'register']" class="btn btn-secondary register-button">¿Aún no eres usuario? ¡Regístrate!</button>
+  </section>
+  

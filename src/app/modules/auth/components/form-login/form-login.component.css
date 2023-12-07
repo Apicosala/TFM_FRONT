@@ -1,14 +1,38 @@
-
-input.ng-invalid.ng-touched{
-  border-bottom: 3px solid tomato;
+*{
+  color: white;
 }
-
-input.ng-valid.ng-touched{
-  border-bottom: 3px solid lightgreen;
-}
-
 .error{
   color: tomato;
   font-size: 12px;
 }
 
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.title {
+  font-size: 4rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.input__style {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+  margin-top: 10px; /* Ajusta el margen según sea necesario */
+}
+
+.register-button {
+  margin-top: 10px; /* Ajusta el margen según sea necesario */
+}
+input::placeholder{
+  color: gray
+}
+@media (min-width: 500px) {
+  .input__style {
+    width: 400px;
+  }
+}
