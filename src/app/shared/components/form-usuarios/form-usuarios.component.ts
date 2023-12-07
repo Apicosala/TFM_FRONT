@@ -136,7 +136,6 @@ export class FormUsuariosComponent {
           timer: 1500
           
         });
-        console.log(response)
         this.router.navigate(['/home']);
       }
     } catch (error) {
@@ -151,7 +150,6 @@ export class FormUsuariosComponent {
   async getLocation() {
       try {
       const response = await this.perfilServices.getLocation();
-      console.log(response.latitude, response.longitude)
 
       if (response.id) {
         Swal.fire({

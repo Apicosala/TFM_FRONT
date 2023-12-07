@@ -24,6 +24,7 @@
           <label class="label" for="mail">Correo</label>
           <p class="error" *ngIf="checkControl('mail')">Tu correo electrónico es incorrecto.</p>
         </div>
+        
 
         <div class="mb-3 containerForm">
           <input class="input" type="text" id="tel" formControlName="tel" />
@@ -78,20 +79,16 @@
             <div class="accordion-body">
               <div class="form">
                 <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
-
-                  <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input class="form-control" type="text" id="nombre" formControlName="nombre" />
-                    <p class="error" *ngIf="checkControl('nombre')">Tu nombre debe contener al menos 3 letras.</p>
+                  <div class="containerForm">
+                    <input class="input" type="text" id="nombre" formControlName="nombre" />
+                    <label class="label" for="nombre">Nombre</label>
+                    <p class="error" *ngIf="checkControl('mail')">Tu nombre debe contener al menos 3 letras.</p>
                   </div>
-
-                  <div class="mb-3">
-                    <label for="apellidos" class="form-label">Apellidos</label>
-                    <input class="form-control" type="text" id="apellidos" formControlName="apellidos" />
-                    <p class="error" *ngIf="checkControl('apellidos')">Tus apellidos deben contener al menos 3 letras.
-                    </p>
+                  <div class="containerForm">
+                    <input class="input" type="text" id="apellidos" formControlName="apellidos" />
+                    <label class="label" for="apellidos">Apellidos</label>
+                    <p class="error" *ngIf="checkControl('mail')">Tus apellidos deben contener al menos 3 letras.</p>
                   </div>
-
                   <div class="containerForm">
                     <input class="input" type="email" id="mail" formControlName="mail" />
                     <label class="label" for="mail">Correo</label>
@@ -142,20 +139,17 @@
           <div class="accordion-body">
             <div class="form">
               <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
-
-                <div class="mb-3">
-                  <label for="experiencia" class="form-label">Años de experiencia</label>
-                  <input class="form-control" type="number" id="experiencia" formControlName="experiencia" />
+                <div class="containerForm">
+                  <input class="input" type="number" id="experiencia" formControlName="experiencia" />
+                  <label class="label" for="experiencia">Años de experiencia</label>
                 </div>
-
-                <div class="mb-3">
-                  <label for="precio" class="form-label">Precio/h</label>
-                  <input class="form-control" type="number" id="precio" formControlName="precio" />
+                <div class="containerForm">
+                  <input class="input" type="number" id="precio" formControlName="precio" />
+                  <label class="label" for="precio">Precio/h</label>
                 </div>
-                  
-                  <div class=" containerForm check">
-                    <label class="title__check" for="localizacion">¿Deseas añadir la localización de tus clases?</label>
-                    <input class="input__ckeck" type="checkbox" id="localizacion" (click)="getLocation()"/>
+                  <div class=" containerForm check d-flex flex-row">
+                    <input type="checkbox" id="localizacion" (click)="getLocation()"/>
+                    <label class="title__check" for="localizacion"> ¿Deseas añadir la localización de tus clases?</label>
                   </div>
 
 
