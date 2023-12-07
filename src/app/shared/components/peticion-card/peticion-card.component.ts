@@ -106,17 +106,14 @@ export class PeticionCardComponent {
       }
     });
   }
-   // Denegar la conexion profesor-alumno
-   async cancelarSolicitud() {
+  // Denegar la conexion profesor-alumno
+  async cancelarSolicitud() {
     try {
       const profesorId = this.miUsuario.profesor_id;
       const usuarioId = this.miUsuario.alumno_id;
       const especialidadId = this.miUsuario.especialidades_id;
-  
-      const response = await this.peticionClasesServices.cancelarSolicitud(
-        profesorId, usuarioId, especialidadId);
-  
-      Swal.fire({
+
+      const result = await Swal.fire({
         title: "¿Seguro que no admites a este alumno?",
         icon: "warning",
         showCancelButton: true,
@@ -124,18 +121,19 @@ export class PeticionCardComponent {
         cancelButtonColor: "#d33",
         confirmButtonText: "Sí, no lo admito",
         cancelButtonText: "Cancelar",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "Rechazado",
-            text: "El alumno ha sido rechazado",
-            icon: "success"
-          });
-        }
+      })
+      if (!result.isConfirmed) {
+        return;
+      }
+
+      const response = await this.peticionClasesServices.cancelarSolicitud(
+        profesorId, usuarioId, especialidadId);
+      Swal.fire({
+        title: "Rechazado",
+        text: "El alumno ha sido rechazado",
+        icon: "success"
       });
-  
-  
-  
+      this.actualizarCambios.detectChanges();
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -145,4 +143,4 @@ export class PeticionCardComponent {
     }
   }
 }
- 
+

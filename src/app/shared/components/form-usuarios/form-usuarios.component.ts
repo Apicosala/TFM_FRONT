@@ -29,14 +29,19 @@ export class FormUsuariosComponent {
   constructor() {
     this.formUsuario = new FormGroup(
       {
-        nombre: new FormControl('', [Validators.minLength(3)]),
-        apellidos: new FormControl('', [Validators.minLength(3)]),
+        nombre: new FormControl('',
+         [Validators.minLength(3)]),
+
+        apellidos: new FormControl('',
+         [Validators.minLength(3)]),
+
         mail: new FormControl('', [
           Validators.pattern(
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
           ),
         ]),
         foto: new FormControl('', []),
+
         tel: new FormControl('', [
           Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),
         ]),
@@ -45,7 +50,8 @@ export class FormUsuariosComponent {
         experiencia: new FormControl('', []),
 
         pass: new FormControl('', [
-          Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
+          Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+          ),
         ]),
         repetirPass: new FormControl('', []),
 
@@ -67,40 +73,43 @@ export class FormUsuariosComponent {
   }
 
   ngOnInit(): void {
-    //TODO: Resolver problema de devolucion id: undefined.
+    
     let token = this.userService.token;
 
     if (token) {
       let decodedToken = jwtDecode<PayLoad>(token);
       let id = decodedToken.user_id;
       this.perfilServices.getById(id).subscribe((data) => {
+
         this.usuario = data[0];
 
-        this.formUsuario = new FormGroup(
-          {
+        this.formUsuario = new FormGroup({
+
             id: new FormControl(this.usuario.id, []),
 
-            nombre: new FormControl(data[0].nombre, [Validators.minLength(3)]),
-            apellidos: new FormControl(data[0].apellidos, [
-              Validators.minLength(3),
+            nombre: new FormControl(data[0].nombre, 
+              [Validators.minLength(3)]),
+
+            apellidos: new FormControl(data[0].apellidos, 
+              [Validators.minLength(3),]),
+
+            mail: new FormControl(data[0].mail, 
+              [Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/),
             ]),
-            mail: new FormControl(data[0].mail, [
-              Validators.pattern(
-                /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-              ),
-            ]),
+
             foto: new FormControl(data[0].foto, []),
 
-            tel: new FormControl(data[0].tel, [
-              Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),
-            ]),
+            tel: new FormControl(data[0].tel, 
+              [Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),]),
+
             precio: new FormControl(data[0].pxh, []),
 
             experiencia: new FormControl(data.experiencia, []),
 
             pass: new FormControl('', [
-              Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
-            ]),
+              Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+              ),]),
+
             repetirPass: new FormControl('', []),
 
             activo: new FormControl(this.usuario.activo, []),
@@ -125,7 +134,9 @@ export class FormUsuariosComponent {
           title: "Datos actualizados correctamente",
           showConfirmButton: false,
           timer: 1500
+          
         });
+        console.log(response)
         this.router.navigate(['/home']);
       }
     } catch (error) {
