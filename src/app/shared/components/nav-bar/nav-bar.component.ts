@@ -54,7 +54,7 @@ export class NavBarComponent {
         // El usuario ha confirmado la desconexión
         this.userService.logOut();
         this.userService.clearUserId();
-        this.router.navigate(['auth', 'login'], {
+        this.router.navigate(['/home'], {
           queryParams: [],
         });
       }

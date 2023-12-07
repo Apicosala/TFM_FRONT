@@ -25,11 +25,11 @@
             <button class="btn btn-custom mb-3" [routerLink]="['/foro/:usuarioId']">
               <span class="text-white">Dudas de {{miUsuario.nombre}}</span>
             </button>
-          </div>
-          <form class="text-center">
-            <label for="fecha" class="text-white mb-2">Introduce la fecha de la clase</label>
-            <input class="form-control mb-2" type="text" id="fecha" name="fecha" placeholder="dd/mm/aaaa" [(ngModel)]="fechaInput" />
-            <input type="submit" value="Añadir" class="btn btn-custom" (click)="anadirFechaClases()" />
+
+          <form class="containerForm">
+            <label class="label mt-3" style="position: absolute; left: 20px;" for="fecha">Fecha de próxima clase</label>
+            <input class="input mb-3 mt-3 " type="text" id="fecha" name="fecha" placeholder="dd/mm/aaaa" [(ngModel)]="fechaInput" />
+            <input class="btn btn-custom" type="submit" value="Añadir" id="fecha" (click)="anadirFechaClases()" />
           </form>
         </div>
       </div>

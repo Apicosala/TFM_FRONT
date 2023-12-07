@@ -169,7 +169,6 @@ export class FormUsuariosComponent {
   async getLocation() {
       try {
       const response = await this.perfilServices.getLocation();
-      console.log(response.latitude, response.longitude)
 
       if (response.id) {
         Swal.fire({
