@@ -38,14 +38,14 @@
           <label class="label" for="foto">Fotografía</label>
         </div>
 
-        <div class="containerForm">
-          <input class="input" type="password" id="newPass" formControlName="newPass" />
-          <label class="label" for="newPass">Nueva contraseña</label>
+        <div class="mb-3 containerForm">
+          <input class="input" type="password" id="newPass" formControlName="newPass"/>
+          <label class="label" for="newPass">Contraseña</label>
           <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
         </div>
 
         <div class="mb-3 containerForm">
-          <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
+          <input class="input" type="password" id="repetirPass" formControlName="repetirPass"/>
           <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
           <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
         </div>
