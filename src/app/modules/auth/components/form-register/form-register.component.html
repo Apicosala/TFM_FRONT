@@ -1,14 +1,15 @@
-<section>
-  <h1>Registro</h1>
-  <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
-    <h3>¿Cuál va a ser tu perfil?</h3>
+<section class="container d-flex flex-column align-items-center justify-content-center text-white">
 
-    <div class="mb-3">
+  <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+    <h3 class="text-white h3__style">¿Cuál va a ser tu perfil?
+    </h3>
+
+    <div class="mb-3 d-flex flex-row justify-content-center">
       <label>
         <input type="radio" formControlName="rol" value="alumn" /> Alumno
       </label>
       <label>
-        <input type="radio" formControlName="rol" value="prof" /> Profesor
+        <input type="radio" style="margin-left: 10px;" formControlName="rol" value="prof" /> Profesor
       </label>
       <p class="error" *ngIf="checkControl('rol', 'required')">
         Selecciona tu perfil
@@ -21,8 +22,7 @@
         show:
           formRegister.get('rol')?.value === 'alumn' ||
           formRegister.get('rol')?.value === 'prof'
-      }"
-    >
+      }">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input
@@ -87,7 +87,7 @@
           Este campo es requerido
         </p>
         <p class="error" *ngIf="checkControl('pass', 'pattern')">
-          Tu contraseña debe de empezar por una letra, contener al menos un dígito y contener al menos 8 caracteres.
+          Tu contraseña debe de empezar por una letra mayúscula, contener al menos un dígito y contener al menos 8 caracteres.
         </p>
       </div>
       
@@ -107,7 +107,7 @@
             formRegister.hasError('checkpassword')
           "
         >
-        Los campos contraseña y repite la contraseña no coinciden
+        Los campos contraseña y repetir la contraseña no coinciden
       </p>
     </div>
     <div *ngIf="isTeacher()">
@@ -189,10 +189,10 @@
     </div>
     
     <input
-    type="submit"
-    value="Enviar"
-    class="btn btn-info"
-    [disabled]="!formRegister.valid"
+      type="submit"
+      value="Enviar"
+      class="btn btn-custom vibrar"
+      [disabled]="!formRegister.valid"
     />
   </div>
   </form>
