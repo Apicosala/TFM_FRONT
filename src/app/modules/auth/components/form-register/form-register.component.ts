@@ -5,11 +5,14 @@ import {
   Validators,
   AbstractControl,
   ValidationErrors,
+  RequiredValidator,
+  ValidatorFn,
 } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-register',
@@ -43,17 +46,19 @@ export class FormRegisterComponent {
           ),
         ]),
         captureLocation: new FormControl(false),
-        lat: new FormControl(''),
+        lat: new FormControl('', [this.requiredForProfValidator]),
         lon: new FormControl(''),
         pass: new FormControl('', [
           Validators.required,
           Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
         ]),
         repeatpassword: new FormControl(''),
-        foto: new FormControl(''),
-        tel: new FormControl(''),
-        pxh: new FormControl(0),
-        experiencia: new FormControl(0),
+        foto: new FormControl('', [Validators.pattern(/^(http|https):\/\/\S+\.(png|jpg|jpeg|gif|bmp)$/), this.requiredForProfValidator]),
+        tel: new FormControl('', [Validators.minLength(9), Validators.maxLength(20), 
+          Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/), this.requiredForProfValidator],
+        ),
+        pxh: new FormControl(0, [this.pxhvalidator, this.requiredForProfValidator]),
+        experiencia: new FormControl(0, [this.experienciaValidator, this.requiredForProfValidator]),
       },
       [this.checkPassword]
     );
@@ -91,6 +96,31 @@ export class FormRegisterComponent {
     return this.formRegister.get('rol')?.value === 'prof';
   }
 
+
+  requiredForProfValidator = (control: AbstractControl): ValidationErrors | null => {
+    const isProf = control.parent?.get('rol')?.value === 'prof';
+    const value = control.value;
+  
+    if (isProf && !value) {
+      return { 'requiredForProfValidator': 'Este campo es requerido' };
+    } else {
+      return null;
+    }
+  };
+
+  captureLocationValidator(control: AbstractControl): ValidationErrors | null {
+    const isChecked = control.value;
+  
+    if (!isChecked) {
+      return { 'captureLocation': 'Debes aceptar la captura de ubicación' };
+    } else {
+      return null;
+    }
+  }
+  
+  
+  
+
   async captureUserLocation() {
     if (this.formRegister.get('captureLocation')?.value) {
       const apiUrl = 'https://ipapi.co/json/';
@@ -110,16 +140,64 @@ export class FormRegisterComponent {
     }
   }
 
+  pxhvalidator(controlName: AbstractControl): any {
+    const pxh: number = parseInt(controlName.value);
+    if (isNaN(pxh)) {
+      return { 'pxhvalidator': 'El valor introducido no es un número' }
+    } else if (pxh < 0) {
+      return { 'pxhvalidator': 'El precio por hora no puede ser un número negativo' }
+    }
+    return null
+  }
+
+  experienciaValidator(control: AbstractControl): any {
+    const experiencia: number = parseInt(control.value);
+    if (isNaN(experiencia)) {
+      return { 'experiencia': 'El valor introducido no es un número' }
+    } else if (experiencia < 0) {
+      return { 'experiencia': 'Tu experiencia no puede ser un número negativo' }
+    } else if (experiencia > 100) {
+      return { 'experiencia': 'Tu experiencia no puede ser superior a 100 años' }
+    }
+    return null
+  }
+
   async onSubmit() {
     try {
       await this.captureUserLocation();
       const response = await this.usersService.register(
         this.formRegister.value
       );
-      localStorage.setItem('auth_token', response.token);
-      this.router.navigate(['/usuario', ':usuarioId']);
+      let timerInterval: any;
+  Swal.fire({
+  icon: 'success',
+  title: "¡Registro correcto! ¡Bienvenido a TeacherApp!",
+  html: "Para activar tu cuenta, tienes que autentificarte por primera vez",
+  timer: 5000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading();
+      const timer = Swal.getPopup()?.querySelector("b");
+      if (timer) {
+       timerInterval = setInterval(() => {
+        timer.textContent = `${Swal.getTimerLeft()}`;
+    }, 100);
+  }},
+  willClose: () => {
+    clearInterval(timerInterval);
+  }
+}).then((result) => {
+  if (result.dismiss === Swal.DismissReason.timer) {
+  }
+});
+      this.router.navigate(['/auth', 'login']);
     } catch (error: any) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, completa todos los campos correctamente antes de enviar el formulario',
+      });
       this.errorMessage = error.fatal;
     }
-  }
-}
+  };
+};

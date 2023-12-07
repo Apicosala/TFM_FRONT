@@ -22,7 +22,7 @@
           formRegister.get('rol')?.value === 'alumn' ||
           formRegister.get('rol')?.value === 'prof'
       }"
-    >
+    >      <h3>Información personal</h3>
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input
@@ -111,12 +111,15 @@
       </p>
     </div>
     <div *ngIf="isTeacher()">
+      <h3>Información profesional</h3>
+      <p>¡Con estos datos los alumnos podrán contactar contigo!</p>
       <div class="mb-3">
         <label>
           <input type="checkbox" formControlName="captureLocation" />
-          Acepto que se capture mi ubicación.
+          Acepto que se capture mi ubicación
         </label>
       </div>
+      <p class="error" *ngIf="checkControl('lat', 'requiredForProfValidator')">{{ formRegister.get('lat')?.errors?.['requiredForProfValidator'] }}
       <span class="d-none">
     <div class="mb-3" *ngIf="formRegister.get('captureLocation')?.value">
       <label for="lat" class="form-label">Latitud</label>
@@ -127,7 +130,7 @@
         placeholder="Latitud"
         formControlName="lat"
         readonly
-      />
+      />     
     </div>
 
     <div class="mb-3" *ngIf="formRegister.get('captureLocation')?.value">
@@ -153,6 +156,8 @@
           formControlName="foto"
         />
       </div>
+      <p class="error" *ngIf="checkControl('foto', 'pattern')">Tu URL tiene un formato incorrecto</p>
+      <p class="error" *ngIf="checkControl('foto', 'requiredForProfValidator')">{{ formRegister.get('foto')?.errors?.['requiredForProfValidator'] }}</p>
 
       <div class="mb-3">
         <label for="tel" class="form-label">Introduce tu número de teléfono</label>
@@ -163,6 +168,12 @@
           placeholder="Número de teléfono"
           formControlName="tel"
         />
+        <p class="error" *ngIf="checkControl('tel', 'pattern')">Tu teléfono no puede contener ni espacios ni
+          caracteres especiales</p>
+          <p class="error" *ngIf="checkControl('tel', 'minlength')">Tu teléfono no puede menos de 9 dígitos</p>
+            <p class="error" *ngIf="checkControl('tel', 'maxlength')">Tu teléfono no puede tener más de 20 dígitos</p>
+            <p class="error" *ngIf="checkControl('tel', 'requiredForProfValidator')">{{ formRegister.get('tel')?.errors?.['requiredForProfValidator'] }}</p>
+
       </div>
 
       <div class="mb-3">
@@ -174,6 +185,8 @@
           placeholder="Precio por hora"
           formControlName="pxh"
         />
+        <p class="error" *ngIf="checkControl('pxh', 'pxhvalidator')">{{ formRegister.get('pxh')?.errors?.['pxhvalidator'] }}</p>
+        <p class="error" *ngIf="checkControl('pxh', 'requiredForProfValidator')">{{ formRegister.get('pxh')?.errors?.['requiredForProfValidator'] }}pxh
       </div>
 
       <div class="mb-3">
@@ -185,6 +198,8 @@
           placeholder="Años de experiencia"
           formControlName="experiencia"
         />
+        <p class="error" *ngIf="checkControl('experiencia', 'experienciaValidator')">{{ formRegister.get('experiencia')?.errors?.['experienciaValidator'] }}</p>
+        <p class="error" *ngIf="checkControl('experiencia', 'requiredForProfValidator')">{{ formRegister.get('experiencia')?.errors?.['requiredForProfValidator'] }}
       </div>
     </div>
     
