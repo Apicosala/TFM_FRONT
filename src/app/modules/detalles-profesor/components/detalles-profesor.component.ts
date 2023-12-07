@@ -14,7 +14,11 @@ export class DetallesProfesorComponent {
 
   miProfesor: IUser | any;
   miEspecialidad: string[] | any;
-  misEspecialidades: any[] = []
+  misEspecialidades: any[] = [];
+  misValoraciones: any [] = [];
+  public userId!: number;
+
+  // Mapa
   miUbicacion: google.maps.LatLng | any;
   zoom: number = 14;
   circleOptions: any = {
@@ -26,8 +30,8 @@ export class DetallesProfesorComponent {
   detallesService = inject(DetallesProfesorService);
   userService = inject(UsersService);
 
-  private token: string | null = null;
-  public userId!: number;
+  
+ 
 
 
   ngOnInit() : void {
