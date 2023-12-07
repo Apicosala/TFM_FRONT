@@ -26,6 +26,9 @@
     margin-top: 4px; 
     right: 50px;
   }
+  .custom-accordion {
+    background: transparent;
+  }
 
   
 @media (max-width: 600px) {
