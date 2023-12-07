@@ -56,7 +56,6 @@ const routes: Routes = [
       import('./modules/lista-profesores/listaProfesores.module').then(
         (m) => m.ListaProfesoresModule
       ),
-    canActivateChild: [authGuard],
   },
   {
     path: 'detalles',
