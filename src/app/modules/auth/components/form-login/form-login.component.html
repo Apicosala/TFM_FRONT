@@ -3,13 +3,13 @@
     <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="mb-3">
       <div class="mb-3">
         <label>Email</label>
-        <input type="text" placeholder="Introduce tu email" formControlName="mail" class="form-control input__style input-lg input-md input__style">
+        <input type="text" placeholder="Introduce tu email" formControlName="mail" class="form-control input__style input__style">
         <p class="error" *ngIf="checkControl('mail', 'required')">Este campo es requerido</p>
         <p class="error" *ngIf="checkControl('mail', 'pattern')">El email tiene formato incorrecto</p>
       </div>
       <div class="mb-3">
         <label>Contraseña</label>
-        <input type="password" placeholder="Introduce tu contraseña" formControlName="pass" class="form-control input__style input-lg input-md input__style">
+        <input type="password" placeholder="Introduce tu contraseña" formControlName="pass" class="form-control input__style input__style">
         <p class="error" *ngIf="checkControl('pass', 'required')">Este campo es requerido</p>
         <p class="error" *ngIf="checkControl('pass', 'minlength')">La contraseña debe tener al menos 8 caracteres</p>
       </div>
