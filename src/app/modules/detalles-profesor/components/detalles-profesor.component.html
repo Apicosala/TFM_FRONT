@@ -9,6 +9,9 @@
         <li class="list__item">Precio de la clase: {{miProfesor?.pxh}}€</li>      
       </ul>
     </div>
+    <div class="buttons" *ngFor="let especialidad of miEspecialidad">
+    <button class="button" (click)="solicitarClase(especialidad)">Solicitar clase de {{especialidad}} </button>
+    </div>
     <div class="mapa">
         <google-map
         [zoom]="zoom"
