@@ -19,6 +19,7 @@ import { firstValueFrom } from 'rxjs';
 export class FormRegisterComponent {
   formRegister: FormGroup;
   errorMessage: string = '';
+  
 
   public usersService = inject(UsersService);
   router = inject(Router);
@@ -47,7 +48,7 @@ export class FormRegisterComponent {
         lon: new FormControl(''),
         pass: new FormControl('', [
           Validators.required,
-          Validators.pattern(/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
+          Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/),
         ]),
         repeatpassword: new FormControl(''),
         foto: new FormControl(''),
@@ -58,7 +59,6 @@ export class FormRegisterComponent {
       [this.checkPassword]
     );
   }
-
   checkPassword(formValue: AbstractControl): ValidationErrors | null {
     const passwordControl = formValue.get('pass');
     const repeatPasswordControl = formValue.get('repeatpassword');

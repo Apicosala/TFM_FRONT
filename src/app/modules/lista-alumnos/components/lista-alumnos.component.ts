@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { ListaAlumnosService } from '../services/listAlumnos.service';
 
@@ -22,9 +22,9 @@ export class ListaAlumnosComponent {
       try {
         let id = params.usuarioId;
         if (!this.arrUsuario.length) {
-          this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id);
-          
+          this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id); 
         }
+        
       } catch (error) {
         console.log(error);
       }
