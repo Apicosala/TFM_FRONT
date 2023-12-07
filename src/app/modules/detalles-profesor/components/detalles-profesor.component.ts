@@ -44,6 +44,11 @@ export class DetallesProfesorComponent {
         this.miProfesor = data[0];
         this.miUbicacion = new google.maps.LatLng(this.miProfesor.lat,this.miProfesor.lon)
       })
+      this.detallesService.getValoraciones(id).subscribe(data => {
+        this.misValoraciones = data[0];
+        console.log(data)
+        
+      })
       this.detallesService.getEspecialidades(id).subscribe(data => {
         this.misEspecialidades = data;
         this.miEspecialidad = data.map(function(elemento: any){
