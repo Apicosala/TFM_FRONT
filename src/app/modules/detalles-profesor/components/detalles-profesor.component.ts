@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { DetallesProfesorService } from '../services/detalles-profesor.service';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from 'src/app/core/models/user.interface';
 import Swal from 'sweetalert2';
 
@@ -25,7 +25,7 @@ export class DetallesProfesorComponent {
     fillColor: '#F5F5F5',
     strokeColor: '#cfb3fc'
   }
-
+  router = inject(Router)
   activatedRoute = inject(ActivatedRoute);
   detallesService = inject(DetallesProfesorService);
   userService = inject(UsersService);
@@ -69,8 +69,13 @@ export class DetallesProfesorComponent {
     this.detallesService.createClase(this.miProfesor.id,this.alumnoId,especialidadId)
 
     this.leavePage()
+  }
 
-    
+  atras() : void {
+    this.activatedRoute.params.subscribe(async (params:any)=>{
+      let id:string = params.especialidadId
+      this.router.navigate([`/especialidades/${id}/profesores`])
+    })
   }
 
   leavePage() {
