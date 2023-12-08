@@ -3,7 +3,7 @@ import { DetallesProfesorService } from '../services/detalles-profesor.service';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
 import { ActivatedRoute } from '@angular/router';
 import { IUser } from 'src/app/core/models/user.interface';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalles-profesor',
@@ -68,6 +68,28 @@ export class DetallesProfesorComponent {
     });
     
     this.detallesService.createClase(this.miProfesor.id,alumnoId,especialidadId)
+
+    this.leavePage()
+
+    
+  }
+
+  leavePage() {
+    Swal.fire({
+      title: 'Se ha generado la solicitud de clase',
+      text: 'Cuando el profesor acepte tu solicitud, podrás ver la clase en el apartado de Mis clases',
+      icon: 'info',
+      showCancelButton: false,
+      showConfirmButton: false,
+      timer: 4000,
+    }).then(
+      function(){},
+      function(dismiss){
+        if (dismiss === 'timer'){
+          console.log('Closed by timer')
+        }
+      }
+    ); 
   }
 
 }
