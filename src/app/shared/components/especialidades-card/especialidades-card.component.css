@@ -1,32 +1,36 @@
-span{
-    font-size: 40px;
+.overlay p {
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 img{
     border-radius: 50%;
     height: 300px;
     width: 300px;
-    transition: filter 1s;
+    transition: filter 1s, transform 0.3s;
+    border: 8px solid rgba(0,0,0,0.1);
 }
 .card{
     align-items: center;
     position: relative;
     border-color: transparent;
     background-color: transparent;
+    font-size: 3rem;
 }
 .overlay {
     position: absolute;
     border-radius: 50%;
     width: 300px;
     height: 300px;
-    background-color: rgba(106, 106, 106, 0.5); /* Superposición oscura con transparencia */
+    background-color: rgba(106, 106, 106, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white; /* Color del texto del mensaje */
-    font-size: 30px; /* Tamaño del texto del mensaje */
-    backdrop-filter: blur(5px); /* Aplica un filtro de desenfoque */
+    color: white; 
+    backdrop-filter: blur(5px); 
+    text-shadow: 2px 2px 4px 4px rgba(0,0,0,0.5);
 }
 
 .card:hover .img-hover {
-    filter: brightness(97%); /* Cambia el brillo de la imagen al pasar el ratón */
+    filter: brightness(97%); 
+    box-shadow: 2px 2px 4px 4px rgba(0,0,0,0.25);
 }
