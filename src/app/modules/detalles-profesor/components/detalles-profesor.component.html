@@ -5,11 +5,11 @@
           <div class="mb-3 d-flex align-items-start justify-content-center">
               <img [src]="miProfesor?.foto" [alt]="miProfesor?.nombre" class="img-fluid rounded-start">
           </div>
-          <div class="d-flex justify-content-center" *ngFor="let especialidad of miEspecialidad">
+          <div class="d-flex flex-column justify-content-center" *ngFor="let especialidad of miEspecialidad">
               <button class="btn-opacity-1" (click)="solicitarClase(especialidad)" [routerLink]="['/clases', this.alumnoId]">
                   Solicitar clase de {{especialidad}}
               </button>
-              <button class="btn-opacity-1" (click)="atras()">
+              <button class="mt-3 d-flex align-items-center justify-content-center btn-opacity-1" (click)="atras(especialidad)">
                 Atrás
             </button>
           </div>
