@@ -2,7 +2,39 @@
 
     <div class="valoracion-card">
         <h2 class="card-nombreAlumno">{{miAlumno?.nombre}}</h2>
-        <h3 class="card-puntuacion">Valoración: {{misValoraciones.puntuacion}}</h3>
+        
+        <!--Sistema de rating con iconos-->
+        <ng-container [ngSwitch]="true">
+            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==1">
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+            </h3>
+                         
+            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==2"> 
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+            </h3>
+            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==3">
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                
+            </h3>            
+            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==4">
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+            </h3>
+            
+            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==5">
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+                <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
+            </h3>
+            </ng-container>
+
         <h3 class="card-comentario">"{{misValoraciones.comentarios}}"</h3>
         <h3 class="card-fecha">{{newDate}}</h3>
 
