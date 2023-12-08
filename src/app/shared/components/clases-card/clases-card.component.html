@@ -33,12 +33,12 @@
     <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
       <ng-container *ngIf="esAlumno; else elseBlock">
         <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
-          <span>Contacta con tu profesor</span>
+          <span>Chatea con tu profesor</span>
         </a>
       </ng-container>
       <ng-template #elseBlock>
         <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
-          <span>Contacta con tu alumno</span>
+          <span>Chatea con tu alumno</span>
         </a>
       </ng-template>
       <a class="btn btn-dark btn-opacity-1" type="submit" (click)="terminarClases()">
