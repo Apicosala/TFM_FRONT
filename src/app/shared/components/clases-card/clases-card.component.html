@@ -1,41 +1,49 @@
 <div class="card m-3">
-    <div class="row g-0">
-      <!-- Imagen a la izquierda -->
-      <div class="col-md-4">
-        <img [src]="usuario.foto" [alt]="usuario.nombre" class="img-fluid rounded-start" />
-      </div>
-      
-      <!-- Datos en el centro -->
-      <div class="col-md-5 d-flex align-items-center">
-        <div class="card-body d-flex flex-column align-items-center justify-content-center">
-          <h1 class="text-white mb-5" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 3rem;">{{especialidad}}</h1>
-          <h3 class="card-profesor text-white mb-5 estilo" style="font-size: 2rem;">{{usuario.nombre}} {{usuario.apellidos}}</h3>
-          <div class="flex-row">
-            <span class="text-white estilo">Cantidad total de clases: </span>
-            <span class="text-white">{{fechas}}</span>
-          </div>
-          <div class="flex-row">
-            <span class="text-white font-weight-bold estilo">Última clase agendada: </span>
-            <span class="text-white">{{fecha}}</span>
-          </div>
+  <div class="row g-0">
+    <!-- Imagen a la izquierda -->
+    <div class="col-md-4">
+      <img [src]="usuario.foto" [alt]="usuario.nombre" class="img-fluid rounded-start" />
+    </div>
+
+    <!-- Datos en el centro -->
+    <div class="col-md-5 d-flex align-items-center">
+      <div class="card-body d-flex flex-column align-items-center justify-content-center">
+        <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 3rem;">{{especialidad}}</h1>
+        <h3 class="card-profesor estilo mt-3">{{usuario.nombre}} {{usuario.apellidos}}</h3>
+        <div class="flex-row">
+          <span class=" estilo">Email: </span>
+          <span>{{usuario.mail}}</span>
+        </div>
+        <div class="flex-row mb-3">
+          <span class=" estilo">Móvil: </span>
+          <span>{{usuario.tel}}</span>
+        </div>
+        <div class="flex-row">
+          <span class=" estilo">Cantidad total de clases: </span>
+          <span>{{fechas}}</span>
+        </div>
+        <div class="flex-row">
+          <span class=" font-weight-bold estilo">Última clase agendada: </span>
+          <span>{{fecha}}</span>
         </div>
       </div>
-  
-      <!-- Botones en la tercera columna -->
-      <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
-        <ng-container *ngIf="esAlumno; else elseBlock">
-          <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
-            <span class="text-white">Contacta con tu profesor</span>
-          </a>
-        </ng-container>
-        <ng-template #elseBlock>
-          <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
-            <span class="text-white">Contacta con tu alumno</span>
-          </a>
-        </ng-template>
-        <a class="btn btn-dark btn-opacity-1" type="submit" (click)="terminarClases()">
-          <span class="text-white">Terminé mis clases</span>
-        </a>
-      </div>
     </div>
+
+    <!-- Botones en la tercera columna -->
+    <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+      <ng-container *ngIf="esAlumno; else elseBlock">
+        <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
+          <span>Contacta con tu profesor</span>
+        </a>
+      </ng-container>
+      <ng-template #elseBlock>
+        <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
+          <span>Contacta con tu alumno</span>
+        </a>
+      </ng-template>
+      <a class="btn btn-dark btn-opacity-1" type="submit" (click)="terminarClases()">
+        <span>Terminé mis clases</span>
+      </a>
+    </div>
+  </div>
 </div>
