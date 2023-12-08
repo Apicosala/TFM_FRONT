@@ -37,7 +37,7 @@ export class NavBarComponent {
       const response = await this.clasesService.getDatosUsuario(this.userId)
       this.msg = `Bienvenido ${response[0].rol == "prof" ? "profesor" : response[0].rol == "admin" ? "administrador" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`
     } catch (error) {
-      console.log(error)
+      alert(error)
     }
   }
 
@@ -53,8 +53,6 @@ export class NavBarComponent {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.msg=undefined
-        console.log(this.msg)
         // El usuario ha confirmado la desconexión
         this.userService.logOut();
         this.userService.clearUserId();
