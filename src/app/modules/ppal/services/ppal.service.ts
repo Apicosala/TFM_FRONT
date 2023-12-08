@@ -10,7 +10,6 @@ export class PpalService {
   httpClient = inject(HttpClient);
 
   getAllEspecialidades():Promise<any[]>{
-    console.log(this.espUrl)
     return lastValueFrom(this.httpClient.get<any>(`${this.espUrl}`))
   }
 }

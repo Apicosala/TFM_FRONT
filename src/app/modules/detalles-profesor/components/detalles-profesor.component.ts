@@ -46,8 +46,6 @@ export class DetallesProfesorComponent {
       })
       this.detallesService.getValoraciones(id).subscribe(data => {
         this.misValoraciones = data;
-        console.log(this.misValoraciones)
-        
       })
       this.detallesService.getEspecialidades(id).subscribe(data => {
         this.misEspecialidades = data;

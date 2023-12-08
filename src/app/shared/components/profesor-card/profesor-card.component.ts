@@ -10,12 +10,25 @@ import { ListaProfesoresService } from 'src/app/modules/lista-profesores/service
 })
 export class ProfesorCardComponent {
 
-  @Input() miProfesor?: IUser;
+  @Input() miProfesor!: IUser;
+
+  puntuacionMedia: number = 0;
+  
+  
+  rating: string = "1";
 
   activatedRoute = inject(ActivatedRoute);
   listaProfesoresService = inject(ListaProfesoresService);
 
-  ngOnInit() {
-   
-  }
+  ngOnInit():void {
+
+    this.listaProfesoresService.getPuntuacionesByProfesorId(this.miProfesor.id).then(data => {
+      this.puntuacionMedia = 0;
+      data.forEach(puntuacion => {
+        this.puntuacionMedia = puntuacion.puntuacion + this.puntuacionMedia
+      });
+      
+      this.puntuacionMedia = (this.puntuacionMedia/data.length);      
+      })
+    }
 }
