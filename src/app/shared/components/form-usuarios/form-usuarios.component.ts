@@ -45,7 +45,7 @@ export class FormUsuariosComponent {
         tel: new FormControl('', [
           Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),
         ]),
-        precio: new FormControl('', []),
+        pxh: new FormControl('', []),
 
         experiencia: new FormControl('', []),
 
@@ -60,6 +60,10 @@ export class FormUsuariosComponent {
         repetirPass: new FormControl('', []),
 
         activo: new FormControl('', []),
+
+        latitud: new FormControl('',[]),
+
+        longitud: new FormControl('',[])
       },
       [this.controlPass]);
   }
@@ -113,9 +117,9 @@ export class FormUsuariosComponent {
             tel: new FormControl(data[0].tel, 
               [Validators.pattern(/^(\+34|0034|34)?[6789]\d{8}$/),]),
 
-            precio: new FormControl(data[0].pxh, []),
+            pxh: new FormControl(data[0].pxh, []),
 
-            experiencia: new FormControl(data.experiencia, []),
+            experiencia: new FormControl(data[0].experiencia, []),
 
             pass: new FormControl(data[0].pass, [
               Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
@@ -131,7 +135,9 @@ export class FormUsuariosComponent {
 
             activo: new FormControl(this.usuario.activo, []),
 
-            ubicacion: new FormControl(data[0].lat)
+            lat: new FormControl(data[0].lat),
+
+            lon: new FormControl(data[0].lon)
 
           },
           [this.controlPass]
@@ -152,7 +158,7 @@ export class FormUsuariosComponent {
       this.formUsuario.get('pass')?.setValue(nuevaContraseña, { emitEvent: false });
     }
 
-      this.perfilServices.update(this.formUsuario.value)
+      this.perfilServices.update(this.formUsuario.value)      
       .then((response: any) => {
         Swal.fire({
           position: "top-end",
@@ -174,35 +180,28 @@ export class FormUsuariosComponent {
           text: "Ha ocurrido un error al actualizar el usuario",
         });
       });
+      console.log(this.formUsuario.value)
     } else {
 
     }
 
    }
 
-  async getLocation() {
-      try {
-      const response = await this.perfilServices.getLocation();
-      console.log(response.latitude, response.longitude)
+   async getLocation() {
+    try {
+    const locationData:any = await this.perfilServices.getLocation();
+    const latitude = locationData.latitude;
+    const longitude = locationData.longitude;
 
-      if (response.id) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Datos actualizados correctamente",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        this.router.navigate(['/home']);
-      }
+    this.formUsuario.patchValue({
+      lat: latitude,
+      lon: longitude,
+    });
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Ha ocurrido un error al actualizar el usuario",
-      });
-    } 
-  }
+      console.error('Error al obtener la ubicación:', error);
+    }
+  } 
+
 
   checkControl(formControlName: string): boolean | undefined {
     return (
