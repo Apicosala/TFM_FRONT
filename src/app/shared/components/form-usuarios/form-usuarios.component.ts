@@ -62,11 +62,11 @@ export class FormUsuariosComponent {
 
         activo: new FormControl('', []),
       },
-      [this.controlPass.bind(this)]
-    );
+      [this.controlPass]);
   }
 
   controlPass(formValue: AbstractControl) {
+    
     const pass: string = formValue.get('newPass')?.value;
     const repetirPass: string = formValue.get('repetirPass')?.value;
 
@@ -128,7 +128,9 @@ export class FormUsuariosComponent {
               Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
               ),]),
 
-            repetirPass: new FormControl('', []),
+            repetirPass: new FormControl('', [
+              Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+          ),]),
 
             activo: new FormControl(this.usuario.activo, []),
 
@@ -145,7 +147,6 @@ export class FormUsuariosComponent {
     try {
       
       const response = await this.perfilServices.update(this.formUsuario.value);
-      
       if (response.id) {
         Swal.fire({
           position: "top-end",

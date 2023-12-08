@@ -1,27 +1,13 @@
 <form [formGroup]="formForo" (ngSubmit)="enviarMensaje()" class="mb-4">
   <div class="mb-3">
     <label for="titulo" class="form-label">Título:</label>
-    <input
-      id="titulo"
-      type="text"
-      formControlName="titulo"
-      class="form-control"
-    />
+    <input id="titulo" type="text" formControlName="titulo" class="form-control" />
   </div>
   <div class="mb-3">
     <label for="contenido" class="form-label">Contenido:</label>
-    <textarea
-      id="contenido"
-      formControlName="contenido"
-      class="form-control"
-    ></textarea>
+    <textarea id="contenido" formControlName="contenido" class="form-control"></textarea>
   </div>
-  <button
-    type="submit"
-    class="btn btn-primary"
-    [routerLink]="['/usuario', userId]"
-    routerLinkActive="active"
-  >
+  <button type="submit" class="btn btn-primary" [routerLink]="['/usuario', userId]" routerLinkActive="active">
     Enviar
   </button>
 </form>
