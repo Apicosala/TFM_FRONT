@@ -29,11 +29,11 @@
           <map-circle [center]="miUbicacion" [radius]="1000" [options]="circleOptions"></map-circle>
         </google-map>
     </div>
-    <div class="valoraciones">
+      <div class="valoraciones">
       <h2>Valoraciones de otros alumnos</h2>
       <ng-container class="valoraciones" *ngFor="let valoracion of misValoraciones">
         <app-valoracion-card></app-valoracion-card>
       </ng-container>
-      
+      </div>
     </div>
 </main>
