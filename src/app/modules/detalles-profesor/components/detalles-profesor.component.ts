@@ -15,7 +15,7 @@ export class DetallesProfesorComponent {
   miProfesor: IUser | any;
   miEspecialidad: string[] | any;
   misEspecialidades: any[] = [];
-  misValoraciones: any [] = [];
+  misValoraciones: any [] | any;
   public userId!: number;
 
   // Mapa
@@ -45,8 +45,8 @@ export class DetallesProfesorComponent {
         this.miUbicacion = new google.maps.LatLng(this.miProfesor.lat,this.miProfesor.lon)
       })
       this.detallesService.getValoraciones(id).subscribe(data => {
-        this.misValoraciones = data[0];
-        console.log(data)
+        this.misValoraciones = data;
+        console.log(this.misValoraciones)
         
       })
       this.detallesService.getEspecialidades(id).subscribe(data => {
