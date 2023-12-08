@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IEspecialidad } from 'src/app/core/models/Especialidad.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
@@ -17,23 +17,27 @@ export class PeticionCardComponent {
 
   activatedRoute = inject(ActivatedRoute);
   peticionClasesServices = inject(ClasesService);
-  actualizarCambios = inject(ChangeDetectorRef);
 
 
   async ngOnInit(): Promise<void> {
+    await this.loadData();
+  }
 
+    
+  async loadData() {
     //recuperamos las especialidades del profesor
     this.activatedRoute.params.subscribe(async (params: any) => {
       let id = params.usuarioId;
       if (id) {
         await this.peticionClasesServices.getEspecialidadesByProfesorId(id).then(data => {
           this.especialidades = data;
+
           this.mostrarNombreEspecialidad();
         })
       }
     });
-
   }
+
 
   // Método para obtener el nombre de la especialidad por su ID.
   obtenerNombreEspecialidad(especialidadId: number): string {
@@ -51,6 +55,7 @@ export class PeticionCardComponent {
 
   }
 
+  
   //aceptar la conexion profesor-alumno
   aceptarSolicitud() {
     const profesorId = this.miUsuario.profesor_id;
@@ -66,7 +71,7 @@ export class PeticionCardComponent {
       buttonsStyling: false
     });
     swalWithBootstrapButtons.fire({
-      title: "¿Quieres ser su profeser?",
+      title: "¿Quieres ser su profesor?",
       text: "El alumno tiene muchas ganas de aprender contigo",
       icon: "warning",
       showCancelButton: true,
@@ -84,10 +89,12 @@ export class PeticionCardComponent {
               title: "Enhorabuena",
               text: "Ya tienes un alumno más",
               icon: "success"
-
             });
-            this.actualizarCambios.detectChanges();
+            setTimeout(() => {
+              window.location.reload();
+            }, 2500);
           })
+
           .catch((error) => {
             Swal.fire({
               icon: "error",
@@ -106,6 +113,7 @@ export class PeticionCardComponent {
       }
     });
   }
+
   // Denegar la conexion profesor-alumno
   async cancelarSolicitud() {
     try {
@@ -133,7 +141,9 @@ export class PeticionCardComponent {
         text: "El alumno ha sido rechazado",
         icon: "success"
       });
-      this.actualizarCambios.detectChanges();
+      setTimeout(() => {
+        window.location.reload();
+      }, 2500);
     } catch (error) {
       Swal.fire({
         icon: "error",
