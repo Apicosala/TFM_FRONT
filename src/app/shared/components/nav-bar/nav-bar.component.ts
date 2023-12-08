@@ -37,7 +37,7 @@ export class NavBarComponent {
       const response = await this.clasesService.getDatosUsuario(this.userId)
       this.msg = `Bienvenido ${response[0].rol == "prof" ? "profesor" : response[0].rol == "admin" ? "administrador" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 
