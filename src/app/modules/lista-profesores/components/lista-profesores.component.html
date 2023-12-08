@@ -1,28 +1,26 @@
-<main>
-    <h1 class="title">PROFESORES DE {{nombreEspecialidad}}</h1>
+<main class="d-flex flex-column justify-content-center align-items-center">
+  <button class="btn-opacity-1 mt-3" (click)="toggleModal()">{{toggleButtonText}}</button>
+  <ng-container *ngIf="modalSwitch == true">
+    <div>
 
-    <!-- Button trigger modal -->
-   
-    <button class="button" (click) = "toggleModal()">{{toggleButtonText}}</button>
-    <ng-container *ngIf="modalSwitch == true">
-    <div class="mapaProfesores">
-        
-        <google-map [center]="centro" [zoom]="zoom">
-            <map-marker *ngFor="let marcador of marcadores" [position]="marcador.centroMarcador" [label]="marcador.label" [icon]="icono"></map-marker>
-            <map-circle *ngFor="let marcador of marcadores" [center]="marcador.coordenadas" [radius]="1000" [options]="circleOptions"> 
-            </map-circle>
-        </google-map>
+      <google-map [center]="centro" [zoom]="zoom">
+        <map-marker *ngFor="let marcador of marcadores" [position]="marcador.centroMarcador" [label]="marcador.label"
+          [icon]="icono"></map-marker>
+        <map-circle *ngFor="let marcador of marcadores" [center]="marcador.coordenadas" [radius]="1000"
+          [options]="circleOptions">
+        </map-circle>
+      </google-map>
     </div>
-    </ng-container>    
-  
-    <ng-container *ngIf="modalSwitch == false">
-    <div class="profesor">
-        <div *ngFor="let profesor of arrProfesores">
+  </ng-container>
+
+  <ng-container *ngIf="modalSwitch == false">
+    <div>
+      <div *ngFor="let profesor of arrProfesores">
         <ng-container *ngIf="profesor.activo">
           <app-profesor-card [miProfesor]="profesor"></app-profesor-card>
         </ng-container>
       </div>
     </div>
-    </ng-container>
-  
-  </main>
+  </ng-container>
+
+</main>

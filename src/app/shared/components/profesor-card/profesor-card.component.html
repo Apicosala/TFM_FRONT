@@ -1,10 +1,17 @@
-<div class="onlyCard shadow p-3 mb-5 bg-body-tertiary rounded">
-
-    <img class="imageProfesor" [src]="miProfesor?.foto" [alt]="miProfesor?.nombre">
-    <div class="text">
-        <h2 class="card-nombre">{{miProfesor?.nombre}} {{miProfesor?.apellidos}}</h2>
-        <h2 class="card-id">Nº profesor: {{miProfesor?.id}}</h2>
-        <h3 class="card-puntuacion">Valoración: {{miProfesor?.puntuacion}}</h3>
-        <button class="button" [routerLink]="['/detalles', miProfesor?.id]">Detalles</button>
-    </div>
-</div>
+<div class="card m-3" style="max-width: 1200px;">
+    <div class="row g-0 d-flex justify-content-between">
+        <!-- Imagen a la izquierda -->
+        <div class="col-md-4">
+            <img [src]="miProfesor?.foto" [alt]="miProfesor?.nombre" class="img-fluid rounded-start">
+        </div>
+        <!-- Datos en el centro -->
+        <div class="col-md-5 d-flex">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h1 class="h1__style">{{miProfesor?.nombre}} {{miProfesor?.apellidos}}</h1>
+                <h3 class="h3__style">Nº profesor: {{miProfesor?.id}}</h3>
+                <h3 class="h3__style">Valoración: {{miProfesor?.puntuacion}}</h3>
+                <button class="btn-opacity-1 d-flex align-items-center justify-content-center" [routerLink]="['/detalles', miProfesor?.id]">Detalles</button>
+            </div>
+        </div>
+    <div>
+<div>

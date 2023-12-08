@@ -1,53 +1,9 @@
-.title {
-    text-align: center;
-    color: rgb(162, 80, 255);
-    font-size: 70px;
-    margin: 1% 0 1% 0;
+.btn-opacity-1 {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 400px;
 }
 
-.profesor {
-    text-align: center;
-    margin: auto;
-    max-width: 70%;
+.btn-opacity-1:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: perspective(600px) rotateX(20deg) translateZ(0);
 }
-
-.mapaProfesores {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: 10%;
-  }
-
-  .button {
-    
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #8c69ff;
-    border-radius: 0.15rem;
-    margin-top: 9px;
-  }
-  
-  .button:hover span {
-    background-color: #8371be;
-    color: #fca7e4;
-  }
-  
-  .button:active span {
-    translate: none;
-  }
-  
-  .button span {
-    display: inherit;
-    border-radius: inherit;
-    background-color: #b6a0ff;
-    padding: 0.5rem 1.5rem;
-    translate: 0.25rem -0.15rem;
-    border: 2px solid #7a3598;
-    transition: translate 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275 background-color 250ms);
-  
-  }
