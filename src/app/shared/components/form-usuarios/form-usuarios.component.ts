@@ -143,11 +143,10 @@ export class FormUsuariosComponent {
     }
   }
 
-  async getDataForm() {
-    try {
-      
-      const response = await this.perfilServices.update(this.formUsuario.value);
-      if (response.id) {
+  getDataForm() {
+    if (this.usuario && this.usuario.id) { 
+      this.perfilServices.update(this.formUsuario.value)
+      .then((response: any) => {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -155,17 +154,24 @@ export class FormUsuariosComponent {
           showConfirmButton: false,
           timer: 1500
         });
-        this.router.navigate(['/home']);
-      }
-    } catch (error) {
-      console.error('aqui el error', error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Ha ocurrido un error al actualizar el usuario",
+        setTimeout(() => { 
+          this.router.navigate(['/home']);
+        }, 2000)
+        
+      })
+      .catch((error: any) => {
+        console.error('aqui el error', error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Ha ocurrido un error al actualizar el usuario",
+        });
       });
+    } else {
+
     }
-  }
+
+   }
 
   async getLocation() {
       try {
