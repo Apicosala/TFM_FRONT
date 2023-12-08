@@ -16,7 +16,7 @@ export class DetallesProfesorComponent {
   miEspecialidad: string[] | any;
   misEspecialidades: any[] = [];
   misValoraciones: any [] | any;
-  public userId!: number;
+  alumnoId: number = 0;
 
   // Mapa
   miUbicacion: google.maps.LatLng | any;
@@ -29,13 +29,13 @@ export class DetallesProfesorComponent {
   activatedRoute = inject(ActivatedRoute);
   detallesService = inject(DetallesProfesorService);
   userService = inject(UsersService);
-
   
- 
 
 
   ngOnInit() : void {
     
+    this.alumnoId = this.userService.getDecodedToken()!.user_id;
+
     /* Recuperacion de datos del profesor*/ 
 
     this.activatedRoute.params.subscribe((params: any) => {
@@ -60,14 +60,13 @@ export class DetallesProfesorComponent {
 
   solicitarClase(especialidadStr: string) : void {
     let especialidadId: number | any;
-    let alumnoId: number = this.userService.getDecodedToken()!.user_id
     this.misEspecialidades.forEach(esp=> {
         if (esp.especialidad == especialidadStr){
           especialidadId = esp.id;
         }
     });
     
-    this.detallesService.createClase(this.miProfesor.id,alumnoId,especialidadId)
+    this.detallesService.createClase(this.miProfesor.id,this.alumnoId,especialidadId)
 
     this.leavePage()
 
