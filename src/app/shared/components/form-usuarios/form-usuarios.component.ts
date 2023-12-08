@@ -66,6 +66,7 @@ export class FormUsuariosComponent {
   }
 
   controlPass(formValue: AbstractControl) {
+    
     const pass: string = formValue.get('newPass')?.value;
     const repetirPass: string = formValue.get('repetirPass')?.value;
 
@@ -146,7 +147,6 @@ export class FormUsuariosComponent {
     try {
       
       const response = await this.perfilServices.update(this.formUsuario.value);
-      
       if (response.id) {
         Swal.fire({
           position: "top-end",

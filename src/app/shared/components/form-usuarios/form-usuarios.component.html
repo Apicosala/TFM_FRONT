@@ -47,11 +47,11 @@
         <div class="mb-3 containerForm">
           <input class="input" type="password" id="repetirPass" formControlName="repetirPass"/>
           <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
-          <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
+          <p class="error" *ngIf="formUsuario.get('repetirPass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
         </div>
 
 
-        <input class="btn button" type="submit" value="Actualizar">
+        <input class="btn button" type="submit" value="Actualizar" [disabled]="formUsuario.invalid || formUsuario.hasError('controlpass')">
 
       </form>
     </div>
@@ -115,9 +115,9 @@
                   <div class="containerForm">
                     <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
                     <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
-                    <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
+                    <p class="error" *ngIf="formUsuario.get('repetirPass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
                   </div>
-                  <input class="btn button" type="submit" value="Actualizar">
+                  <input class="btn button" type="submit" value="Actualizar" [disabled]="formUsuario.invalid || formUsuario.hasError('controlpass')">
                 </form>
               </div>
             </div>

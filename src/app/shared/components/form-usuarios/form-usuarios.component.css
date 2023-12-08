@@ -139,6 +139,10 @@ input.ng-valid.ng-touched {
   font-size: 12px;
 }
 
+input.ng-invalid.ng-touched[name="repetirPass"] {
+  border: 2px solid rgb(255, 141, 121);
+}
+
 .button:hover {
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
