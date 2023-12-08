@@ -1,27 +1,31 @@
+.card {
+  border: none;
+  transform: perspective(1000px);
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
-    .card {
-        border: none;
-        transform: perspective(1000px);
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      
-      .btn-opacity-1 {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-      
-      .btn-opacity-1:hover {
-        background-color: rgba(255, 255, 255, 0.25);
-        transform: perspective(600px) rotateX(20deg) translateZ(0);
-      }
+.btn-opacity-1 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 
-      .card:hover {
-        background-color: rgba(0, 0, 0, 0.2);
-      }
+.btn-opacity-1:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: perspective(600px) rotateX(20deg) translateZ(0);
+}
 
-      .estilo {
-        font-weight: bold;
-        font-size: 1.5rem;
-      }
-      span{
-        font-size: 1.5rem;
-      }
+.card:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.estilo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+span {
+  font-size: 1.5rem;
+}
+
+img{
+  height: 100%;
+}

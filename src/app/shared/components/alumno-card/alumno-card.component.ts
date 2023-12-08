@@ -1,4 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IEspecialidad } from 'src/app/core/models/Especialidad.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
@@ -18,14 +19,24 @@ export class AlumnoCardComponent {
   especialidades: IEspecialidad[] | any = [];
   totalClases: number = 0;
   fechaInput: string = "";
+  formFecha: FormGroup;
 
 
   activatedRoute = inject(ActivatedRoute);
   clasesServices = inject(ClasesService);
 
 
+  constructor() {
+    this.formFecha = new FormGroup({
+      fecha: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/),
+      ]),
+    }, []);
+  }
+
   ngOnInit() {
-    
+
     //recuperamos las especialidades del profesor
     this.activatedRoute.params.subscribe((params: any) => {
       let id = params.usuarioId;
@@ -46,8 +57,8 @@ export class AlumnoCardComponent {
       let especialidadId = this.miUsuario.especialidades_id;
 
       try {
- 
-        const data = await this.clasesServices.getFechaByClases(profesorId, alumnoId,especialidadId);
+
+        const data = await this.clasesServices.getFechaByClases(profesorId, alumnoId, especialidadId);
 
         // Filtramos las clases del alumno por especialidad.
         const clasesAlumno = data.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
@@ -61,7 +72,6 @@ export class AlumnoCardComponent {
       }
 
     })
-
 
   }
   // Método para obtener el nombre de la especialidad por su ID.
@@ -81,38 +91,51 @@ export class AlumnoCardComponent {
   }
 
   // Método para insertar la fecha de las clases
-  anadirFechaClases() {
+  getDataForm() {
+    if(this.formFecha.valid) {
     const profesorId = this.miUsuario.profesor_id;
     const alumnoId = this.miUsuario.alumno_id;
     const especialidadId = this.miUsuario.especialidades_id;
+    const fecha = this.formFecha.value.fecha;
 
 
-    if (!this.fechaInput) {
-      Swal.fire("Debes de introducir una fecha");
-      return
+    this.clasesServices.insertarFechaClases(profesorId, alumnoId, fecha, especialidadId)
+      .then(response => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Fehca añadida correctamente",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Formato de fecha incorrecto",
+        });
+      })
+    } else {
+      if (this.formFecha.get('fecha')?.hasError('required')) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Debes introducir una fecha",
+        });
+      } else if (this.formFecha.get('fecha')?.hasError('pattern')) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Formato de fecha incorrecto. Debe ser DD/MM/AAAA",
+        });
+      }
     }
-
-    this.clasesServices.insertarFechaClases(profesorId, alumnoId, this.fechaInput, especialidadId)
-    .then(response => {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Fehca añadida correctamente",
-        showConfirmButton: false,
-        timer: 1500
-      });
-
-    })
-    .catch(error => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Formato de fecha incorrecto",
-      });
-    })
-
   }
-
 
 }
 

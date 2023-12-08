@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { ListaAlumnosService } from '../services/listAlumnos.service';
 
@@ -17,17 +17,24 @@ export class ListaAlumnosComponent {
 
   async ngOnInit(): Promise<void> {
 
-    
+
     this.activatedRoute.params.subscribe(async (params: any) => {
       try {
         let id = params.usuarioId;
         if (!this.arrUsuario.length) {
-          this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id); 
+          this.arrUsuario = await this.listaAlumnosService.getAlumnosByProfesorId(id);
+
+          this.ordenarAlfabeticamente();
         }
-        
       } catch (error) {
         console.log(error);
       }
     });
   }
+  private ordenarAlfabeticamente(): void {
+    this.arrUsuario.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  }
+
+
 }
+

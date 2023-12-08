@@ -20,6 +20,10 @@ export class DetallesProfesorService {
     return this.httpClient.get<any>(`${this.baseUrl}especialidades/${usuarioId}`)
   }
 
+  getValoraciones(usuarioId: number): Observable<any>{
+    return this.httpClient.get<any>(`${this.baseUrl}puntuaciones/${usuarioId}`)
+  }
+
   createClase(profesorId: number,usuarioId: number, especialidadId: number,): Promise<any>{
     return lastValueFrom(this.httpClient.post<any>(`${this.baseUrl}solicitud/${profesorId}&${usuarioId}&${especialidadId}`, ''))    
   }

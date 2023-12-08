@@ -38,20 +38,20 @@
           <label class="label" for="foto">Fotografía</label>
         </div>
 
-        <div class="containerForm">
-          <input class="input" type="password" id="newPass" formControlName="newPass" />
-          <label class="label" for="newPass">Nueva contraseña</label>
+        <div class="mb-3 containerForm">
+          <input class="input" type="password" id="newPass" formControlName="newPass"/>
+          <label class="label" for="newPass">Contraseña</label>
           <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
         </div>
 
         <div class="mb-3 containerForm">
-          <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
+          <input class="input" type="password" id="repetirPass" formControlName="repetirPass"/>
           <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
-          <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
+          <p class="error" *ngIf="formUsuario.get('repetirPass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
         </div>
 
 
-        <input class="btn button" type="submit" value="Actualizar">
+        <input class="btn button" type="submit" value="Actualizar" [disabled]="formUsuario.invalid || formUsuario.hasError('controlpass')">
 
       </form>
     </div>
@@ -115,9 +115,9 @@
                   <div class="containerForm">
                     <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
                     <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
-                    <p class="error" *ngIf="formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
+                    <p class="error" *ngIf="formUsuario.get('repetirPass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
                   </div>
-                  <input class="btn button" type="submit" value="Actualizar">
+                  <input class="btn button" type="submit" value="Actualizar" [disabled]="formUsuario.invalid || formUsuario.hasError('controlpass')">
                 </form>
               </div>
             </div>
@@ -143,8 +143,8 @@
                   <label class="label" for="experiencia">Años de experiencia</label>
                 </div>
                 <div class="containerForm">
-                  <input class="input" type="number" id="precio" formControlName="precio" />
-                  <label class="label" for="precio">Precio/h</label>
+                  <input class="input" type="number" id="pxh" formControlName="pxh" />
+                  <label class="label" for="pxh">Precio/h</label>
                 </div>
                   <div class=" containerForm check d-flex flex-row">
                     <input type="checkbox" id="localizacion" (click)="getLocation()"/>

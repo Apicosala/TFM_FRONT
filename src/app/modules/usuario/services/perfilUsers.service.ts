@@ -37,7 +37,7 @@ export class perfilUsersService {
 
   // Actualiza los datos de un usuario
   update(usuario: IUser) : Promise<any> {
-    return lastValueFrom(this.httpClient.put<IUser>(`${this.baseUrl}${usuario.id}`, usuario)); 
+    return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}${usuario.id}`, usuario)); 
   } 
 
 }
