@@ -1,32 +1,32 @@
-<div class="onlyCard shadow p-3 mb-5 bg-body-tertiary text-secondary rounded">
+<div class="shadow card__style ">
 
-    <div class="valoracion-card">
-        <h2 class="card-nombreAlumno">{{miAlumno?.nombre}}</h2>
-        
+    <div class="d-flex flex-column align-items-center ">
+            <h2 class="h2__style mt-2">{{miAlumno?.nombre}}</h2>
+            <h3 class="date__style">{{newDate}}</h3>
         <!--Sistema de rating con iconos-->
         <ng-container [ngSwitch]="true">
-            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==1">
+            <h3 class="mt-0 mb-3" *ngSwitchCase="misValoraciones.puntuacion==1">
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
             </h3>
                          
-            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==2"> 
+            <h3 class="mt-0 mb-3" *ngSwitchCase="misValoraciones.puntuacion==2"> 
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
             </h3>
-            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==3">
+            <h3 class="mt-0 mb-3" *ngSwitchCase="misValoraciones.puntuacion==3">
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 
             </h3>            
-            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==4">
+            <h3 class="mt-0 mb-3" *ngSwitchCase="misValoraciones.puntuacion==4">
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
             </h3>
             
-            <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==5">
+            <h3 class="mt-0 mb-3" *ngSwitchCase="misValoraciones.puntuacion==5">
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
@@ -34,9 +34,9 @@
                 <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
             </h3>
             </ng-container>
-
-        <h3 class="card-comentario">"{{misValoraciones.comentarios}}"</h3>
-        <h3 class="card-fecha">{{newDate}}</h3>
+            
+        <h3 class="mb-3 description__style">"{{misValoraciones.comentarios}}"</h3>
+        
 
     </div>
 
