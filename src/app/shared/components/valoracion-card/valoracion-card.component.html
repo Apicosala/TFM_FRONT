@@ -1,16 +1,11 @@
-<div class="onlyCard shadow p-3 mb-5 bg-body-tertiary rounded">
-
-    <!-- <img class="imageProfesor" [src]="miProfesor?.foto" [alt]="miProfesor?.nombre">
-    <div class="text">
-        <h2 class="card-nombre">{{miProfesor?.nombre}} {{miProfesor?.apellidos}}</h2>
-        <h2 class="card-id">Nº profesor: {{miProfesor?.id}}</h2>
-        <h3 class="card-puntuacion">Valoración: {{miProfesor?.puntuacion}}</h3>
-    </div> -->
+<div class="onlyCard shadow p-3 mb-5 bg-body-tertiary text-secondary rounded">
 
     <div class="valoracion-card">
-        <h2 class="card-nombreAlumno">{{miProfesor?.nombre}} {{miProfesor?.apellidos}}</h2>
-        <h3 class="card-puntuacion">Valoración: {{misValoraciones?.puntuacion}}</h3>
-        <h3 class="card-comentario">"{{misValoraciones?.comentarios}}"</h3>
+        <h2 class="card-nombreAlumno">{{miAlumno?.nombre}}</h2>
+        <h3 class="card-puntuacion">Valoración: {{misValoraciones.puntuacion}}</h3>
+        <h3 class="card-comentario">"{{misValoraciones.comentarios}}"</h3>
+        <h3 class="card-fecha">{{newDate}}</h3>
+
     </div>
 
 

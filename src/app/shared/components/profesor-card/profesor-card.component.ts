@@ -15,8 +15,6 @@ export class ProfesorCardComponent {
   activatedRoute = inject(ActivatedRoute);
   listaProfesoresService = inject(ListaProfesoresService);
 
-  puntuacion: string | any;
-
   ngOnInit() {
    
   }
