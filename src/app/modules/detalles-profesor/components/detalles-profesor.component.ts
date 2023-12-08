@@ -86,6 +86,7 @@ export class DetallesProfesorComponent {
       showCancelButton: false,
       showConfirmButton: false,
       timer: 4000,
+      timerProgressBar: true
     }).then(
       function(){},
       function(dismiss){

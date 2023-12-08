@@ -49,11 +49,10 @@ export class FormUsuariosComponent {
 
         experiencia: new FormControl('', []),
 
-        pass: new FormControl('', [
+       pass: new FormControl('', [
           Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
           ),
         ]),
-
         newPass: new FormControl('', [
           Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
           ),]),
@@ -83,8 +82,6 @@ export class FormUsuariosComponent {
     }
   }
   
-  
-  
 
   ngOnInit(): void {
     
@@ -94,7 +91,7 @@ export class FormUsuariosComponent {
       let decodedToken = jwtDecode<PayLoad>(token);
       let id = decodedToken.user_id;
       this.perfilServices.getById(id).subscribe((data) => {
-
+        
         this.usuario = data[0];
 
         this.formUsuario = new FormGroup({
@@ -138,16 +135,25 @@ export class FormUsuariosComponent {
 
           },
           [this.controlPass]
-        );
+          );
       });
     }
   }
 
-  async getDataForm() {
-    try {
+  getDataForm() {
+    if (this.usuario && this.usuario.id) {
       
-      const response = await this.perfilServices.update(this.formUsuario.value);
-      if (response.id) {
+      // Verificamos si la nueva contraseña se ha ingresado
+    const nuevaContraseña = this.formUsuario.get('newPass')?.value;
+    const contraseñaActual = this.formUsuario.get('pass')?.value;
+
+    // Si la nueva contraseña se ha ingresado, la actualizamos
+    if (nuevaContraseña !== undefined && nuevaContraseña !== '' && nuevaContraseña !==  contraseñaActual) {
+      this.formUsuario.get('pass')?.setValue(nuevaContraseña, { emitEvent: false });
+    }
+
+      this.perfilServices.update(this.formUsuario.value)
+      .then((response: any) => {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -155,17 +161,24 @@ export class FormUsuariosComponent {
           showConfirmButton: false,
           timer: 1500
         });
-        this.router.navigate(['/home']);
-      }
-    } catch (error) {
-      console.error('aqui el error', error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Ha ocurrido un error al actualizar el usuario",
+        setTimeout(() => { 
+          this.router.navigate(['/home']);
+        }, 2000)
+        
+      })
+      .catch((error: any) => {
+        console.error('aqui el error', error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Ha ocurrido un error al actualizar el usuario",
+        });
       });
+    } else {
+
     }
-  }
+
+   }
 
   async getLocation() {
       try {
