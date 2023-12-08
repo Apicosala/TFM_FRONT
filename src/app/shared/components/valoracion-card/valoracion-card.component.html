@@ -2,8 +2,7 @@
 
     <div class="valoracion-card">
         <h2 class="card-nombreAlumno">{{miAlumno?.nombre}}</h2>
-        <h3 class="card-puntuacion">Valoración: {{misValoraciones.puntuacion}}</h3>
-
+        
         <!--Sistema de rating con iconos-->
         <ng-container [ngSwitch]="true">
             <h3 class="h3__style" *ngSwitchCase="misValoraciones.puntuacion==1">
