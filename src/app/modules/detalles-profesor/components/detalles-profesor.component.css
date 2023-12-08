@@ -3,8 +3,7 @@
 }
 .card {
   border: none;
-  transform: perspective(1000px);
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: transparent
 }
 
 .btn-opacity-1 {
@@ -16,9 +15,6 @@
   transform: perspective(600px) rotateX(20deg) translateZ(0);
 }
 
-.card:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
 img{
   height: auto;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
