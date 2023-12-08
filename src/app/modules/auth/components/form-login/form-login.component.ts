@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-login',
@@ -43,6 +44,14 @@ export class FormLoginComponent {
     } else {
       //Login correcto
       localStorage.setItem('auth_token', response.token);
+      Swal.fire({
+        icon: 'success',
+        title: '¡Inicio de sesión exitoso!',
+        text: 'Has iniciado sesión correctamente.',
+        showConfirmButton: false,
+        timer: 2000 // Cierra automáticamente después de 2 segundos
+      });
+
       //Navego a la ruta principal
       this.router.navigate(['/']);
     }
