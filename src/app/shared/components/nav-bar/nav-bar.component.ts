@@ -27,15 +27,17 @@ export class NavBarComponent {
         let decodedToken = jwtDecode<PayLoad>(this.token);
         this.userId = decodedToken.user_id;
       }
+      this.obtenerDatos()
     });
+    
   }
 
   async obtenerDatos():Promise<any>{
     try {
       const response = await this.clasesService.getDatosUsuario(this.userId)
-      this.msg = `Bienvenido ${response[0].rol == "prof" ? "profesor" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`
+      this.msg = `Bienvenido ${response[0].rol == "prof" ? "profesor" : response[0].rol == "admin" ? "administrador" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 
@@ -57,6 +59,7 @@ export class NavBarComponent {
         this.router.navigate(['/home'], {
           queryParams: [],
         });
+        
       }
     }); 
   }

@@ -43,7 +43,7 @@ input:focus {
 
 .h3__style{
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 input::placeholder{

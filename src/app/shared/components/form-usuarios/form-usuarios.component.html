@@ -1,7 +1,7 @@
 <div *ngIf="usuario?.rol === 'alumn' || usuario?.rol === 'admin'; else profesorTemplate">
   <!-- FORMULARIO PERSONAL -->
 
-  <div class="container formulario">
+  <div class="container">
     <h3 class="h3Titulo mt-4 mb-4 text-white font-weight-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Actualiza tus datos personales</h3>
     <div class="form">
       <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
@@ -29,8 +29,7 @@
         <div class="mb-3 containerForm">
           <input class="input" type="text" id="tel" formControlName="tel" />
           <label class="label" for="tel">Teléfono</label>
-          <p class="error" *ngIf="checkControl('tel')">Tu teléfono no puede contener ni espacios ni
-            caracteres especiales.</p>
+          <p class="error" *ngIf="checkControl('tel')">Tu número de teléfono no es válido.</p>
         </div>
 
         <div class="mb-3 containerForm">
@@ -61,8 +60,8 @@
 <ng-template #profesorTemplate>
   <!-- FORMULARIO PROFESOR-->
 
-  <div class="todoForm flex-column">
-    <h3 class="nombreH3 h3Titulo mt-4 mb-4 text-white font-weight-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Actualiza tus datos</h3>
+  <div class="container flex-column">
+    <h3 class="h3Titulo mt-4 mb-4 text-white font-weight-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Actualiza tus datos</h3>
 
     <!-- ACORDEON1 -->
 
@@ -97,8 +96,7 @@
                   <div class="containerForm">
                     <input class="input" type="text" id="tel" formControlName="tel" />
                     <label class="label" for="tel">Teléfono</label>
-                    <p class="error" *ngIf="checkControl('tel')">Tu teléfono no puede contener ni espacios ni
-                      caracteres especiales.</p>
+                    <p class="error" *ngIf="checkControl('tel')">Tu número de teléfono no es válido.</p>
                   </div>
 
                   <div class="containerForm">
@@ -108,7 +106,7 @@
 
                   <div class="containerForm">
                     <input class="input" type="password" id="newPass" formControlName="newPass" />
-                    <label class="label" for="newPass">Nueva contraseña</label>
+                    <label class="label" for="newPass">Contraseña</label>
                     <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
                   </div>
 
