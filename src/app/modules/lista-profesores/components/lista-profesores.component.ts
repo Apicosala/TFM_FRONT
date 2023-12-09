@@ -19,6 +19,7 @@ export class ListaProfesoresComponent {
 
   modalSwitch: boolean = false;
   toggleButtonText:string = "Ver en el mapa"
+  especialidadId:number|any
 
   marcadores: any[] = [];
   centro: google.maps.LatLng | any;
@@ -41,6 +42,7 @@ export class ListaProfesoresComponent {
       try {
       this.id = params.especialidadId;
         if (this.id) {
+          this.especialidadId=this.id
         this.listaProfesoresService.getProfesoresByEspecialidadId(this.id).then(data => {
           this.arrProfesores = data;
           this.arrProfesores.forEach(profesor => {

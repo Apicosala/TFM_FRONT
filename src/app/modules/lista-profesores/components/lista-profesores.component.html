@@ -2,6 +2,7 @@
   <button class="btn-opacity-1 mt-3 mb-3" (click)="toggleModal()">{{toggleButtonText}}</button>
   <ng-container *ngIf="modalSwitch == true">
     <div>
+
       <google-map [center]="centro" [zoom]="zoom">
         <map-marker *ngFor="let marcador of marcadores" [position]="marcador.centroMarcador" [label]="marcador.label"
           [icon]="icono"></map-marker>
@@ -16,7 +17,7 @@
     <div>
       <div *ngFor="let profesor of arrProfesores">
         <ng-container *ngIf="profesor.activo">
-            <app-profesor-card [miProfesor]="profesor"></app-profesor-card>
+            <app-profesor-card [miProfesor]="profesor" [miEspecialidad]="this.especialidadId"></app-profesor-card>
         </ng-container>
       </div>
     </div>
