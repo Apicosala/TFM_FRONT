@@ -1,4 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IClases } from 'src/app/core/models/datosClases.interface';
 import { IUser } from 'src/app/core/models/user.interface';
@@ -14,6 +15,7 @@ export class ClasesCardComponent {
 
   @Input() infoUser!: IUser;
 
+  comentario:FormGroup|any
   arrDatosClases: IClases[] = [];
   alumnoId: number | any
   especialidad: string | any
@@ -28,7 +30,7 @@ export class ClasesCardComponent {
   router = inject(Router)
   clasesService = inject(ClasesService);
   activateRoute = inject(ActivatedRoute)
-  rating: number = 0;
+  rating: number = 0
 
   constructor() {
   };
@@ -76,9 +78,12 @@ export class ClasesCardComponent {
   }
   submitRating(value: number): void {
     this.rating = value;
-    console.log(`Puntuación final: ${this.rating}`);
   }
-
+  enviarPuntuacion(): void {
+    //TODO:ACA GUARDO EL COMENTARIO Y EL RATING EN LA TABLA PUNTUACIONES. LA PUNTUACION ES this.rating QUE YA ESTÁ HECHA ESA PARTE FUNCIONANDO. FALTA AGREGAR UN INPUT PARA GUARDAR EL COMENTARIO EN this.comentario.
+    console.log(`Puntuación final: ${this.rating}`);
+    console.log(`Comentario: ${this.comentario}`);
+  }
   routeAlForo() {
     this.router.navigate([`/foro/${this.alumnoId}`])
   }

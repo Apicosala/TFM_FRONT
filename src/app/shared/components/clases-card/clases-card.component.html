@@ -48,12 +48,18 @@
         <span class="m-0 mt-3">Puntúa a tu profesor!</span>
         <ng-container *ngIf="esAlumno">
           <div class="stars-container" (mouseleave)="resetRating()">
-            <span class="star" (mouseover)="setRating(1)" (click)="submitRating(1)" [ngClass]="{'active': rating >= 1}">&#9733;</span>
-            <span class="star" (mouseover)="setRating(2)" (click)="submitRating(2)" [ngClass]="{'active': rating >= 2}">&#9733;</span>
-            <span class="star" (mouseover)="setRating(3)" (click)="submitRating(3)" [ngClass]="{'active': rating >= 3}">&#9733;</span>
-            <span class="star" (mouseover)="setRating(4)" (click)="submitRating(4)" [ngClass]="{'active': rating >= 4}">&#9733;</span>
-            <span class="star" (mouseover)="setRating(5)" (click)="submitRating(5)" [ngClass]="{'active': rating === 5}">&#9733;</span>
+            <span class="star" (mouseover)="setRating(1)" (click)="submitRating(1)"
+              [ngClass]="{'active': rating >= 1}">&#9733;</span>
+            <span class="star" (mouseover)="setRating(2)" (click)="submitRating(2)"
+              [ngClass]="{'active': rating >= 2}">&#9733;</span>
+            <span class="star" (mouseover)="setRating(3)" (click)="submitRating(3)"
+              [ngClass]="{'active': rating >= 3}">&#9733;</span>
+            <span class="star" (mouseover)="setRating(4)" (click)="submitRating(4)"
+              [ngClass]="{'active': rating >= 4}">&#9733;</span>
+            <span class="star" (mouseover)="setRating(5)" (click)="submitRating(5)"
+              [ngClass]="{'active': rating === 5}">&#9733;</span>
           </div>
+          <span class="mb-3">Deja tu comentario:</span>
         </ng-container>
       </div>
     </div>
