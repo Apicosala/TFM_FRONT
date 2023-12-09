@@ -35,9 +35,14 @@ export class perfilUsersService {
 
   // PUT
 
-  // Actualiza los datos de un usuario
+  // Actualiza los datos de un usuario desde perfil de Admin
   update(usuario: IUser) : Promise<any> {
     return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}${usuario.id}`, usuario)); 
   } 
+
+  // Actualiza los datos de un usuario desde el formulario
+  updateForm(usuario: IUser) : Promise<any> {
+    return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}form/${usuario.id}`, usuario)); 
+  }
 
 }

@@ -105,18 +105,18 @@
                     <input class="input" type="text" id="foto" formControlName="foto" />
                     <label class="label" for="foto">Fotografía</label>
                   </div>
-
                   <div class="containerForm">
                     <input class="input" type="password" id="newPass" formControlName="newPass" />
                     <label class="label" for="newPass">Nueva contraseña</label>
                     <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
                   </div>
-
+  
                   <div class="containerForm">
                     <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
                     <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
                     <p class="error" *ngIf="formUsuario.get('repetirPass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
                   </div>
+
                   <input class="btn button" type="submit" value="Actualizar" [disabled]="formUsuario.invalid || formUsuario.hasError('controlpass')">
                 </form>
               </div>
@@ -150,9 +150,25 @@
                     <input type="checkbox" id="localizacion" (click)="getLocation()"/>
                     <label class="title__check" for="localizacion"> ¿Deseas añadir la localización de tus clases?</label>
                   </div>
+                  <div class="containerForm">
+                    <input class="input" type="password" id="pass1" formControlName="pass">
+                    <label class="label Pass-label" for="pass">Contraseña</label>
+                    <p class="error" *ngIf="formUsuario.get('pass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
+                  </div> 
+                  <div class="containerForm">
+                    <input class="input" type="password" id="repetirPass1" formControlName="repetirPass">
+                    <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
+                    <p class="error" *ngIf="formUsuario.get('repetirPass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
+                  </div>
+                  <div class="containerForm">
+                    <input class="input" type="password" id="newPass1" formControlName="newPass" />
+                    <label class="label" for="newPass">Nueva contraseña</label>
+                    <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
+                  </div>
 
+                  <input class="btn button" type="submit" value="Actualizar" [disabled]="formUsuario.invalid || formUsuario.hasError('controlpass')">
 
-                  <input class="btn button" type="submit" value="Actualizar">
+                  <p class="error">{{ errorMessage }}</p>
                 </form>
               </div>
             </div>
