@@ -1,7 +1,7 @@
 <div class="card m-3 d-flex justify-content-center">
   <div class="row g-0">
     <!-- Imagen a la izquierda -->
-    <div class="col-md-4 d-flex align-items-center mt-3">
+    <div class="col-md-4 d-flex align-items-center mt-3 mb-3">
       <img [src]="usuario.foto" [alt]="usuario.nombre" class="img-fluid rounded-start" />
     </div>
 
@@ -61,9 +61,9 @@
               <span class="star" (mouseover)="setRating(5)" (mouseout)="resetHoveredStar()" (click)="submitRating(5)"
                 [ngClass]="{'active': hoveredStar === 5}">&#9733;</span>
             </div>
-            <span class="mb-3">Deja tu comentario:</span>
+            <span class="mb-1">Deja tu comentario:</span>
             <input type="text" placeholder="Escribe aquí tu opinión" [(ngModel)]="comentario" />
-            <button class="mb-3" type="submit" (click)="enviarPuntuacion()">Enviar opinión</button>
+            <button class="btn btn-dark btn-opacity-1 mb-3 mt-3" type="submit" (click)="enviarPuntuacion()">Enviar opinión</button>
           </ng-container>
         </ng-container>
         <ng-template #elseBlock2>
