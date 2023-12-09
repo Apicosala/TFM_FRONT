@@ -1,7 +1,7 @@
 <div class="card m-3 d-flex justify-content-center">
   <div class="row g-0">
     <!-- Imagen a la izquierda -->
-    <div class="col-md-4 d-flex align-items-center">
+    <div class="col-md-4 d-flex align-items-center mt-3">
       <img [src]="usuario.foto" [alt]="usuario.nombre" class="img-fluid rounded-start" />
     </div>
 
@@ -30,38 +30,39 @@
     </div>
 
     <!-- Botones en la tercera columna -->
-    <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
-      <ng-container *ngIf="esAlumno; else elseBlock">
-        <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
-          <span>Chatea con tu profesor</span>
-        </a>
-      </ng-container>
-      <ng-template #elseBlock>
-        <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
-          <span>Chatea con tu alumno</span>
-        </a>
-      </ng-template>
-      <a class="btn btn-dark btn-opacity-1" type="submit" (click)="terminarClases()">
-        <span>Terminé mis clases</span>
-      </a>
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <ng-container *ngIf="esAlumno">
-        <span class="m-0 mt-3">Puntúa a tu profesor!</span>
-          <div class="stars-container">
-            <span class="star" (mouseover)="setRating(1)" (click)="submitRating(1)"
-              [ngClass]="{'active': rating >= 1}">&#9733;</span>
-            <span class="star" (mouseover)="setRating(2)" (click)="submitRating(2)"
-              [ngClass]="{'active': rating >= 2}">&#9733;</span>
-            <span class="star" (mouseover)="setRating(3)" (click)="submitRating(3)"
-              [ngClass]="{'active': rating >= 3}">&#9733;</span>
-            <span class="star" (mouseover)="setRating(4)" (click)="submitRating(4)"
-              [ngClass]="{'active': rating >= 4}">&#9733;</span>
-            <span class="star" (mouseover)="setRating(5)" (click)="submitRating(5)"
-              [ngClass]="{'active': rating === 5}">&#9733;</span>
-          </div>
+<!-- Botones en la tercera columna -->
+<div class="col-md-3 mt-3 d-flex flex-column justify-content-center align-items-center">
+  <ng-container  *ngIf="esAlumno; else elseBlock">
+    <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
+      <span>Chatea con tu profesor</span>
+    </a>
+  </ng-container>
+  <ng-template #elseBlock>
+    <a class="btn btn-dark btn-opacity-1 mb-2" type="submit" (click)="routeAlForo()">
+      <span>Chatea con tu alumno</span>
+    </a>
+  </ng-template>
+  <a class="btn btn-dark btn-opacity-1" type="submit" (click)="terminarClases()">
+    <span>Terminé mis clases</span>
+  </a>
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <ng-container *ngIf="esAlumno">
+      <span class="m-0 mt-3">Puntúa a tu profesor!</span>
+      <div class="stars-container">
+          <span class="star" (mouseover)="setRating(1)" (click)="submitRating(1)"
+            [ngClass]="{'active': hoveredStar >= 1}">&#9733;</span>
+          <span class="star" (mouseover)="setRating(2)" (mouseout)="resetHoveredStar()" (click)="submitRating(2)"
+            [ngClass]="{'active': hoveredStar >= 2}">&#9733;</span>
+          <span class="star" (mouseover)="setRating(3)" (mouseout)="resetHoveredStar()" (click)="submitRating(3)"
+            [ngClass]="{'active': hoveredStar >= 3}">&#9733;</span>
+          <span class="star" (mouseover)="setRating(4)" (mouseout)="resetHoveredStar()" (click)="submitRating(4)"
+            [ngClass]="{'active': hoveredStar >= 4}">&#9733;</span>
+          <span class="star" (mouseover)="setRating(5)" (mouseout)="resetHoveredStar()" (click)="submitRating(5)"
+            [ngClass]="{'active': hoveredStar === 5}">&#9733;</span>
+        </div>
           <span class="mb-3">Deja tu comentario:</span>
           <input type="text" placeholder="Escribe aquí tu opinión" [(ngModel)]="comentario" />
-          <button type="submit" (click)="enviarPuntuacion()">Enviar opinión</button>
+          <button class="mb-3" type="submit" (click)="enviarPuntuacion()">Enviar opinión</button>
           
         </ng-container>
       </div>

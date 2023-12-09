@@ -31,7 +31,9 @@ export class ClasesCardComponent {
   router = inject(Router)
   clasesService = inject(ClasesService);
   activateRoute = inject(ActivatedRoute)
-  rating: number = 0
+  rating: number = 0;
+  hoveredStar: number = 0;
+  clicked=false
 
   constructor() {
   };
@@ -62,34 +64,60 @@ export class ClasesCardComponent {
         result = await this.clasesService.getFechaByClases(this.profesorId, this.alumnoId, this.especialidadId)
         this.fecha = result[result.length - 1].fecha
         this.fechas = result.length
+        this.obtenerPuntuaciones()
       } catch (error) {
         console.log(error)
       }
     })
+    
   }
 
-  setRating(value: number): void {
-    this.rating = value;
-  }
-  resetRating(): void {
-    if (this.rating === 0) {
-      return; 
-    }
-    this.rating = 0;
-  }
-
+  
   resetComentario(): void {
     if (this.comentario === "") {
       return; 
     }
     this.comentario = "";
   }
-
-  submitRating(value: number): number {
+  setRating(value: number): void {
+    this.clicked=false
     this.rating = value;
-    return this.rating
+    this.hoveredStar = value;
   }
 
+  resetRating(): void {
+    if (this.rating === 0) {
+      return;
+    }
+    this.hoveredStar = this.rating;
+  }
+
+  resetHoveredStar(): void {
+    if(!this.clicked){
+      this.rating=0
+      this.hoveredStar = 0
+    }
+    
+  }
+  
+  submitRating(value: number): void {
+    this.rating = value;
+    this.clicked = true;
+    this.updateStars();
+  }
+  
+  updateStars(): void {
+    for (let i = 1; i <= 5; i++) {
+      const starElement = document.querySelector(`.star:nth-child(${i})`);
+      if (starElement) {
+        if (i <= this.rating || (i <= this.hoveredStar && !this.clicked)) {
+          starElement.classList.add('active');
+        } else {
+          starElement.classList.remove('active');
+        }
+      }
+    }
+  }
   async enviarPuntuacion(): Promise<void> {
     try {
       await this.clasesService.insertarOpinionAlumno(this.profesorId, this.alumnoId, this.rating, this.comentario);
@@ -112,7 +140,18 @@ export class ClasesCardComponent {
       });
     }
   }
-
+  async obtenerPuntuaciones():Promise<any> {
+    try {
+      // Utiliza this.infoUser.id y this.especialidadId directamente
+      const response = await this.clasesService.getPuntuaciones(this.infoUser.id, this.alumnoId);
+      if (response.length===0 || response==undefined){
+        return false
+      }
+      return true
+    } catch (error) {
+      console.error('Error al obtener puntuaciones:', error);
+    }
+  }
   routeAlForo() {
     this.router.navigate([`/foro/${this.alumnoId}`])
   }

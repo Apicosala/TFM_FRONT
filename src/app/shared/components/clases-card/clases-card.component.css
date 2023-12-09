@@ -2,7 +2,6 @@
   border: none;
   transform: perspective(1000px);
   background-color: rgba(0, 0, 0, 0.1);
-  height: 400px;
 }
 
 .btn-opacity-1 {

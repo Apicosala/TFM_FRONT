@@ -16,6 +16,9 @@ export class ClasesService {
 
   constructor() { }
 
+  getPuntuaciones(profesorId:number,alumnoId:number):Promise<any>{
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}puntuaciones/${profesorId}&${alumnoId}`))
+  }
   //GET
   // Metodo para recuperar las especialidades
   getEspecialidadesByProfesorId(profesorId: number): Promise<any> {
