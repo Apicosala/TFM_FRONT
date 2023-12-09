@@ -203,7 +203,7 @@ export class FormUsuariosComponent {
         this.errorMessage = response.fatal;
       }else{
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Datos actualizados correctamente",
           showConfirmButton: false,
