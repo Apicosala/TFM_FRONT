@@ -15,19 +15,19 @@
                 Atrás
             </button>
         </div>
-        <div class="col-md-4 d-flex align-items-center">
+        <div class="col-md-4 d-flex align-items-center justify-content-center">
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                <h1 class="h1__style">{{miProfesor?.nombre}} {{miProfesor?.apellidos}}</h1>
+                <h1 class="h1__style text-center">{{miProfesor?.nombre}} {{miProfesor?.apellidos}}</h1>
                 <ul>
                     <li>Nº Profesor: {{miProfesor?.id}}</li>
                     <li>{{miProfesor?.experiencia}} años de experiencia como docente</li>
                     <li>Especialidades: {{miEspecialidad?.join(', ')}}</li>
-                    <li>Precio de la clase: {{miProfesor?.pxh}}€</li>
+                    <li>Precio/hora de la clase: {{miProfesor?.pxh}}€</li>
                 </ul>
                 <div>
-                    <h2 class="h2__style">Valoraciones de otros alumnos</h2>
+                    <h2 class="h2__style text-center">Valoraciones de otros alumnos</h2>
                     <ng-container *ngFor="let valoracion of misValoraciones">
-                        <app-valoracion-card [misValoraciones]="valoracion"
+                        <app-valoracion-card class="text-center" [misValoraciones]="valoracion"
                             [miProfesor]="miProfesor"></app-valoracion-card>
                     </ng-container>
                 </div>
