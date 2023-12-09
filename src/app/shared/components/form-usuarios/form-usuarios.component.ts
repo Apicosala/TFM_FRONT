@@ -10,6 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
 import { IUser } from 'src/app/core/models/user.interface';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
+import { PpalService } from 'src/app/modules/ppal/services/ppal.service';
 import { perfilUsersService } from 'src/app/modules/usuario/services/perfilUsers.service';
 import Swal from 'sweetalert2';
 
@@ -24,8 +25,10 @@ export class FormUsuariosComponent {
   router = inject(Router);
   perfilServices = inject(perfilUsersService);
   userService = inject(UsersService);
+  ppalService = inject(PpalService);
   formUsuario: FormGroup;
   errorMessage: string = '';
+  especialidades: any[] = []
 
   constructor() {
     this.formUsuario = new FormGroup(
@@ -142,7 +145,21 @@ export class FormUsuariosComponent {
       });
       
     }
+
+    this.getAllEspecialidades()
+
   }
+
+  async getAllEspecialidades() {
+    try {
+      const arrEspecialidades = await this.ppalService.getAllEspecialidades();
+      this. especialidades = arrEspecialidades.map((element)=>element.especialidad)
+      console.log(this.especialidades)
+        
+    } catch (error) {
+      console.error('Error al obtener las especialidades', error);
+    }
+  } 
 
   async getDataForm() {
     if (this.usuario && this.usuario.id) {
@@ -191,5 +208,9 @@ export class FormUsuariosComponent {
       this.formUsuario.get(formControlName)?.touched &&
       this.formUsuario.get(formControlName)?.invalid
     );
+  }
+
+  buttonClick(especialidad: string){
+    console.log(especialidad)
   }
 }
