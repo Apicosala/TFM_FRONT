@@ -34,6 +34,7 @@ export class ClasesCardComponent {
   rating: number = 0;
   hoveredStar: number = 0;
   clicked=false
+  isPuntuacion:boolean|any
 
   constructor() {
   };
@@ -64,7 +65,18 @@ export class ClasesCardComponent {
         result = await this.clasesService.getFechaByClases(this.profesorId, this.alumnoId, this.especialidadId)
         this.fecha = result[result.length - 1].fecha
         this.fechas = result.length
-        this.obtenerPuntuaciones()
+        try {
+          const response = await this.clasesService.getPuntuaciones(this.infoUser.id, this.alumnoId);
+          if (response.length==0){
+            this.isPuntuacion=false
+          }else{
+            this.isPuntuacion=true
+          }
+          
+        } catch (error) {
+          console.error('Error al obtener puntuaciones:', error);
+          this.isPuntuacion=false
+        }
       } catch (error) {
         console.log(error)
       }
@@ -129,6 +141,7 @@ export class ClasesCardComponent {
       });
       this.resetRating();
       this.resetComentario();
+      window.location.reload();
 
     } catch (error) {
       // Error
@@ -141,16 +154,7 @@ export class ClasesCardComponent {
     }
   }
   async obtenerPuntuaciones():Promise<any> {
-    try {
-      // Utiliza this.infoUser.id y this.especialidadId directamente
-      const response = await this.clasesService.getPuntuaciones(this.infoUser.id, this.alumnoId);
-      if (response.length===0 || response==undefined){
-        return false
-      }
-      return true
-    } catch (error) {
-      console.error('Error al obtener puntuaciones:', error);
-    }
+    
   }
   routeAlForo() {
     this.router.navigate([`/foro/${this.alumnoId}`])
