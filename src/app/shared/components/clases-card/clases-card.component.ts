@@ -28,6 +28,7 @@ export class ClasesCardComponent {
   router = inject(Router)
   clasesService = inject(ClasesService);
   activateRoute = inject(ActivatedRoute)
+  rating: number = 0;
 
   constructor() {
   };
@@ -62,6 +63,20 @@ export class ClasesCardComponent {
         console.log(error)
       }
     })
+  }
+
+  setRating(value: number): void {
+    this.rating = value;
+  }
+  resetRating(): void {
+    if (this.rating === 0) {
+      return; 
+    }
+    this.rating = 0;
+  }
+  submitRating(value: number): void {
+    this.rating = value;
+    console.log(`Puntuación final: ${this.rating}`);
   }
 
   routeAlForo() {
