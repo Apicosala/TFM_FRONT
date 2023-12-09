@@ -22,7 +22,7 @@ export class ListaProfesoresComponent {
 
   marcadores: any[] = [];
   centro: google.maps.LatLng | any;
-  zoom: number = 10;
+  zoom: number = 12;
   icono: string = "."    
     
   circleOptions: any = {

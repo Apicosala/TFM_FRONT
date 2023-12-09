@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { DetallesProfesorService } from '../services/detalles-profesor.service';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class DetallesProfesorComponent {
   miEspecialidad: string[] | any;
   misEspecialidades: any[] = [];
   misValoraciones: any [] | any;
+  @Input() especialidadId:number|any
   alumnoId: number = 0;
 
   // Mapa
@@ -29,11 +30,9 @@ export class DetallesProfesorComponent {
   activatedRoute = inject(ActivatedRoute);
   detallesService = inject(DetallesProfesorService);
   userService = inject(UsersService);
-  
 
 
   ngOnInit() : void {
-    
     this.alumnoId = this.userService.getDecodedToken()!.user_id;
 
     /* Recuperacion de datos del profesor*/ 

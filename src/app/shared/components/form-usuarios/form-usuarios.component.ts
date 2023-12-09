@@ -10,6 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 import { PayLoad } from 'src/app/core/interceptors/interfaces/pay-load';
 import { IUser } from 'src/app/core/models/user.interface';
 import { UsersService } from 'src/app/modules/auth/services/users.service';
+import { PpalService } from 'src/app/modules/ppal/services/ppal.service';
 import { perfilUsersService } from 'src/app/modules/usuario/services/perfilUsers.service';
 import Swal from 'sweetalert2';
 
@@ -24,7 +25,10 @@ export class FormUsuariosComponent {
   router = inject(Router);
   perfilServices = inject(perfilUsersService);
   userService = inject(UsersService);
+  ppalService = inject(PpalService);
   formUsuario: FormGroup;
+  errorMessage: string = '';
+  especialidades: any[] = []
 
   constructor() {
     this.formUsuario = new FormGroup(
@@ -53,11 +57,12 @@ export class FormUsuariosComponent {
           Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
           ),
         ]),
+
+        repetirPass: new FormControl('', []),
+
         newPass: new FormControl('', [
           Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
           ),]),
-
-        repetirPass: new FormControl('', []),
 
         activo: new FormControl('', []),
 
@@ -70,18 +75,12 @@ export class FormUsuariosComponent {
 
   controlPass(formValue: AbstractControl) {
     
-    const pass: string = formValue.get('newPass')?.value;
+    const pass: string = formValue.get('pass')?.value;
     const repetirPass: string = formValue.get('repetirPass')?.value;
 
     if (pass !== repetirPass) {
       return { controlpass: true };
     } else {
-      // Verificar si es necesario actualizar el valor (evitamos buvle infinito)
-      if(formValue.get('pass')?.value !== pass) {
-
-        // actualizamos el valor del campo pass
-        formValue.get('pass')?.setValue(pass, { emitEvent: false });
-      }
       return null;
     }
   }
@@ -121,17 +120,19 @@ export class FormUsuariosComponent {
 
             experiencia: new FormControl(data[0].experiencia, []),
 
-            pass: new FormControl(data[0].pass, [
-              Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
-              ),]),
-
-            newPass: new FormControl('', [
+            pass: new FormControl("", [
+              Validators.required,
               Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
               ),]),
 
             repetirPass: new FormControl('', [
+              Validators.required,
               Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
           ),]),
+
+          newPass: new FormControl('', [
+            Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
+            ),]),
 
             activo: new FormControl(this.usuario.activo, []),
 
@@ -140,26 +141,33 @@ export class FormUsuariosComponent {
             lon: new FormControl(data[0].lon)
 
           },
-          [this.controlPass]
-          );
+          [this.controlPass]);
       });
+      
     }
+
+    this.getAllEspecialidades()
+
   }
 
-  getDataForm() {
+  async getAllEspecialidades() {
+    try {
+      const arrEspecialidades = await this.ppalService.getAllEspecialidades();
+      this. especialidades = arrEspecialidades.map((element)=>element.especialidad)
+      console.log(this.especialidades)
+        
+    } catch (error) {
+      console.error('Error al obtener las especialidades', error);
+    }
+  } 
+
+  async getDataForm() {
     if (this.usuario && this.usuario.id) {
       
-      // Verificamos si la nueva contraseña se ha ingresado
-    const nuevaContraseña = this.formUsuario.get('newPass')?.value;
-    const contraseñaActual = this.formUsuario.get('pass')?.value;
-
-    // Si la nueva contraseña se ha ingresado, la actualizamos
-    if (nuevaContraseña !== undefined && nuevaContraseña !== '' && nuevaContraseña !==  contraseñaActual) {
-      this.formUsuario.get('pass')?.setValue(nuevaContraseña, { emitEvent: false });
-    }
-
-      this.perfilServices.update(this.formUsuario.value)      
-      .then((response: any) => {
+      const response = await this.perfilServices.updateForm(this.formUsuario.value) 
+      if(response.fatal) {
+        this.errorMessage = response.fatal;
+      }else{
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -170,16 +178,8 @@ export class FormUsuariosComponent {
         setTimeout(() => { 
           this.router.navigate(['/home']);
         }, 2000)
-        
-      })
-      .catch((error: any) => {
-        console.error('aqui el error', error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Ha ocurrido un error al actualizar el usuario",
-        });
-      });
+      }    
+ 
       console.log(this.formUsuario.value)
     } else {
 
@@ -208,5 +208,9 @@ export class FormUsuariosComponent {
       this.formUsuario.get(formControlName)?.touched &&
       this.formUsuario.get(formControlName)?.invalid
     );
+  }
+
+  buttonClick(especialidad: string){
+    console.log(especialidad)
   }
 }
