@@ -28,7 +28,10 @@ export class FormUsuariosComponent {
   ppalService = inject(PpalService);
   formUsuario: FormGroup;
   errorMessage: string = '';
+  allEspecialidades: any[] = [];
   especialidades: any[] = [];
+  especialidadesUsuarioId: any[] =[];
+  arrEspecialidadesId: any[] = []
   especialidadesUsuario: any[] = [];
 
   constructor() {
@@ -69,7 +72,8 @@ export class FormUsuariosComponent {
 
         latitud: new FormControl('',[]),
 
-        longitud: new FormControl('',[])
+        longitud: new FormControl('',[]),
+
       },
       [this.controlPass]);
   }
@@ -140,13 +144,14 @@ export class FormUsuariosComponent {
             lat: new FormControl(data[0].lat),
 
             lon: new FormControl(data[0].lon),
-
           },
           [this.controlPass]);
       });
 
       this.perfilServices.getEspecialidadesByProfesorId(id).subscribe(data => {
-        this.especialidadesUsuario = data;        
+        this.especialidadesUsuario = data;
+        this.especialidadesUsuarioId = data;
+        this.especialidadesUsuarioId = this.especialidadesUsuarioId.map((element)=>element.id)
       })
       
     }
@@ -166,8 +171,8 @@ export class FormUsuariosComponent {
   async getAllEspecialidades() {
     try {
       const arrEspecialidades = await this.ppalService.getAllEspecialidades();
-      this.especialidades = arrEspecialidades.map((element)=>element.especialidad)
-      
+      this.allEspecialidades = arrEspecialidades;
+      this.especialidades = arrEspecialidades.map((element)=>element.especialidad)      
         
     } catch (error) {
       console.error('Error al obtener las especialidades', error);
@@ -177,7 +182,23 @@ export class FormUsuariosComponent {
   async getDataForm() {
     if (this.usuario && this.usuario.id) {
       
+      //update de datos
       const response = await this.perfilServices.updateForm(this.formUsuario.value) 
+
+      //update de las especialidades comparando con las especialidades que tenia el usuario inicialmente
+          this.allEspecialidades.forEach(esp => {
+            const checkbox = document.getElementById(`button${esp.especialidad}`) as HTMLInputElement | null;
+            if(checkbox!.checked == false){
+              if(this.especialidadesUsuarioId.includes(esp.id) == true){
+                console.log('Delete', esp.id)
+              }                 
+            } else {
+              if(this.especialidadesUsuarioId.includes(esp.id) == false){
+                this.updateEspecialidades(this.usuario.id,esp.id)
+              } 
+            }        
+      });        
+
       if(response.fatal) {
         this.errorMessage = response.fatal;
       }else{
@@ -190,15 +211,21 @@ export class FormUsuariosComponent {
         });
         setTimeout(() => { 
           this.router.navigate(['/home']);
-        }, 2000)
-      }    
- 
-      console.log(this.formUsuario.value)
+        }, 2000) 
+      }   
     } else {
 
     }
+  }
 
-   }
+  async updateEspecialidades(usuarioId:number, especialidadId:number){
+    try {
+      await this.perfilServices.createEspecialidad(usuarioId, especialidadId)
+    } catch (error) {
+      console.error('Error al actualizar especialidad', error);
+    }
+    
+  }
 
    async getLocation() {
     try {
@@ -213,7 +240,8 @@ export class FormUsuariosComponent {
     } catch (error) {
       console.error('Error al obtener la ubicación:', error);
     }
-  } 
+
+    } 
 
 
   checkControl(formControlName: string): boolean | undefined {
@@ -221,11 +249,5 @@ export class FormUsuariosComponent {
       this.formUsuario.get(formControlName)?.touched &&
       this.formUsuario.get(formControlName)?.invalid
     );
-  }
-
-  especialidadesSelec: string[] = []
-  buttonClick(especialidad: string){
-    this.especialidadesSelec.push(especialidad)
-    console.log(this.especialidadesSelec)
   }
 }
