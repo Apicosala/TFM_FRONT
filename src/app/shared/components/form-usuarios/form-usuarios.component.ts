@@ -190,7 +190,7 @@ export class FormUsuariosComponent {
             const checkbox = document.getElementById(`button${esp.especialidad}`) as HTMLInputElement | null;
             if(checkbox!.checked == false){
               if(this.especialidadesUsuarioId.includes(esp.id) == true){
-                console.log('Delete', esp.id)
+                this.deleteEspecialidades(this.usuario.id,esp.id)
               }                 
             } else {
               if(this.especialidadesUsuarioId.includes(esp.id) == false){
@@ -218,11 +218,20 @@ export class FormUsuariosComponent {
     }
   }
 
+  async deleteEspecialidades(usuarioId:number, especialidadId:number){
+    try {
+      await this.perfilServices.deleteEspecialidad(usuarioId, especialidadId)
+    } catch (error) {
+      console.error('Error al eliminar especialidad', error);
+    }
+    
+  }
+
   async updateEspecialidades(usuarioId:number, especialidadId:number){
     try {
       await this.perfilServices.createEspecialidad(usuarioId, especialidadId)
     } catch (error) {
-      console.error('Error al actualizar especialidad', error);
+      console.error('Error al añadir especialidad', error);
     }
     
   }

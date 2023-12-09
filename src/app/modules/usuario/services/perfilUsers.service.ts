@@ -58,5 +58,8 @@ export class perfilUsersService {
   }
 
   // Elimina especialidades para un profesor
+  deleteEspecialidad(usuarioId: number, especialidadId: number) : Promise<any> {
+    return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}especialidades/${usuarioId}&${especialidadId}`)); 
+  }
 
 }
