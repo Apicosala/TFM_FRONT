@@ -104,18 +104,24 @@
                     <label class="label" for="foto">Fotografía</label>
                   </div>
                   <div class="containerForm">
-                    <input class="input" type="password" id="newPass" formControlName="newPass" />
-                    <label class="label" for="newPass">Contraseña</label>
-                    <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
-                  </div>
-  
+                    <input class="input" type="password" id="pass" formControlName="pass">
+                    <label class="label Pass-label" for="pass">Contraseña</label>
+                    <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
+                  </div>   
                   <div class="containerForm">
                     <input class="input" type="password" id="repetirPass" formControlName="repetirPass">
                     <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
                     <p class="error" *ngIf="formUsuario.get('repetirPass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
                   </div>
+                  <p>Introduce una nueva contraseña solo si quieres cambiarla</p>
+                  <div class="containerForm">
+                    <input class="input" type="password" id="newPass" formControlName="newPass" />
+                    <label class="label" for="newPass">Nueva contraseña</label>
+                    <p class="error" *ngIf="checkControl('newPass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
+                  </div>
 
                   <input class="btn button" type="submit" value="Actualizar" [disabled]="formUsuario.invalid || formUsuario.hasError('controlpass')">
+                  <p class="error">{{ errorMessage }}</p>
                 </form>
               </div>
             </div>
@@ -151,13 +157,14 @@
                   <div class="containerForm">
                     <input class="input" type="password" id="pass1" formControlName="pass">
                     <label class="label Pass-label" for="pass">Contraseña</label>
-                    <p class="error" *ngIf="formUsuario.get('pass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
-                  </div> 
+                    <p class="error" *ngIf="checkControl('pass')">Tu contraseña debe de empezar por una letra, contener al menos una mayúscula, una minúscula, un número y mínimo 8 caracteres.</p>
+                    </div> 
                   <div class="containerForm">
                     <input class="input" type="password" id="repetirPass1" formControlName="repetirPass">
                     <label class="label repetirPass-label" for="repetirPass">Repite tu contraseña</label>
                     <p class="error" *ngIf="formUsuario.get('repetirPass')?.dirty && formUsuario.hasError('controlpass')">Las contraseñas no coinciden</p>
                   </div>
+                  <p>Introduce una nueva contraseña solo si quieres cambiarla</p>
                   <div class="containerForm">
                     <input class="input" type="password" id="newPass1" formControlName="newPass" />
                     <label class="label" for="newPass">Nueva contraseña</label>

@@ -78,12 +78,6 @@ export class FormUsuariosComponent {
     if (pass !== repetirPass) {
       return { controlpass: true };
     } else {
-      // Verificar si es necesario actualizar el valor (evitamos buvle infinito)
-      if(formValue.get('pass')?.value !== pass) {
-
-        // actualizamos el valor del campo pass
-        formValue.get('pass')?.setValue(pass, { emitEvent: false });
-      }
       return null;
     }
   }
@@ -153,15 +147,6 @@ export class FormUsuariosComponent {
   async getDataForm() {
     if (this.usuario && this.usuario.id) {
       
-      // Verificamos si la nueva contraseña se ha ingresado
-
-      if (this.formUsuario.get('newPass')?.value){
-        this.formUsuario.get('pass')?.setValue(this.formUsuario.get('newPass')?.value);
-
-      }else{
-        this.formUsuario.get('pass')?.setValue(this.formUsuario.get('pass')?.value);
-      }
-
       const response = await this.perfilServices.updateForm(this.formUsuario.value) 
       if(response.fatal) {
         this.errorMessage = response.fatal;
