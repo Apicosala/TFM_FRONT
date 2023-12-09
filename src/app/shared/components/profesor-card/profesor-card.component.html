@@ -64,7 +64,7 @@
                     <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 </h3>
                 </ng-container>
-                <button class="btn-opacity-1" [routerLink]="['/detalles', miProfesor.id]">Detalles</button>
+                <button class="btn-opacity-1" (click)="obtenerEspecialidad()" [routerLink]="['/detalles', miProfesor.id,{ especialidadId: this.especialidad_Id }]">Detalles</button>
             </div>
         </div>
     <div>
