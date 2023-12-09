@@ -28,7 +28,8 @@ export class FormUsuariosComponent {
   ppalService = inject(PpalService);
   formUsuario: FormGroup;
   errorMessage: string = '';
-  especialidades: any[] = []
+  especialidades: any[] = [];
+  especialidadesUsuario: any[] = [];
 
   constructor() {
     this.formUsuario = new FormGroup(
@@ -96,7 +97,7 @@ export class FormUsuariosComponent {
       this.perfilServices.getById(id).subscribe((data) => {
         
         this.usuario = data[0];
-
+                
         this.formUsuario = new FormGroup({
 
             id: new FormControl(this.usuario.id, []),
@@ -130,7 +131,7 @@ export class FormUsuariosComponent {
               Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
           ),]),
 
-          newPass: new FormControl('', [
+            newPass: new FormControl('', [
             Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=[^\d_].*?\d)\w(\w|[!@#$%]){7,}/
             ),]),
 
@@ -138,23 +139,35 @@ export class FormUsuariosComponent {
 
             lat: new FormControl(data[0].lat),
 
-            lon: new FormControl(data[0].lon)
+            lon: new FormControl(data[0].lon),
 
           },
           [this.controlPass]);
       });
+
+      this.perfilServices.getEspecialidadesByProfesorId(id).subscribe(data => {
+        this.especialidadesUsuario = data;        
+      })
       
     }
 
-    this.getAllEspecialidades()
+    this.getAllEspecialidades()        
 
-  }
+  }  
+
+  async checkItems(){
+  this.especialidadesUsuario.forEach(esp => {
+    const checkbox = document.getElementById(`button${esp.especialidad}`) as HTMLInputElement | null;
+    checkbox!.checked = true;
+    
+  });
+}
 
   async getAllEspecialidades() {
     try {
       const arrEspecialidades = await this.ppalService.getAllEspecialidades();
-      this. especialidades = arrEspecialidades.map((element)=>element.especialidad)
-      console.log(this.especialidades)
+      this.especialidades = arrEspecialidades.map((element)=>element.especialidad)
+      
         
     } catch (error) {
       console.error('Error al obtener las especialidades', error);
@@ -210,7 +223,9 @@ export class FormUsuariosComponent {
     );
   }
 
+  especialidadesSelec: string[] = []
   buttonClick(especialidad: string){
-    console.log(especialidad)
+    this.especialidadesSelec.push(especialidad)
+    console.log(this.especialidadesSelec)
   }
 }
