@@ -16,7 +16,6 @@ export class DetallesProfesorComponent {
   miEspecialidad: string[] | any;
   misEspecialidades: any[] = [];
   misValoraciones: any [] | any;
-  @Input() especialidadId:number|any
   alumnoId: number = 0;
 
   // Mapa
@@ -70,14 +69,13 @@ export class DetallesProfesorComponent {
     this.leavePage()
   }
 
-  atras(especialidad:string) : void {
-    let especialidadId
-    this.misEspecialidades.forEach(esp=> {
-      if (esp.especialidad == especialidad){
-        especialidadId = esp.id;
+  atras() : void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      let id = params['esp'];
+      if(id){
+        this.router.navigate([`/especialidades/${id}/profesores`])
       }
-  });
-  this.router.navigate([`/especialidades/${especialidadId}/profesores`])
+    })
   }
 
   leavePage() {

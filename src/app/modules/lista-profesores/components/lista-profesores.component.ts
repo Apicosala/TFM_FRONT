@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListaProfesoresService } from '../services/listaProfesores.service';
 import Swal from 'sweetalert2';
 
@@ -19,11 +19,13 @@ export class ListaProfesoresComponent {
 
   modalSwitch: boolean = false;
   toggleButtonText:string = "Ver en el mapa"
+  especialidadId:number|any
 
   marcadores: any[] = [];
   centro: google.maps.LatLng | any;
   zoom: number = 12;
   icono: string = "."    
+  router = inject(Router)
     
   circleOptions: any = {
     fillColor: '#cfb3fc',
@@ -41,6 +43,7 @@ export class ListaProfesoresComponent {
       try {
       this.id = params.especialidadId;
         if (this.id) {
+          this.especialidadId=this.id
         this.listaProfesoresService.getProfesoresByEspecialidadId(this.id).then(data => {
           this.arrProfesores = data;
           this.arrProfesores.forEach(profesor => {
@@ -56,7 +59,7 @@ export class ListaProfesoresComponent {
               })
            
               if (profesor.activo == 1){
-                this.marcadores.push({coordenadas: new google.maps.LatLng(profesor.lat,profesor.lon), centroMarcador: new google.maps.LatLng(profesor.lat+0.01,profesor.lon+0.01), label: {text: profesor.nombre, color: "#cfb3fc"}});
+                this.marcadores.push({id: profesor.id, coordenadas: new google.maps.LatLng(profesor.lat,profesor.lon), centroMarcador: new google.maps.LatLng(profesor.lat+0.01,profesor.lon+0.01), label: {text: profesor.nombre, color: "#cfb3fc"}});
               }
             
           });
@@ -130,4 +133,7 @@ export class ListaProfesoresComponent {
   } 
 }
 
+verDetallesProfesor(profesorId:number, especialidad:number){
+  this.router.navigate(['/detalles/', profesorId], { queryParams: { esp: especialidad } });
+}
 }
