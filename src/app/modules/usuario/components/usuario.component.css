@@ -3,6 +3,7 @@
   transform: perspective(1000px);
   background-color: rgba(0, 0, 0, 0.1);
   max-width: 1200px;
+  max-height: 400px;
 }
 
 img{
