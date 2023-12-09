@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IClases } from 'src/app/core/models/datosClases.interface';
 import { IUser } from 'src/app/core/models/user.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -76,14 +77,41 @@ export class ClasesCardComponent {
     }
     this.rating = 0;
   }
+
+  resetComentario(): void {
+    if (this.comentario === "") {
+      return; 
+    }
+    this.comentario = "";
+  }
+
   submitRating(value: number): number {
     this.rating = value;
     return this.rating
   }
 
-enviarPuntuacion(): void {
-  this.clasesService.insertarOpinionAlumno(this.profesorId, this.alumnoId, this.rating, this.comentario);
-}
+  async enviarPuntuacion(): Promise<void> {
+    try {
+      await this.clasesService.insertarOpinionAlumno(this.profesorId, this.alumnoId, this.rating, this.comentario);
+      // Éxito
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Tu valoración se ha enviado correctamente.'
+      });
+      this.resetRating();
+      this.resetComentario();
+
+    } catch (error) {
+      // Error
+      console.error('Error al enviar la puntuación:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al enviar la puntuación.'
+      });
+    }
+  }
 
   routeAlForo() {
     this.router.navigate([`/foro/${this.alumnoId}`])
