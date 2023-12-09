@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, lastValueFrom } from 'rxjs';
 import { IClases } from '../models/datosClases.interface';
 import { SolicitudClase } from '../models/peticion.interface';
+import { IValoracion } from '../models/valoracion.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,19 @@ export class ClasesService {
   insertarFechaClases(profesorId: number, alumnoId: number, fecha: string, especialidadId: number): Promise<IClases> {
     return lastValueFrom(this.httpClient.post<IClases>(`${this.baseUrl}agenda/${profesorId}/clases`, { alumno_id: alumnoId, fecha: fecha, especialidades_id: especialidadId }))
   }
+
+// Método para insertar opinión de alumno
+  insertarOpinionAlumno(profesorId: number, alumnoId: number, puntuacion: number, comentarios: string): Promise<IValoracion> {
+    const data = {
+      profesor_id: profesorId,
+      alumno_id: alumnoId,
+      puntuacion: puntuacion,
+      comentarios: comentarios
+    };
+    return lastValueFrom(this.httpClient.post<IValoracion>(`${this.baseUrl}opinion`, data));
+}
+
+  
 
   //PUT      
 

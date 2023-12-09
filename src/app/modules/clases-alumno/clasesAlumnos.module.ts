@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ClasesAlumnosRoutingModule } from './clasesAlumnos-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ClasesCardComponent } from 'src/app/shared/components/clases-card/clases-card.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,9 +15,10 @@ import { ClasesCardComponent } from 'src/app/shared/components/clases-card/clase
    ClasesCardComponent
   ],
   imports: [
-    SharedModule,
     CommonModule,
     ClasesAlumnosRoutingModule,
+    FormsModule,
+    SharedModule
   ]
 })
 export class clasesAlumnosModule { }
