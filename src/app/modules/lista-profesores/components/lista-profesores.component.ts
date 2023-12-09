@@ -46,6 +46,7 @@ export class ListaProfesoresComponent {
           this.especialidadId=this.id
         this.listaProfesoresService.getProfesoresByEspecialidadId(this.id).then(data => {
           this.arrProfesores = data;
+          
           this.arrProfesores.forEach(profesor => {
 
             this.listaProfesoresService.getPuntuacionesByProfesorId(profesor.id).then(data => {
@@ -56,31 +57,30 @@ export class ListaProfesoresComponent {
               
               this.puntuacion = (puntuacionMedia/data.length).toFixed(1);
               profesor.puntuacion = this.puntuacion;
+              
+              this.arrProfesores.sort((a, b) => {
+                if(a.puntuacion > b.puntuacion) {
+                  return -1;
+                }
+                if(a.puntuacion < b.puntuacion) {
+                  return 1;
+                }
+                if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
+                  return -1;
+                }
+                if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
+                  return 1;
+                }
+                return 0;
               })
-           
+              })
               if (profesor.activo == 1){
                 this.marcadores.push({id: profesor.id, coordenadas: new google.maps.LatLng(profesor.lat,profesor.lon), centroMarcador: new google.maps.LatLng(profesor.lat+0.01,profesor.lon+0.01), label: {text: profesor.nombre, color: "#cfb3fc"}});
-              }
-            
+              }             
           });
 
           //Por defecto ordenamos los profesores por puntuacion 
-          this.arrProfesores.sort((a, b) => {
-            if(a.puntuacion < b.puntuacion) {
-              return -1;
-            }
-            if(a.puntuacion > b.puntuacion) {
-              return 1;
-            }
-            if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
-              return -1;
-            }
-            if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
-              return 1;
-            }
-            return 0;
-  
-          })
+
           })
         this.listaProfesoresService.getNombreEspecialidad().then(nombre => {
           let especialidad = nombre.find((esp)=> esp.id == this.id);
