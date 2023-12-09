@@ -45,8 +45,8 @@
         <span>Terminé mis clases</span>
       </a>
       <div class="d-flex flex-column align-items-center justify-content-center">
-        <span class="m-0 mt-3">Puntúa a tu profesor!</span>
         <ng-container *ngIf="esAlumno">
+        <span class="m-0 mt-3">Puntúa a tu profesor!</span>
           <div class="stars-container">
             <span class="star" (mouseover)="setRating(1)" (click)="submitRating(1)"
               [ngClass]="{'active': rating >= 1}">&#9733;</span>
