@@ -24,6 +24,12 @@ export class perfilUsersService {
   getAlumnosByProfesorId(profesorId: number): Promise<SolicitudClase[]> {
     return lastValueFrom(this.httpClient.get<SolicitudClase[]>(`${this.baseUrl}${profesorId}/alumnos`));
   }
+
+  // recupera las especialidades de un profesor
+  getEspecialidadesByProfesorId(profesorId: number): Observable<any> {
+    return this.httpClient.get<any[]>(`${this.baseUrl}especialidades/${profesorId}`);
+  }
+
   // recupera los datos de un usuario segun su Id
   getById(usuarioId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.baseUrl}${usuarioId}`);
