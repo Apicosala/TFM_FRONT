@@ -71,11 +71,14 @@ export class DetallesProfesorComponent {
     this.leavePage()
   }
 
-  atras() : void {
-    this.activatedRoute.params.subscribe(async (params:any)=>{
-      let id:string = params.especialidadId
-      this.router.navigate([`/especialidades/${id}/profesores`])
-    })
+  atras(especialidad:string) : void {
+    let especialidadId
+    this.misEspecialidades.forEach(esp=> {
+      if (esp.especialidad == especialidad){
+        especialidadId = esp.id;
+      }
+  });
+  this.router.navigate([`/especialidades/${especialidadId}/profesores`])
   }
 
   leavePage() {

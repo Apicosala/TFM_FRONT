@@ -19,9 +19,28 @@
 
 .estilo {
   font-weight: bold;
-  font-size: 1.5rem;
 }
 
 span {
   font-size: 1.5rem;
+}
+
+img{
+  height: 100%;
+}
+.stars-container {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  font-size: 2rem;
+  color: #c0c0c0; /* Color gris para las estrellas inactivas */
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.star:hover,
+.star.active {
+  color: #ffd700; /* Color amarillo para las estrellas activas o al pasar el cursor */
 }

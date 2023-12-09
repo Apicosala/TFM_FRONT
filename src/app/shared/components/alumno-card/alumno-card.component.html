@@ -1,29 +1,29 @@
-<div class="container-fluid text-white p-3">  
+<div class="container-fluid  p-3">  
     <!-- Card principal -->
     <div class="card m-3 card-alumno">
       <div class="row g-0">
         <!-- Imagen a la izquierda -->
         <div class="col-12 col-md-4">
-          <img [src]="miUsuario.foto" [alt]="miUsuario.nombre" class="img-fluid rounded-start w-100" />
+          <img [src]="miUsuario.foto" [alt]="miUsuario.nombre" class="img-fluid rounded-start" />
         </div>
   
         <!-- Datos en el centro -->
-        <div class="col-12 col-md-5 mt-3 mt-md-0">
-          <div class="card-body text-center">
-            <h1 class="text-white mb-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 2rem;">{{mostrarNombreEspecialidad()}}</h1>
-            <h3 class="card-profesor text-white mb-3" style="font-size: 1.5rem;">{{miUsuario.nombre}} {{miUsuario.apellidos}}</h3>
+        <div class="col-12 col-md-5 mt-3 mt-md-0 d-flex align-items-center justify-content-center">
+          <div >
+            <h1 class=" mb-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 2rem;">{{mostrarNombreEspecialidad()}}</h1>
+            <h3 class="mb-3" style="font-size: 1.5rem;">{{miUsuario.nombre}} {{miUsuario.apellidos}}</h3>
             <div class="flex-row">
-              <span class="text-white" style="font-weight: bold;">Clases: </span>
-              <span class="text-white">{{totalClases}}</span>
+              <span  style="font-weight: bold;">Clases: </span>
+              <span >{{totalClases}}</span>
             </div>
           </div>
         </div>
   
         <!-- Botones en la tercera columna -->
         <div class="col-12 col-md-3 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-          <div class="text-center">
+          <div>
             <button class="btn btn-custom mb-3" [routerLink]="['/foro/:usuarioId']">
-              <span class="text-white">Dudas de {{miUsuario.nombre}}</span>
+              <span >Dudas de {{miUsuario.nombre}}</span>
             </button>
 
           <form [formGroup]="formFecha" class="containerForm" (ngSubmit)="getDataForm()">
