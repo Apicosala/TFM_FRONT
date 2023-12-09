@@ -44,3 +44,7 @@ img{
 .star.active {
   color: #ffd700; /* Color amarillo para las estrellas activas o al pasar el cursor */
 }
+
+.button {
+  color: black
+}

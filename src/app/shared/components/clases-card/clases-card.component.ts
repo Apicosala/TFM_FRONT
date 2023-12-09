@@ -1,9 +1,10 @@
 import { Component, Input, inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IClases } from 'src/app/core/models/datosClases.interface';
 import { IUser } from 'src/app/core/models/user.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ClasesCardComponent {
 
   @Input() infoUser!: IUser;
 
-  comentario:FormGroup|any
+  comentario: string = '';
   arrDatosClases: IClases[] = [];
   alumnoId: number | any
   especialidad: string | any
@@ -76,17 +77,46 @@ export class ClasesCardComponent {
     }
     this.rating = 0;
   }
-  submitRating(value: number): void {
+
+  resetComentario(): void {
+    if (this.comentario === "") {
+      return; 
+    }
+    this.comentario = "";
+  }
+
+  submitRating(value: number): number {
     this.rating = value;
+    return this.rating
   }
-  enviarPuntuacion(): void {
-    //TODO:ACA GUARDO EL COMENTARIO Y EL RATING EN LA TABLA PUNTUACIONES. LA PUNTUACION ES this.rating QUE YA ESTÁ HECHA ESA PARTE FUNCIONANDO. FALTA AGREGAR UN INPUT PARA GUARDAR EL COMENTARIO EN this.comentario.
-    console.log(`Puntuación final: ${this.rating}`);
-    console.log(`Comentario: ${this.comentario}`);
+
+  async enviarPuntuacion(): Promise<void> {
+    try {
+      await this.clasesService.insertarOpinionAlumno(this.profesorId, this.alumnoId, this.rating, this.comentario);
+      // Éxito
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Tu valoración se ha enviado correctamente.'
+      });
+      this.resetRating();
+      this.resetComentario();
+
+    } catch (error) {
+      // Error
+      console.error('Error al enviar la puntuación:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al enviar la puntuación.'
+      });
+    }
   }
+
   routeAlForo() {
     this.router.navigate([`/foro/${this.alumnoId}`])
   }
+
   obtenerDatosClases() {
     const profesorId = this.infoUser.id;
     this.clasesService.getDatosProfesor(profesorId)
