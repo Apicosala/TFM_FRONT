@@ -52,6 +52,10 @@ export class perfilUsersService {
     return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}form/${usuario.id}`, usuario)); 
   }
 
+  sendRequest(user:any): Promise<any> {
+    return lastValueFrom(this.httpClient.post<any>(`${this.baseUrl}${user.id}`, user));
+  }
+
   // Crea especialidades para un profesor
   createEspecialidad(usuarioId: number, especialidadId: number) : Promise<any> {
     return lastValueFrom(this.httpClient.post<any>(`${this.especialidadesUrl}${usuarioId}&${especialidadId}`, '')); 

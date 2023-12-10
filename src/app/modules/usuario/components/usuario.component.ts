@@ -26,4 +26,16 @@ export class UsuarioComponent {
       })
     })
   }
+  async darDeBaja(){
+    try {
+      const response = await this.userService.sendRequest(this.miUsuario)
+      
+      if(response){
+        //aca agrego un popup diciendo: Nuestros admins están evaluando tu solicitud. Cuando te den de baja, te llegará un mail de confirmación.
+      }
+    } catch (error) {
+      alert("No se pudo enviar tu petición para darte de baja")
+    }
+    
+  }
 }
