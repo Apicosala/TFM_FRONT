@@ -157,7 +157,7 @@ export class ClasesCardComponent {
     
   }
   routeAlForo() {
-    this.router.navigate([`/foro/${this.alumnoId}`])
+    this.router.navigate([`/foro/${this.profesorId}&${this.alumnoId}`])
   }
 
   obtenerDatosClases() {
