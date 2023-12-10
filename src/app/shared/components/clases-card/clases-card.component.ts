@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IClases } from 'src/app/core/models/datosClases.interface';
 import { IUser } from 'src/app/core/models/user.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
+import { UsersService } from 'src/app/modules/auth/services/users.service';
 import { ClasesAlumnosService } from 'src/app/modules/clases-alumno/services/clasesAlumnos.service';
 import Swal from 'sweetalert2';
 
@@ -41,16 +42,17 @@ export class ClasesCardComponent {
   activateRoute = inject(ActivatedRoute)
 
 
+
   constructor() {
   };
 
 
   async ngOnInit(): Promise<void> {
+    
     this.activateRoute.params.subscribe(async (params: any) => {
       try {
         let id = params.usuarioId;
         this.arrUsuarioClases = await this.alumnosClasesServices.getClasesByUsuarioId(id);
-
 
         for (const clase of this.arrUsuarioClases) {
 
@@ -63,9 +65,10 @@ export class ClasesCardComponent {
           this.especialidad = result[0].especialidad;
 
           // Obtenemos datos del usuario (profesor o alumno)
-          const userResult = await this.clasesService.getDatosUsuario(this.rol === "alumn" ? this.profesorId : this.alumnoId);
+          const userResult = await this.clasesService.getDatosUsuario(id);
           this.usuario = userResult[0];
           this.esAlumno = userResult[0].rol=="alumn"?true:false
+          console.log(this.esAlumno)
           // Obtenemos fechas de las clases
           const dateResult = await this.clasesService.getFechaByClases(this.profesorId, this.alumnoId, this.especialidadId);
           this.fecha = dateResult[dateResult.length - 1].fecha;
