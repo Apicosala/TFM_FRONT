@@ -25,5 +25,8 @@ img{
     text-align: center;
   }
 
+  .btn{
+    background-color: transparent;
+  }
 
 }
