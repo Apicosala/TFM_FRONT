@@ -27,11 +27,9 @@ export class UsuarioComponent {
       })
     })
   }
-  async darDeBaja(){
+  darDeBaja(){
     try {
-      const response = await this.userService.sendRequest(this.miUsuario)
-      
-      if(response){
+      const response = this.userService.sendRequest(this.miUsuario)
         Swal.fire({
           icon: 'success',
           title: 'Petición de baja enviada',
@@ -39,7 +37,6 @@ export class UsuarioComponent {
           showConfirmButton: false,
           timer: 3000 
         });
-      }
     } catch (error) {
       Swal.fire({
         icon: 'error',
