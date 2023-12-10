@@ -2,21 +2,21 @@
   <div class="row g-0">
     <!-- Imagen a la izquierda -->
     <div class="col-md-4 d-flex align-items-center mt-3 mb-3">
-      <img [src]="infoUser.foto" [alt]="infoUser.nombre" class="img-fluid rounded-start" />
+      <img [src]="infoUser.usuario.foto" [alt]="infoUser.usuario.nombre" class="img-fluid rounded-start" />
     </div>
 
     <!-- Datos en el centro -->
     <div class="col-md-5 d-flex align-items-center">
       <div class="card-body d-flex flex-column align-items-center justify-content-center">
-        <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 3rem;">{{infoUser.especialidad}}</h1>
-        <h3 class="card-profesor estilo mt-3">{{infoUser.nombre}} {{infoUser.apellidos}}</h3>
+        <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 3rem;">{{infoUser.usuario.especialidad}}</h1>
+        <h3 class="card-profesor estilo mt-3">{{infoUser.usuario.nombre}} {{infoUser.usuario.apellidos}}</h3>
         <div class="flex-row">
           <span class=" estilo">Email: </span>
-          <span>{{infoUser.mail}}</span>
+          <span>{{infoUser.usuario.mail}}</span>
         </div>
         <div class="flex-row mb-3">
           <span class=" estilo">Móvil: </span>
-          <span>{{infoUser.tel}}</span>
+          <span>{{infoUser.usuario.tel}}</span>
         </div>
         <div class="flex-row">
           <span class=" estilo">Cantidad total de clases: </span>

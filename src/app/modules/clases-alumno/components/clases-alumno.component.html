@@ -1,6 +1,6 @@
 <main [ngClass]="{'hide-element': isEmptyProfesores()}">
-    <div *ngFor="let profesor of arrProfesores">
-        <app-clases-card [infoUser]="profesor[0]"></app-clases-card>
+    <div *ngFor="let clase of arrDatosClases">
+        <app-clases-card [infoUser]="clase"></app-clases-card>
     </div>
 </main>
 <div class="text-center"*ngIf="isEmptyProfesores()">

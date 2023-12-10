@@ -32,9 +32,9 @@ export class ClasesAlumnoComponent {
         // recuperamos las clases con el Id del usuario
         let id = params.usuarioId;
         const user = await this.userService.getDataById(id)
-        this.arrUsuarioClases = await this.clasesAlumnoService.getClasesByUsuarioId(id);
 
-        this.arrDatosClases = [];
+
+        this.arrUsuarioClases = await this.clasesAlumnoService.getClasesByUsuarioId(id);
 
         // Recuperamos los datos de los usuarios y los guardamos en un array
         for (const clase of this.arrUsuarioClases) {
@@ -51,8 +51,11 @@ export class ClasesAlumnoComponent {
 
           
           const esProfesor = user[0].rol === 'prof';
+
+
           const userId = esProfesor ? alumnoId : profesorId;
-          const userResult = await this.clasesService.getDatosUsuarioByRol(esProfesor ? 'alumn' : 'prof', userId);
+          
+          const userResult = await this.userService.getDataById(userId)
 
           this.arrDatosClases.push({
             id: clase.id,
@@ -67,13 +70,13 @@ export class ClasesAlumnoComponent {
             mail: '',
             pass: '',
             foto: '',
-            rol: esProfesor ? 'prof' : 'alumn',
+            rol: '',
             tel: '',
             pxh: 0,
             experiencia: 0,
             lat: 0,
             lon: 0,
-            activo: false
+            activo: true
           });
         }
       } catch (error) {
