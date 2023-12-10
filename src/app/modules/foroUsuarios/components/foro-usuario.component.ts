@@ -49,18 +49,13 @@ export class ForoUsuarioComponent implements OnInit {
       this.userId = decodedToken.user_id;
     }
     this.socket.on('mensaje_chat', (data) => {
-      console.log(data);
       this.chatMensajes.mutate((value) => value.push(data));
     });
     this.socket.on('usuarios_conectados', (data) => {
-      console.log(data);
       this.numUsuarios.set(data);
     });
     try {
       try {
-        const response = await this.userService.isTeacherOrStudent();
-        //si es alumno, es false
-        if (response == true) {
           this.activatedRoute.params.subscribe(async (params: any) => {
             const parametros = params['parametros'];
             const param = parametros.split('&');
@@ -71,25 +66,7 @@ export class ForoUsuarioComponent implements OnInit {
               this.alumnoId
             );
             this.foro = response;
-            console.log('alumno:', this.alumnoId);
-            console.log('profesor:', this.userId);
           });
-        } else {
-          this.activatedRoute.params.subscribe(async (params: any) => {
-            const parametros = params['parametros'];
-            const param = parametros.split('&');
-            this.alumnoId = parseInt(param[0]);
-            this.userId = parseInt(param[1]);
-            const response = await this.foroUsuariosServices.getMensajes(
-              this.userId,
-              this.alumnoId
-            );
-            this.foro = response;
-            console.log('alumno:', this.alumnoId);
-            console.log('profesor:', this.userId);
-          });
-        }
-        console.log('miresponse:', response);
       } catch (error) {
         console.log(error);
       }
@@ -97,17 +74,19 @@ export class ForoUsuarioComponent implements OnInit {
       console.log(error);
     }
   }
-  enviarComentario() {
+  async enviarComentario() {
     try {
-      console.log(this.alumnoId);
-      console.log(this.userId);
-      console.log(this.nuevoComentario);
-      const response = this.foroUsuariosServices.insert(
+      let response = await this.foroUsuariosServices.insert(
         this.userId,
         this.alumnoId,
         this.nuevoComentario
       );
-      console.log(response);
+      response = await this.foroUsuariosServices.getMensajes(
+        this.userId,
+        this.alumnoId
+      );
+      this.foro = response;
+      this.nuevoComentario = ''
     } catch (error) {
       console.log(error);
     }
