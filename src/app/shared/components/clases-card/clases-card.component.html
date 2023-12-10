@@ -47,7 +47,7 @@
       </a>
       <div class="d-flex flex-column align-items-center justify-content-center">
         <ng-container *ngIf="esAlumno">
-          <ng-container *ngIf="isPuntuacion ; else elseBlock2">
+          <ng-container *ngIf="!isPuntuacion ; else elseBlock2">
             <span class="m-0 mt-3">Puntúa a tu profesor!</span>
             <div class="stars-container">
               <span class="star" (mouseover)="setRating(1)" (click)="submitRating(1)"
