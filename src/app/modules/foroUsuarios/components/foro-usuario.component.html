@@ -1,14 +1,16 @@
-<div class="m-3">
-  <div *ngFor="let comentario of foro">
-    <div class="container">
-      <p class="m-0">{{ comentario.fecha | date: 'dd-MM-yyyy' }}</p>
-      <p class="m-0 mb-3">{{ comentario.comentarios }}</p>
-    </div>
-  </div>
-
-  <!-- Agregar un textarea para el nuevo comentario -->
+<div class="m-3 d-flex align-items-center justify-content-center">
   <div class="container">
-    <textarea [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario"></textarea>
-    <button (click)="enviarComentario()">Enviar comentario</button>
+    <div *ngFor="let comentario of foro">
+      <div class="mt-3">
+        <p class="m-0 text-center">{{ comentario.fecha | date: 'dd-MM-yyyy' }}</p>
+        <p class="m-0 mb-3 text-center">{{ comentario.comentarios }}</p>
+      </div>
+    </div>
+
+    <!-- Agregar un textarea para el nuevo comentario -->
+    <div class="d-flex flex-column align-items-center">
+      <textarea class="textArea__style" [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario"></textarea>
+      <button class="mt-3 mb-3 btn btn-opacity" (click)="enviarComentario()">Enviar comentario</button>
+    </div>
   </div>
 </div>

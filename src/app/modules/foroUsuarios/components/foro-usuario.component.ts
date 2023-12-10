@@ -27,20 +27,43 @@ export class ForoUsuarioComponent implements OnInit {
     
   }
 
-  ngOnInit(){
+  async ngOnInit(){
     let token = this.userService.token;
     if (token) {
       let decodedToken = jwtDecode<PayLoad>(token);
       this.userId = decodedToken.user_id;
     }
     try {
-      this.activatedRoute.params.subscribe(async (params: any) => {
-        const parametros = params['parametros'];
-        const param=parametros.split('&')
-        this.alumnoId=parseInt(param[1])
-        const response = await this.foroUsuariosServices.getMensajes(this.userId, this.alumnoId)
-        this.foro = response
-      })
+      try {
+        const response = await this.userService.isTeacherOrStudent()
+        //si es alumno, es false
+        if (response ==true){
+          this.activatedRoute.params.subscribe(async (params: any) => {
+            const parametros = params['parametros'];
+            const param=parametros.split('&')
+            this.alumnoId=parseInt(param[1])
+            this.userId=parseInt(param[0])
+            const response = await this.foroUsuariosServices.getMensajes(this.userId, this.alumnoId)
+            this.foro = response
+            console.log("alumno:",this.alumnoId)
+            console.log("profesor:",this.userId)
+          })
+        }else{
+          this.activatedRoute.params.subscribe(async (params: any) => {
+            const parametros = params['parametros'];
+            const param=parametros.split('&')
+            this.alumnoId=parseInt(param[0])
+            this.userId=parseInt(param[1])
+            const response = await this.foroUsuariosServices.getMensajes(this.userId, this.alumnoId)
+            this.foro = response
+            console.log("alumno:",this.alumnoId)
+            console.log("profesor:",this.userId)
+          })
+        }
+        console.log("miresponse:",response)
+      } catch (error) {
+        console.log(error)
+      }
     } catch (error) {
       console.log(error)
     }
