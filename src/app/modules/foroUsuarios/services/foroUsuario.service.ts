@@ -9,7 +9,7 @@ import { IForo } from 'src/app/core/models/foro.interface';
 export class ForoUsuarioService {
   private baseUrl: string = 'http://localhost:3000/api/usuarios/';
 
-  httpClient = inject(HttpClient);
+  httpClient = inject(HttpClient); 
 
   constructor() { }
 
