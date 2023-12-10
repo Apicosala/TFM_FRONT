@@ -6,7 +6,7 @@
       <google-map [center]="centro" [zoom]="zoom">
         <map-marker *ngFor="let marcador of marcadores" [position]="marcador.centroMarcador" [label]="marcador.label"
           [icon]="icono" (mapClick)="verDetallesProfesor(marcador.id,this.especialidadId)"></map-marker>
-        <map-circle *ngFor="let marcador of marcadores" [center]="marcador.coordenadas" [radius]="1000"
+        <map-circle *ngFor="let marcador of marcadores" [center]="marcador.coordenadas" (circleClick)="verDetallesProfesor(marcador.id,this.especialidadId)" [radius]="1000"
           [options]="circleOptions">
         </map-circle>
       </google-map>

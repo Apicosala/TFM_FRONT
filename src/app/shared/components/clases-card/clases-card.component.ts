@@ -166,7 +166,7 @@ export class ClasesCardComponent {
 
   }
   routeAlForo() {
-    this.router.navigate([`/foro/${this.alumnoId}`])
+    this.router.navigate([`/foro/${this.profesorId}&${this.alumnoId}`])
   }
 
   obtenerDatosClases() {
@@ -195,10 +195,20 @@ export class ClasesCardComponent {
     console.log(this.profesorId, this.alumnoId, this.especialidadId, this.fecha)
     this.clasesService.borrarClases(this.profesorId, this.alumnoId, this.especialidadId, this.fecha)
       .then((response: any) => {
-        console.log(response)
+        Swal.fire({
+          title: 'Clases terminadas',
+          text: 'Las clases han sido terminadas satisfactoriamente',
+          icon: 'success',
+          confirmButtonText: 'OK'
+      });
       })
       .catch((error) => {
-        console.log(error)
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al intentar terminar las clases',
+          icon: 'error',
+          confirmButtonText: 'OK'
+      });
       })
   }
 
@@ -207,4 +217,6 @@ export class ClasesCardComponent {
     this.borrarClases();
     window.location.reload();
   }
-}
+        
+ }
+

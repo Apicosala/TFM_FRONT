@@ -5,7 +5,7 @@ import { ForoUsuarioComponent } from './components/foro-usuario.component';
 
 const routes: Routes = [
   
-  { path: ':usuarioId', component: ForoUsuarioComponent }
+  { path: ':parametros', component: ForoUsuarioComponent }
 
 ];
 

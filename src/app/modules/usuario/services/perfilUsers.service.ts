@@ -12,6 +12,7 @@ export class perfilUsersService {
 
   private baseUrl: string = "http://localhost:3000/api/usuarios/"
   private locationUrl: string = "https://ipapi.co/json/"
+  private especialidadesUrl: string = "http://localhost:3000/api/especialidades/"
   
 
   httpClient = inject(HttpClient);
@@ -49,6 +50,16 @@ export class perfilUsersService {
   // Actualiza los datos de un usuario desde el formulario
   updateForm(usuario: IUser) : Promise<any> {
     return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}form/${usuario.id}`, usuario)); 
+  }
+
+  // Crea especialidades para un profesor
+  createEspecialidad(usuarioId: number, especialidadId: number) : Promise<any> {
+    return lastValueFrom(this.httpClient.post<any>(`${this.especialidadesUrl}${usuarioId}&${especialidadId}`, '')); 
+  }
+
+  // Elimina especialidades para un profesor
+  deleteEspecialidad(usuarioId: number, especialidadId: number) : Promise<any> {
+    return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}especialidades/${usuarioId}&${especialidadId}`)); 
   }
 
 }

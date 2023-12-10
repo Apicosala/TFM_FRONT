@@ -4,7 +4,7 @@
   <div class="container">
     <h3 class="h3Titulo mt-4 mb-4 text-white font-weight-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Actualiza tus datos personales</h3>
     <div class="form">
-      <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
+      <form [formGroup]="formUsuario" (ngSubmit)="getDataFormPersonal()">
 
         <div class="mb-3 containerForm">
           <label class="label" for="nombre">Nombre</label>
@@ -76,7 +76,7 @@
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
             <div class="accordion-body">
               <div class="form">
-                <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
+                <form [formGroup]="formUsuario" (ngSubmit)="getDataFormPersonal()">
                   <div class="containerForm">
                     <input class="input" type="text" id="nombre" formControlName="nombre" />
                     <label class="label" for="nombre">Nombre</label>
@@ -141,10 +141,10 @@
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
           <div class="accordion-body">
             <div class="form">
-              <form [formGroup]="formUsuario" (ngSubmit)="getDataForm()">
+              <form [formGroup]="formUsuario" (ngSubmit)="getDataFormProfesional()">
                  <div class="btn-group mb-2 ms-2 me-2" *ngFor="let especialidad of especialidades">
                   <div>
-                    <input type="checkbox" class="btn-check" id="button{{especialidad}}" (click)="buttonClick(especialidad)">
+                    <input type="checkbox" class="btn-check" id="button{{especialidad}}">
                     <label class="btn btn-outline-light" for="button{{especialidad}}">{{especialidad}}</label><br>
                   </div>          
                 </div>

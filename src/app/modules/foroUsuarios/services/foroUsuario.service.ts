@@ -11,17 +11,18 @@ export class ForoUsuarioService {
 
   httpClient = inject(HttpClient);
 
-  constructor() {}
+  constructor() { }
 
-  insert(mensaje: IForo): Promise<IForo> {
+  insert(profesorId:number,alumnoId:number,comentarios:string): Promise<any> {
+    const body = {comentarios}
+    console.log(alumnoId)
+      console.log(profesorId)
+      console.log(comentarios)
     return lastValueFrom(
-      this.httpClient.post<IForo>(
-        `${this.baseUrl}${mensaje.userId}/foro`,
-        mensaje
-      )
+      this.httpClient.post<any>(`${this.baseUrl}comentario/${profesorId}/foro/${alumnoId}`,body)
     );
   }
-  getMensajes(): Promise<IForo[]> {
-    return lastValueFrom(this.httpClient.get<IForo[]>(`${this.baseUrl}/foro`));
+  getMensajes(profesorId: number, alumnoId: number): Promise<IForo[]> {
+    return lastValueFrom(this.httpClient.get<IForo[]>(`${this.baseUrl}foro/${profesorId}&${alumnoId}`));
   }
 }

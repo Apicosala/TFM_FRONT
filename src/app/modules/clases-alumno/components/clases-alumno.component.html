@@ -1,5 +1,13 @@
 <main>
-    <div *ngFor="let usuarioCard of arrDatosClases">
-        <app-clases-card [infoUser]="usuarioCard"></app-clases-card>
+    
+    <div *ngIf="arrProfesores.length > 0; else noProfesores">
+        <div *ngFor="let usuarioCard of arrDatosClases">
+            <app-clases-card [infoUser]="usuarioCard"></app-clases-card>
+        </div>
     </div>
+    <ng-template #noProfesores>
+        <p>No tienes ninguna conexión con un profesor confirmada</p>
+    </ng-template>
 </main>
+
+

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ForoUsuarioService } from '../services/foroUsuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IForo } from 'src/app/core/models/foro.interface';
@@ -14,50 +13,48 @@ import { inject } from '@angular/core';
   styleUrls: ['./foro-usuario.component.css'],
 })
 export class ForoUsuarioComponent implements OnInit {
-  formForo: FormGroup;
   mensajes: IForo[] = [];
   foroUsuariosServices = inject(ForoUsuarioService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
-  public userService = inject(UsersService);
-  public userId!: number;
+  private userService = inject(UsersService);
+  userId: number|any;
+  alumnoId:number|any
+  foro:string|any
+  nuevoComentario:string|any
+
   constructor() {
-    this.formForo = new FormGroup({
-      titulo: new FormControl('', []),
-      contenido: new FormControl('', [Validators.required]),
-      userId: new FormControl('', []),
-    });
+    
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
     let token = this.userService.token;
     if (token) {
       let decodedToken = jwtDecode<PayLoad>(token);
       this.userId = decodedToken.user_id;
     }
+    try {
+      this.activatedRoute.params.subscribe(async (params: any) => {
+        const parametros = params['parametros'];
+        const param=parametros.split('&')
+        this.alumnoId=parseInt(param[1])
+        const response = await this.foroUsuariosServices.getMensajes(this.userId, this.alumnoId)
+        this.foro = response
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
-  enviarMensaje() {
-    const mensaje = this.formForo.value;
-    mensaje.userId = this.userId;
-    this.foroUsuariosServices.insert(mensaje).then(
-      (response: IForo) => {
-        this.mensajes.push(response);
-        this.formForo.reset();
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  obtenerMensajes() {
-    this.foroUsuariosServices.getMensajes().then(
-      (mensajes: IForo[]) => {
-        this.mensajes = mensajes;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+  enviarComentario() {
+    try {
+      console.log(this.alumnoId)
+      console.log(this.userId)
+      console.log(this.nuevoComentario)
+      const response = this.foroUsuariosServices.insert(this.userId,this.alumnoId,this.nuevoComentario)
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 }
