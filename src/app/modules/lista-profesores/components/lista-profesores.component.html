@@ -1,5 +1,92 @@
 <main class="d-flex flex-column justify-content-center align-items-center">
   <button class="btn-opacity-1 mt-3 mb-3" (click)="toggleModal()">{{toggleButtonText}}</button>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed header text-white mt-3 mb-3" type="button" data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+        aria-controls="panelsStayOpen-collapseTwo">
+        
+        <svg width="30px" height="30px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff" stroke="#ffffff">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"/>      
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>      
+          <g id="SVGRepo_iconCarrier"> <title>Filter</title> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Filter"> <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"> </rect> <line x1="4" y1="5" x2="16" y2="5" id="Path" stroke="#ffffff" stroke-width="2" stroke-linecap="round"> </line> <line x1="4" y1="12" x2="10" y2="12" id="Path" stroke="#ffffff" stroke-width="2" stroke-linecap="round"> </line> <line x1="14" y1="12" x2="20" y2="12" id="Path" stroke="#ffffff" stroke-width="2" stroke-linecap="round"> </line> <line x1="8" y1="19" x2="20" y2="19" id="Path" stroke="#ffffff" stroke-width="2" stroke-linecap="round"> </line> <circle id="Oval" stroke="#ffffff" stroke-width="2" stroke-linecap="round" cx="18" cy="5" r="2"> </circle> <circle id="Oval" stroke="#ffffff" stroke-width="2" stroke-linecap="round" cx="12" cy="12" r="2"> </circle> <circle id="Oval" stroke="#ffffff" stroke-width="2" stroke-linecap="round" cx="6" cy="19" r="2"> </circle> </g> </g> </g>
+        </svg>
+
+      </button>
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <div class="btn-group mb-2 ms-2 me-2 d-flex"> 
+            <div>Puntuación</div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPuntuacion1" (click)="selectFiltro('buttonPuntuacion1')">
+              <label class="btn btn-outline-light ms-2" for="buttonPuntuacion1">Más de &#9733;</label><br>
+            </div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPuntuacion2" (click)="selectFiltro('buttonPuntuacion2')">
+              <label class="btn btn-outline-light ms-2" for="buttonPuntuacion2">Más de &#9733; &#9733;</label><br>
+            </div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPuntuacion3" (click)="selectFiltro('buttonPuntuacion3')">
+              <label class="btn btn-outline-light ms-2" for="buttonPuntuacion3">Más de &#9733; &#9733; &#9733;</label><br>
+            </div> 
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPuntuacion4" (click)="selectFiltro('buttonPuntuacion4')">
+              <label class="btn btn-outline-light ms-2" for="buttonPuntuacion4">Más de &#9733; &#9733; &#9733; &#9733;</label><br>
+            </div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPuntuacion5" (click)="selectFiltro('buttonPuntuacion5')">
+              <label class="btn btn-outline-light ms-2" for="buttonPuntuacion5">Más de &#9733; &#9733; &#9733; &#9733; &#9733;</label><br>
+            </div> 
+                    
+          </div>
+          <div class="btn-group mb-2 ms-2 me-2 d-flex">
+            <div>Precio/hora</div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPrecio1" (click)="selectFiltro('buttonPrecio1')">
+              <label class="btn btn-outline-light ms-2" for="buttonPrecio1">Menos de 10€</label><br>
+            </div> 
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPrecio2" (click)="selectFiltro('buttonPrecio2')">
+              <label class="btn btn-outline-light ms-2" for="buttonPrecio2">Menos de 20€</label><br>
+            </div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPrecio3" (click)="selectFiltro('buttonPrecio3')">
+              <label class="btn btn-outline-light ms-2" for="buttonPrecio3">Menos de 30 €</label><br>
+            </div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonPrecio4" (click)="selectFiltro('buttonPrecio4')">
+              <label class="btn btn-outline-light ms-2" for="buttonPrecio4">30 € o más</label><br>
+            </div> 
+                    
+          </div>
+          <div class="btn-group mb-2 ms-2 me-2 d-flex">
+            <div>Experiencia</div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonExperiencia1" (click)="selectFiltro('buttonExperiencia1')">
+              <label class="btn btn-outline-light ms-2" for="buttonExperiencia1">Menos de 2 años</label><br>
+            </div> 
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonExperiencia2" (click)="selectFiltro('buttonExperiencia2')">
+              <label class="btn btn-outline-light ms-2" for="buttonExperiencia2">Entre 2 y 10 años</label><br>
+            </div>
+            <div>
+              <input type="checkbox" class="btn-check" id="buttonExperiencia3" (click)="selectFiltro('buttonExperiencia3')">
+              <label class="btn btn-outline-light ms-2" for="buttonExperiencia3">Más de 10 años</label><br>
+            </div> 
+                    
+          </div>
+          <div class="mb-4">
+            <button type="button" class="btn btn-light" id="buttonAplicar" (click)="getFilters()">Aplicar</button>
+            
+          </div> 
+        </div>
+        </div>
+      </h2>
+    </div>
+
+
+
   <ng-container *ngIf="modalSwitch == true">
     <div>
 
@@ -15,7 +102,7 @@
 
   <ng-container *ngIf="modalSwitch == false">
     <div>
-      <div *ngFor="let profesor of arrProfesores">
+      <div *ngFor="let profesor of arrProfesoresFiltrado">
         <ng-container *ngIf="profesor.activo">
             <app-profesor-card [miProfesor]="profesor" [miEspecialidad]="this.especialidadId"></app-profesor-card>
         </ng-container>
