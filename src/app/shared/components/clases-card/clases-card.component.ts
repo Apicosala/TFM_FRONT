@@ -67,6 +67,7 @@ export class ClasesCardComponent {
           const userResult = await this.clasesService.getDatosUsuario(this.rol === "alumn" ? this.profesorId : this.alumnoId);
           this.usuario = userResult[0];
 
+
           // Obtenemos fechas de las clases
           const dateResult = await this.clasesService.getFechaByClases(this.profesorId, this.alumnoId, this.especialidadId);
           this.fecha = dateResult[dateResult.length - 1].fecha;
