@@ -175,10 +175,20 @@ export class ClasesCardComponent {
     console.log(this.profesorId, this.alumnoId, this.especialidadId)
     this.clasesService.terminarClases(this.profesorId, this.alumnoId, this.especialidadId)
       .then((response: any) => {
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+        Swal.fire({
+          title: 'Clases terminadas',
+          text: 'Las clases han sido terminadas satisfactoriamente',
+          icon: 'success',
+          confirmButtonText: 'OK'
+      });
+  })
+  .catch((error) => {
+      Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al intentar terminar las clases',
+          icon: 'error',
+          confirmButtonText: 'OK'
+      });
+  });
+ }
 }
