@@ -40,6 +40,13 @@ export class FormLoginComponent {
     const response = await this.usersService.login(this.formLogin.value);
     if (response.fatal) {
       //Error en el login
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al intentar iniciar sesión',
+        text: 'Verifica que las credenciales sean correctas',
+        showConfirmButton: false,
+        timer: 2000 
+      })
       this.errorMessage = response.fatal;
     } else {
       //Login correcto
@@ -49,7 +56,7 @@ export class FormLoginComponent {
         title: '¡Inicio de sesión exitoso!',
         text: 'Has iniciado sesión correctamente.',
         showConfirmButton: false,
-        timer: 2000 // Cierra automáticamente después de 2 segundos
+        timer: 2000 
       });
 
       //Navego a la ruta principal

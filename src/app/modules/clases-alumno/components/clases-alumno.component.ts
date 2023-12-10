@@ -79,4 +79,14 @@ export class ClasesAlumnoComponent {
       }
     });
   }
+
+  isEmptyProfesores(): boolean {
+    const isEmpty = !this.arrProfesores || this.arrProfesores.length === 0;
+    console.log('arrProfesores:', this.arrProfesores);
+    console.log('isEmptyProfesores():', isEmpty);
+    return isEmpty;
+  }
+  
+  
+
 }
