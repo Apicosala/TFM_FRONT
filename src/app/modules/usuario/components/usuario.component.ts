@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { perfilUsersService } from '../services/perfilUsers.service';
 import { IUser } from 'src/app/core/models/user.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuario',
@@ -31,10 +32,22 @@ export class UsuarioComponent {
       const response = await this.userService.sendRequest(this.miUsuario)
       
       if(response){
-        //aca agrego un popup diciendo: Nuestros admins están evaluando tu solicitud. Cuando te den de baja, te llegará un mail de confirmación.
+        Swal.fire({
+          icon: 'success',
+          title: 'Petición de baja enviada',
+          text: 'Cuando te den de baja, recibirás un correo de confirmación',
+          showConfirmButton: false,
+          timer: 3000 
+        });
       }
     } catch (error) {
-      alert("No se pudo enviar tu petición para darte de baja")
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al intentar darte de baja',
+        text: 'Por favor, contacta con el equipo de TeacherApp para solucionar este error',
+        showConfirmButton: false,
+        timer: 3000 
+      })
     }
     
   }
