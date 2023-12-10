@@ -9,7 +9,7 @@
             <div class="card-body text-center align-items-center justify-content-center">
                 <h1 class="h1__style">{{miProfesor.nombre}} {{miProfesor.apellidos}}</h1>
                 <h3 class="h3__style">Nº profesor: {{miProfesor.id}}</h3>
-                <h3>{{miProfesor.puntuacion}}</h3>
+                <div class="d-flex justify-content-center" >
                 <!--Sistema de rating con iconos-->
                 <ng-container [ngSwitch]="true">
                 <h3 class="h3__style" *ngSwitchCase="puntuacionMedia<=1">
@@ -64,6 +64,8 @@
                     <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 </h3>
                 </ng-container>
+                <h3 class="h3__style ms-3">{{miProfesor.puntuacion}}</h3>
+                </div>
                 <button class="btn-opacity-1" [routerLink]="['/detalles',miProfesor.id]"[queryParams]="{ esp:miEspecialidad }">Detalles</button>
             </div>
         </div>

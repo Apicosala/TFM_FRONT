@@ -30,6 +30,7 @@ export class ListaProfesoresComponent {
   circleOptions: any = {
     fillColor: '#cfb3fc',
     strokeColor: '#cfb3fc',
+    clickable: true
   }
 
   activatedRoute = inject(ActivatedRoute);

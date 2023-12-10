@@ -1,14 +1,13 @@
-<div class="m-3">
-  <div *ngFor="let comentario of foro">
-    <div class="container">
-      <p class="m-0">{{ comentario.fecha | date: 'dd-MM-yyyy' }}</p>
-      <p class="m-0 mb-3">{{ comentario.comentarios }}</p>
-    </div>
+<form [formGroup]="formForo" (ngSubmit)="enviarMensaje()" class="mb-4">
+  <div class="mb-3">
+    <label for="titulo" class="form-label">Título:</label>
+    <input id="titulo" type="text" formControlName="titulo" class="form-control" />
   </div>
-
-  <!-- Agregar un textarea para el nuevo comentario -->
-  <div class="container">
-    <textarea [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario"></textarea>
-    <button (click)="enviarComentario()">Enviar comentario</button>
+  <div class="mb-3">
+    <label for="contenido" class="form-label">Contenido:</label>
+    <textarea id="contenido" formControlName="contenido" class="form-control"></textarea>
   </div>
-</div>
+  <button type="submit" class="btn btn-primary" [routerLink]="['/usuario', userId]" routerLinkActive="active">
+    Enviar
+  </button>
+</form>
