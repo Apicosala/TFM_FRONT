@@ -26,6 +26,7 @@ export class ClasesAlumnoComponent {
 
     this.activatedRoute.params.subscribe(async (params: any) => {
       try {
+        
         // recuperamos las clases con el Id del usuario
         let id = params.usuarioId;
         this.arrUsuarioClases = await this.clasesAlumnoService.getClasesByUsuarioId(id);
@@ -72,7 +73,6 @@ export class ClasesAlumnoComponent {
             lon: 0,
             activo: false
           });
-          console.log(this.arrDatosClases);
         }
       } catch (error) {
         alert(error);
@@ -82,8 +82,6 @@ export class ClasesAlumnoComponent {
 
   isEmptyProfesores(): boolean {
     const isEmpty = !this.arrProfesores || this.arrProfesores.length === 0;
-    console.log('arrProfesores:', this.arrProfesores);
-    console.log('isEmptyProfesores():', isEmpty);
     return isEmpty;
   }
   

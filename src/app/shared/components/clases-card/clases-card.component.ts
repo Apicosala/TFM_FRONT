@@ -27,7 +27,6 @@ export class ClasesCardComponent {
   usuario: IUser[] | any = []
   fecha: string | any
   fechas: string[] | any
-  foto: string | any
   esAlumno: boolean = false
 
   rating: number = 0;
