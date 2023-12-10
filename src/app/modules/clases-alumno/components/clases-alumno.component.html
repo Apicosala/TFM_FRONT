@@ -1,12 +1,12 @@
-<main>
-    <div *ngIf="arrProfesores.length > 0; else noProfesores">
-        <div *ngFor="let profesor of arrProfesores">
-            <app-clases-card [infoUser]="profesor[0]"></app-clases-card>
-        </div>
+<main [ngClass]="{'hide-element': isEmptyProfesores()}">
+    <div *ngFor="let profesor of arrProfesores">
+        <app-clases-card [infoUser]="profesor[0]"></app-clases-card>
     </div>
-    <ng-template #noProfesores>
-        <p>No tienes ninguna conexión con un profesor confirmada</p>
-    </ng-template>
 </main>
+<div *ngIf="isEmptyProfesores()">
+    <p>No tienes ninguna conexión con un profesor confirmada</p>
+</div>
+
+
 
 
