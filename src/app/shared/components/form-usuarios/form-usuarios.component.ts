@@ -156,7 +156,7 @@ export class FormUsuariosComponent {
       
     }
 
-    this.getAllEspecialidades()        
+    this.getAllEspecialidades()    
 
   }  
 
@@ -179,7 +179,32 @@ export class FormUsuariosComponent {
     }
   } 
 
-  async getDataForm() {
+  async getDataFormPersonal() {
+    if (this.usuario && this.usuario.id) {
+      
+      //update de datos
+      const response = await this.perfilServices.updateForm(this.formUsuario.value)    
+
+      if(response.fatal) {
+        this.errorMessage = response.fatal;
+      }else{
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Datos personales actualizados correctamente",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        setTimeout(() => { 
+          this.router.navigate(['/home']);
+        }, 2000) 
+      }   
+    } else {
+
+    }
+  }
+
+  async getDataFormProfesional() {
     if (this.usuario && this.usuario.id) {
       
       //update de datos
@@ -205,7 +230,7 @@ export class FormUsuariosComponent {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Datos actualizados correctamente",
+          title: "Datos profesionales actualizados correctamente",
           showConfirmButton: false,
           timer: 1500
         });
