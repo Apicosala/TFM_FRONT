@@ -17,7 +17,6 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./foro-usuario.component.css'],
 })
 export class ForoUsuarioComponent implements OnInit {
-  mensajes: IForo[] = [];
   foroUsuariosServices = inject(ForoUsuarioService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);

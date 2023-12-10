@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject, firstValueFrom } from 'rxjs';
+import { Subject, firstValueFrom, lastValueFrom } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { DecodedToken } from 'src/app/core/models/decodedToken.interface';
 
@@ -37,7 +37,7 @@ export class UsersService {
       ? Number(localStorage.getItem('userId'))
       : null;
   }
-
+  
   login(values: FormLoginValue): Promise<FormLoginResponse> {
     return firstValueFrom(
       this.httpClient.post<FormLoginResponse>(`${this.baseUrl}/login`, values)
@@ -80,7 +80,10 @@ export class UsersService {
     const decodedToken = this.getDecodedToken();
     return decodedToken ? decodedToken.user_rol === 'prof' || decodedToken.user_rol === 'alumn' : false;
   }
-  
+
+  getDataById (id:number):Promise<any>{
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}/${id}`))
+  }
   
   isLogged(): boolean {
     return localStorage.getItem('auth_token') ? true : false;
