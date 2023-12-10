@@ -149,7 +149,6 @@ export class ClasesCardComponent {
       });
       this.resetRating();
       this.resetComentario();
-      window.location.reload();
 
     } catch (error) {
       // Error
