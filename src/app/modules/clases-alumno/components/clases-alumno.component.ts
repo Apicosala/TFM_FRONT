@@ -13,7 +13,10 @@ import { ClasesService } from 'src/app/core/services/clases.service';
 export class ClasesAlumnoComponent {
 
   arrUsuarioClases: SolicitudClase[] = [];
+  arrDatosClases: any[] = [];
   arrProfesores: any[] = [];
+
+
   clasesService = inject(ClasesService)
   activatedRoute = inject(ActivatedRoute);
   clasesAlumnoService = inject(ClasesAlumnosService);
@@ -22,20 +25,57 @@ export class ClasesAlumnoComponent {
   ngOnInit(){
 
     this.activatedRoute.params.subscribe(async (params: any) => {
-
       try {
         // recuperamos las clases con el Id del usuario
         let id = params.usuarioId;
         this.arrUsuarioClases = await this.clasesAlumnoService.getClasesByUsuarioId(id);
 
-        // traemos los ids de los profesores 
-        const profesorIds = this.arrUsuarioClases.map((clase: SolicitudClase) => clase.profesor_id);
+        this.arrDatosClases = [];
 
-        // traemos todos los datos de los profesores
-        const allDataProfesor = profesorIds.map((profesorId: number) => this.clasesAlumnoService.getProfesorById(profesorId));
-        this.arrProfesores = await Promise.all(allDataProfesor);
+        // Recuperamos los datos de los usuarios y los guardamos en un array
+        for (const clase of this.arrUsuarioClases) {
+          let profesorId = clase.profesor_id;
+          let alumnoId = clase.alumno_id;
+
+          const result = await this.clasesAlumnoService.getProfesorById(profesorId);
+          this.arrProfesores.push(result);
+
+
+          // Obtenemos el nombre de la especialidad
+          const especialidadResult = await this.clasesService.getEspecialidadesByProfesorId(profesorId);
+          const especialidad = especialidadResult[0].especialidad;
+
+          
+          const esProfesor = params.rol === 'prof';
+          const userId = esProfesor ? alumnoId : profesorId;
+
+          const userResult = await this.clasesService.getDatosUsuarioByRol(esProfesor ? 'alumn' : 'prof', userId);
+
+          this.arrDatosClases.push({
+            id: clase.id,
+            alumno_id: clase.alumno_id,
+            profesor_id: clase.profesor_id,
+            especialidades_id: clase.especialidades_id,
+            fecha: clase.fecha,
+            usuario: userResult[0],
+            nombre: '',
+            apellidos: '',
+            especialidad: especialidad,
+            mail: '',
+            pass: '',
+            foto: '',
+            rol: esProfesor ? 'prof' : 'alumn',
+            tel: '',
+            pxh: 0,
+            experiencia: 0,
+            lat: 0,
+            lon: 0,
+            activo: false
+          });
+          console.log(this.arrDatosClases);
+        }
       } catch (error) {
-        alert(error)
+        alert(error);
       }
     });
   }
