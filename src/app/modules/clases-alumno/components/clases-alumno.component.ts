@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ClasesAlumnosService } from '../services/clasesAlumnos.service';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
+import { UsersService } from '../../auth/services/users.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class ClasesAlumnoComponent {
   clasesService = inject(ClasesService)
   activatedRoute = inject(ActivatedRoute);
   clasesAlumnoService = inject(ClasesAlumnosService);
+  userService = inject(UsersService)
 
 
   ngOnInit(){
@@ -29,6 +31,7 @@ export class ClasesAlumnoComponent {
         
         // recuperamos las clases con el Id del usuario
         let id = params.usuarioId;
+        const user = await this.userService.getDataById(id)
         this.arrUsuarioClases = await this.clasesAlumnoService.getClasesByUsuarioId(id);
 
         this.arrDatosClases = [];
@@ -47,9 +50,8 @@ export class ClasesAlumnoComponent {
           const especialidad = especialidadResult[0].especialidad;
 
           
-          const esProfesor = params.rol === 'prof';
+          const esProfesor = user[0].rol === 'prof';
           const userId = esProfesor ? alumnoId : profesorId;
-
           const userResult = await this.clasesService.getDatosUsuarioByRol(esProfesor ? 'alumn' : 'prof', userId);
 
           this.arrDatosClases.push({
