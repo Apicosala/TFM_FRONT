@@ -3,6 +3,5 @@ export interface IForo {
   userId: number;
   usuario: string;
   comentarios: string;
-  titulo: string;
   fecha?: string;
 }

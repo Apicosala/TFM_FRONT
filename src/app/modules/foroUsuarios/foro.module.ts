@@ -6,6 +6,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ForoUsuarioComponent } from './components/foro-usuario.component';
 import { ForoRoutingModule } from './foro-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ForoRoutingModule,
     SharedModule,
-    ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ForoModule { }

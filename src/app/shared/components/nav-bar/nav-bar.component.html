@@ -13,9 +13,6 @@
         <a class="nav-link" [routerLink]="['/usuario', userId]" routerLinkActive="active">Mi perfil</a>
       </li>
       <li class="nav-item" *ngIf="userService.isTeacherOrStudent()">
-        <a class="nav-link" [routerLink]="['/foro', userId]" routerLinkActive="active">Foro</a>
-      </li>
-      <li class="nav-item" *ngIf="userService.isTeacherOrStudent()">
         <a class="nav-link" [routerLink]="['/clases',userId]" routerLinkActive="active">Mis clases</a>
       </li>
       <li class="nav-item" *ngIf="userService.isTeacher()">

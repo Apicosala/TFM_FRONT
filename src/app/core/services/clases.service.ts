@@ -35,6 +35,10 @@ export class ClasesService {
     return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${usuarioId}`))
   }
 
+  getDatosUsuarioByRol(rol: string, id: number): Promise<any> {
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${id}`))
+  }
+
   //Obtenemos datos de las clases del usuario.
   obtenerDatosClases(alumnoId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.baseUrl}/clases/${alumnoId}`)
@@ -95,4 +99,10 @@ export class ClasesService {
     return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}conexion/${profesorId}&${alumnoId}&${especialidadId}`)
     )
   };
+   
+  // Método para borrar las clases de un profesor.
+  borrarClases(profesorId: number, alumnoId: number, especialidadId: number, fecha: string): Promise<any> {
+    return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}&${especialidadId}&${fecha}`)
+    )
+  }
 }

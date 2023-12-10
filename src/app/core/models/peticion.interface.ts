@@ -15,6 +15,8 @@ export interface SolicitudClase {
     lat: number;
     lon: number;
     activo: boolean;
+    fecha: string;
+
 }
 
 type UserRole = 'admin' | 'alumn' | 'prof';
