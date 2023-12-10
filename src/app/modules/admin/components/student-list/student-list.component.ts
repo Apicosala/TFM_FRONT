@@ -87,7 +87,6 @@ export class StudentListComponent implements OnInit {
         this.adminService.getAllActiveStudents()
       );
       this.arrActiveStudents = response;
-      console.log(response);
     } catch (error) {
       console.error('Error al cargar los estudiantes activos', error);
     }
@@ -98,8 +97,7 @@ export class StudentListComponent implements OnInit {
       const response = await lastValueFrom(
         this.adminService.getAllDeactivatedStudents()
       );
-      this.arrDeactivatedStudents = response; // Corregir aquí
-      console.log(response);
+      this.arrDeactivatedStudents = response;
     } catch (error) {
       console.error('Error al cargar los estudiantes desactivados', error);
     }

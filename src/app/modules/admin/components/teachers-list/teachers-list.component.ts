@@ -81,7 +81,6 @@ export class TeachersListComponent {
         this.adminService.getAllUnactiveTeachers()
       );
       this.arrUnactiveTeachers = response;
-      console.log(response);
     } catch (error) {
       console.error('Error al cargar los profesores', error);
     }
@@ -93,7 +92,6 @@ export class TeachersListComponent {
         this.adminService.getAllActiveTeachers()
       );
       this.arrActiveTeachers = response;
-      console.log(response);
     } catch (error) {
       console.error('Error al cargar los profesores', error);
     }
