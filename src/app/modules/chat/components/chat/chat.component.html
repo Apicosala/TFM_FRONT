@@ -2,10 +2,6 @@
     <h2 class="text-center h2-style">Conoce nuestra Comunidad TeacherApp</h2>
     <div >
       <form [formGroup]='formulario' (ngSubmit)="onSubmit()">
-        <div>
-          <label >Miembro TeacherApp</label>
-          <input type="text" class="form-control input-style" formControlName="username" placeholder="Escribe tu nombre"/>
-        </div>
         <div >
           <label >Chat</label>
           <input type="text" class="form-control input-style mb-3" formControlName="mensaje" />
@@ -17,8 +13,7 @@
         <h4 class="h4-style">Clientes conectados: {{ numUsuarios() }}</h4>
         <ul class="ul-style" >
           <li *ngFor="let msg of chatMensajes()">
-            <span >{{ msg.username }}, rol: {{ msg.user_rol }} id:
-              {{ msg.user_id }}</span>: {{ msg.mensaje }}
+            <span >{{ msg.user_name }} {{ msg.user_surname }}, rol: {{ msg.user_rol }} </span>: {{ msg.mensaje }}
           </li>
         </ul>
       </div>
