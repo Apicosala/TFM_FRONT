@@ -1,26 +1,24 @@
-<div class="card bg-info" style="width: 50%">
-    <h2 class="titulo">Conoce nuestra Comunidad TeacherApp</h2>
-    <div class="card-body">
+<div  class="m-5">
+    <h2 class="text-center h2-style">Conoce nuestra Comunidad TeacherApp</h2>
+    <div >
       <form [formGroup]='formulario' (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label class="form-label">Miembro TeacherApp</label>
-          <input type="text" class="form-control" formControlName="username" />
+        <div>
+          <label >Miembro TeacherApp</label>
+          <input type="text" class="form-control input-style" formControlName="username" placeholder="Escribe tu nombre"/>
         </div>
-        <div class="mb-3">
-          <label class="form-label">Chat</label>
-          <input type="text" class="form-control" formControlName="mensaje" />
+        <div >
+          <label >Chat</label>
+          <input type="text" class="form-control input-style mb-3" formControlName="mensaje" />
         </div>
-        <input type="submit" value="Enviar" class="btn btn-danger" />
+        <input type="submit" value="Enviar" class="btn mb-3 btn-opacity" />
       </form>
   
-      <div class="mt-4">
-        <h4 class="card-title">Clientes conectados: {{ numUsuarios() }}</h4>
-        <ul class="card-text">
+      <div >
+        <h4 class="h4-style">Clientes conectados: {{ numUsuarios() }}</h4>
+        <ul class="ul-style" >
           <li *ngFor="let msg of chatMensajes()">
-            <strong
-              >{{ msg.username }}, rol: {{ msg.user_rol }} id:
-              {{ msg.user_id }}</strong
-            >: {{ msg.mensaje }}
+            <span >{{ msg.username }}, rol: {{ msg.user_rol }} id:
+              {{ msg.user_id }}</span>: {{ msg.mensaje }}
           </li>
         </ul>
       </div>
