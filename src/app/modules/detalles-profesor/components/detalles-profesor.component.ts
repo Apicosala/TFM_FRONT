@@ -29,13 +29,13 @@ export class DetallesProfesorComponent {
   activatedRoute = inject(ActivatedRoute);
   detallesService = inject(DetallesProfesorService);
   userService = inject(UsersService);
+  esActivo:boolean = true
 
 
-  ngOnInit() : void {
-    this.alumnoId = this.userService.getDecodedToken()!.user_id;
-
+  ngOnInit() {
+    
+    this.getEsActivo()
     /* Recuperacion de datos del profesor*/ 
-
     this.activatedRoute.params.subscribe((params: any) => {
       let id = params.usuarioId;
       this.detallesService.getById(id).subscribe(data => {
@@ -55,7 +55,17 @@ export class DetallesProfesorComponent {
   }
 
   /* Creación de una solicitud de clase*/ 
-
+  async getEsActivo(){
+    this.alumnoId = this.userService.getDecodedToken()!.user_id;
+    try {
+      const result = await this.userService.getDataById(this.alumnoId)
+      if(result[0].activo === 0){
+        this.esActivo=false
+      }
+    } catch (error) {
+      alert(error)
+    }
+  }
   solicitarClase(especialidadStr: string) : void {
     let especialidadId: number | any;
     this.misEspecialidades.forEach(esp=> {
