@@ -12,24 +12,32 @@ import Swal from 'sweetalert2';
 export class UsuarioComponent {
 
   miUsuario: IUser | any;
-
   activatedRoute = inject(ActivatedRoute);
   userService = inject(perfilUsersService);
-
+  esActivo:boolean = true
+  arrAltaBaja:string = "Dar de Baja"
   ngOnInit() : void {
 
     /* Recuperacion de datos del usuario*/ 
-
+    console.log(this.arrAltaBaja)
     this.activatedRoute.params.subscribe((params: any) => {
       let id = params.usuarioId;
       this.userService.getById(id).subscribe(data => {
         this.miUsuario = data[0];
+        console.log(this.miUsuario.activo)
+        if (this.miUsuario.activo === 0){
+          this.esActivo = false
+          this.arrAltaBaja = "Dar de Alta"
+          console.log(this.arrAltaBaja)
+        }
       })
     })
+    
   }
-  darDeBaja(){
+  darDeBajaAlta(){
     try {
       const response = this.userService.sendRequest(this.miUsuario)
+      if(this.esActivo){
         Swal.fire({
           icon: 'success',
           title: 'Petición de baja enviada',
@@ -37,6 +45,16 @@ export class UsuarioComponent {
           showConfirmButton: false,
           timer: 3000 
         });
+      }else{
+        Swal.fire({
+          icon: 'success',
+          title: 'Petición de alta enviada',
+          text: 'Cuando te den de alta, recibirás un correo de confirmación',
+          showConfirmButton: false,
+          timer: 3000 
+        });
+      }
+        
     } catch (error) {
       Swal.fire({
         icon: 'error',
