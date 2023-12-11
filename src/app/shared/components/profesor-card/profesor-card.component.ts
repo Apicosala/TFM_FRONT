@@ -31,4 +31,8 @@ export class ProfesorCardComponent {
       this.puntuacionMedia = (this.puntuacionMedia/data.length);      
       })
     }
+    // Comprueba que si hay alguna valoración del profesor o no, devolviendo true o false.
+    esNaN(value: any): boolean {
+      return isNaN(value);
+    }
 }
