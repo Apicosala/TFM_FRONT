@@ -135,7 +135,7 @@ export class FormRegisterComponent {
           lon: longitude,
         });
       } catch (error) {
-        console.error('Error al obtener la ubicación:', error);
+        alert(`Error al obtener la ubicación:${error}`);
       }
     }
   }

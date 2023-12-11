@@ -73,15 +73,14 @@ export class ClasesCardComponent {
           
 
           try {
-            const response = await this.clasesService.getPuntuaciones(this.infoUser.id, this.alumnoId);
+            const response = await this.clasesService.getPuntuaciones(this.infoUser.usuario.id, this.alumnoId);
             if (response.length == 0) {
               this.isPuntuacion = false;
             } else {
               this.isPuntuacion = true;
             }
-
           } catch (error) {
-            console.error('Error al obtener puntuaciones:', error);
+            alert(`Error al obtener puntuaciones:${error}`);
             this.isPuntuacion = false;
           }
       } catch (error) {
@@ -152,7 +151,7 @@ export class ClasesCardComponent {
 
     } catch (error) {
       // Error
-      console.error('Error al enviar la puntuación:', error);
+      alert(`Error al enviar la puntuación:${error}`);
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -174,7 +173,7 @@ export class ClasesCardComponent {
         this.arrDatosClases = response;
       })
       .catch((error: any) => {
-        console.log(error)
+        alert(error)
       })
   };
 
@@ -184,7 +183,7 @@ export class ClasesCardComponent {
         console.log(response)
       })
       .catch((error) => {
-        console.log(error)
+        alert(error)
       })
   }
 

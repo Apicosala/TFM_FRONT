@@ -27,7 +27,7 @@ export class ListaAlumnosComponent {
           this.ordenarAlfabeticamente();
         }
       } catch (error) {
-        console.log(error);
+        alert(error);
       }
     });
   }

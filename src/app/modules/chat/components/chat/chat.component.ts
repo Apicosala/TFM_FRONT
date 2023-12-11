@@ -66,10 +66,10 @@ export class ChatComponent {
             this.foro = response;
           });
       } catch (error) {
-        console.log(error);
+        alert(error)
       }
     } catch (error) {
-      console.log(error);
+      alert(error)
     }
   }
 

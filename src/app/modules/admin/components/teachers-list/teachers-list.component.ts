@@ -26,7 +26,7 @@ export class TeachersListComponent {
       );
       this.arrUnactiveTeachers = response;
     } catch (error) {
-      console.error('Error al cargar los profesores', error);
+      alert(`Error al cargar los profesores:${error}`)
     }
 
     try {
@@ -35,7 +35,7 @@ export class TeachersListComponent {
       );
       this.arrActiveTeachers = response;
     } catch (error) {
-      console.error('Error al cargar los profesores', error);
+      alert(`Error al cargar los profesores:${error}`)
     }
   }
 
@@ -82,7 +82,7 @@ export class TeachersListComponent {
       );
       this.arrUnactiveTeachers = response;
     } catch (error) {
-      console.error('Error al cargar los profesores', error);
+      alert(`Error al cargar los profesores:${error}`)
     }
   }
 
@@ -93,7 +93,7 @@ export class TeachersListComponent {
       );
       this.arrActiveTeachers = response;
     } catch (error) {
-      console.error('Error al cargar los profesores', error);
+      alert(`Error al cargar los profesores:${error}`)
     }
   }
 

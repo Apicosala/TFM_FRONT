@@ -175,7 +175,7 @@ export class FormUsuariosComponent {
       this.especialidades = arrEspecialidades.map((element)=>element.especialidad)      
         
     } catch (error) {
-      console.error('Error al obtener las especialidades', error);
+      alert(`Error al obtener las especialidades:${error}`);
     }
   } 
 
@@ -247,7 +247,7 @@ export class FormUsuariosComponent {
     try {
       await this.perfilServices.deleteEspecialidad(usuarioId, especialidadId)
     } catch (error) {
-      console.error('Error al eliminar especialidad', error);
+      alert(`Error al eliminar especialidad:${error}`);
     }
     
   }
@@ -256,7 +256,7 @@ export class FormUsuariosComponent {
     try {
       await this.perfilServices.createEspecialidad(usuarioId, especialidadId)
     } catch (error) {
-      console.error('Error al añadir especialidad', error);
+      alert(`Error al añadir especialidad:${error}`);
     }
     
   }
@@ -272,7 +272,7 @@ export class FormUsuariosComponent {
       lon: longitude,
     });
     } catch (error) {
-      console.error('Error al obtener la ubicación:', error);
+      alert(`Error al obtener la ubicación:${error}`);
     }
 
     } 

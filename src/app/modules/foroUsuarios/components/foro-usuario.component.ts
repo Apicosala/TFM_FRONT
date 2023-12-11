@@ -67,10 +67,10 @@ export class ForoUsuarioComponent implements OnInit {
             this.foro = response;
           });
       } catch (error) {
-        console.log(error);
+        alert(error)
       }
     } catch (error) {
-      console.log(error);
+      alert(error)
     }
   }
   async enviarComentario() {
@@ -87,7 +87,7 @@ export class ForoUsuarioComponent implements OnInit {
       this.foro = response;
       this.nuevoComentario = ''
     } catch (error) {
-      console.log(error);
+      alert(error)
     }
   }
   onSubmit() {

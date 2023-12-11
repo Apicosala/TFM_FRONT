@@ -38,7 +38,6 @@ export class ClasesAlumnoComponent {
 
 
         this.arrUsuarioClases = await this.clasesAlumnoService.getClasesByUsuarioId(id);
-        console.log(this.arrUsuarioClases)
         // Recuperamos los datos de los usuarios y los guardamos en un array
         for (const clase of this.arrUsuarioClases) {
           const profesorId = clase.profesor_id;

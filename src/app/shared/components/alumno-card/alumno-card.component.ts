@@ -69,7 +69,7 @@ export class AlumnoCardComponent {
         this.totalClases = clasesAlumno.length-1;
 
       } catch (error) {
-        console.log(error);
+        alert(error)
       }
 
     })

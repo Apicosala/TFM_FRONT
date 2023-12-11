@@ -15,9 +15,6 @@ export class ForoUsuarioService {
 
   insert(profesorId:number,alumnoId:number,comentarios:string): Promise<any> {
     const body = {comentarios}
-    console.log(alumnoId)
-      console.log(profesorId)
-      console.log(comentarios)
     return lastValueFrom(
       this.httpClient.post<any>(`${this.baseUrl}comentario/${profesorId}/foro/${alumnoId}`,body)
     );

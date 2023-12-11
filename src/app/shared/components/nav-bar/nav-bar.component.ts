@@ -39,7 +39,7 @@ export class NavBarComponent {
         this.msg = `Bienvenido ${response[0].rol == "prof" ? "profesor" : response[0].rol == "admin" ? "administrador" : "alumno"} ${response[0].nombre} ${response[0].apellidos}! 😊`;
       }
     } catch (error) {
-      console.log(error);
+      alert(error)
     }
   }
 

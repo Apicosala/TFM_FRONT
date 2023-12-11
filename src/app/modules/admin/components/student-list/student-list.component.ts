@@ -49,9 +49,8 @@ export class StudentListComponent implements OnInit {
       this.toastr.success('Alumno desactivado con éxito', 'Éxito', {
         positionClass: 'toast-bottom-right',
       });
-      console.log('Alumno desactivado con éxito');
     } catch (error) {
-      console.error('Error al desactivar al estudiante', error);
+      alert(`Error al desactivar al estudiante: ${error}`);
 
       this.toastr.error('Error al desactivar al estudiante', 'Error', {
         positionClass: 'toast-bottom-right',
@@ -71,9 +70,8 @@ export class StudentListComponent implements OnInit {
       this.toastr.success('Alumno activado con éxito', 'Éxito', {
         positionClass: 'toast-bottom-right',
       });
-      console.log('Alumno activado con éxito');
     } catch (error) {
-      console.error('Error al activar al estudiante', error);
+      alert(`Error al activar al estudiante: ${error}`);
 
       this.toastr.error('Error al activar al estudiante', 'Error', {
         positionClass: 'toast-bottom-right',
