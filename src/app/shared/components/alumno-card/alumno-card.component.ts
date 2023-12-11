@@ -103,7 +103,7 @@ export class AlumnoCardComponent {
     this.clasesServices.insertarFechaClases(profesorId, alumnoId, fecha, especialidadId)
       .then(response => {
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "Fehca añadida correctamente",
           showConfirmButton: false,
