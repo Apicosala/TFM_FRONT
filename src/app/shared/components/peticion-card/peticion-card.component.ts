@@ -1,5 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IEspecialidad } from 'src/app/core/models/Especialidad.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
@@ -17,6 +17,7 @@ export class PeticionCardComponent {
 
   activatedRoute = inject(ActivatedRoute);
   peticionClasesServices = inject(ClasesService);
+  router = inject(Router)
 
 
   async ngOnInit(): Promise<void> {
@@ -91,7 +92,7 @@ export class PeticionCardComponent {
               icon: "success"
             });
             setTimeout(() => {
-              window.location.reload();
+              this.router.navigate([''])
             }, 2500);
           })
 
@@ -142,7 +143,7 @@ export class PeticionCardComponent {
         icon: "success"
       });
       setTimeout(() => {
-        window.location.reload();
+        this.router.navigate([''])
       }, 2500);
     } catch (error) {
       Swal.fire({

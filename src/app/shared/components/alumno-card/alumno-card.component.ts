@@ -1,6 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IEspecialidad } from 'src/app/core/models/Especialidad.interface';
 import { SolicitudClase } from 'src/app/core/models/peticion.interface';
 import { ClasesService } from 'src/app/core/services/clases.service';
@@ -24,6 +24,7 @@ export class AlumnoCardComponent {
 
   activatedRoute = inject(ActivatedRoute);
   clasesServices = inject(ClasesService);
+  router=inject(Router)
 
 
   constructor() {
@@ -109,7 +110,7 @@ export class AlumnoCardComponent {
           timer: 1500
         });
         setTimeout(() => {
-          window.location.reload();
+          this.router.navigate([''])
         }, 1500);
 
       })
