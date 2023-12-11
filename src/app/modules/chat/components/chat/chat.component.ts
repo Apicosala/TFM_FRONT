@@ -85,6 +85,8 @@ export class ChatComponent {
       this.socket.emit('mensaje_chat', this.formulario.value, {
         user_id: decodedToken.user_id,
         user_rol: decodedToken.user_rol,
+        user_name: decodedToken.user_name,
+        user_surname: decodedToken.user_surname
       });
     }
   }
