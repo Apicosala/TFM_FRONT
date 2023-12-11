@@ -27,6 +27,7 @@ export class ClasesAlumnoComponent {
 
 
   ngOnInit(){
+    
 
     this.activatedRoute.params.subscribe(async (params: any) => {
       try {
@@ -37,7 +38,7 @@ export class ClasesAlumnoComponent {
 
 
         this.arrUsuarioClases = await this.clasesAlumnoService.getClasesByUsuarioId(id);
-        
+        console.log(this.arrUsuarioClases)
         // Recuperamos los datos de los usuarios y los guardamos en un array
         for (const clase of this.arrUsuarioClases) {
           const profesorId = clase.profesor_id;
@@ -82,7 +83,7 @@ export class ClasesAlumnoComponent {
             lat: 0,
             lon: 0,
             activo: true,
-            fechas: this.fechas
+            fechas: this.fechas -1
           });
         }
         this.uniqueArrDatosClases = this.arrDatosClases.reduce((acc, current) => {
@@ -119,8 +120,8 @@ export class ClasesAlumnoComponent {
       }
     });
   }
-
   isEmptyProfesores(): boolean {
+    
     const isEmpty = !this.arrProfesores || this.arrProfesores.length === 0;
     return isEmpty;
   }

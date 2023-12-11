@@ -95,6 +95,7 @@ export class PeticionCardComponent {
               this.router.navigate([''])
             }, 2500);
           })
+          this.peticionClasesServices.insertarPrimeraClase(profesorId,usuarioId,especialidadId)
 
           .catch((error) => {
             Swal.fire({

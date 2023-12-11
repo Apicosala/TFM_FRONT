@@ -58,6 +58,10 @@ export class ClasesService {
     return lastValueFrom(this.httpClient.post<IClases>(`${this.baseUrl}agenda/${profesorId}/clases`, { alumno_id: alumnoId, fecha: fecha, especialidades_id: especialidadId }))
   }
 
+  insertarPrimeraClase(profesorId:number, alumnoId:number, especialidadId:number){
+    return lastValueFrom(this.httpClient.post<IClases>(`${this.baseUrl}firstClass/${profesorId}/clases`, { alumno_id: alumnoId, especialidades_id: especialidadId }))
+  }
+
 // Método para insertar opinión de alumno
   insertarOpinionAlumno(profesorId: number, alumnoId: number, puntuacion: number, comentarios: string): Promise<IValoracion> {
     const data = {

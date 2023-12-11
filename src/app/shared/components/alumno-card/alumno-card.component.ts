@@ -66,7 +66,7 @@ export class AlumnoCardComponent {
 
 
         // Obtenemos el total de clases del alumno.
-        this.totalClases = clasesAlumno.length;
+        this.totalClases = clasesAlumno.length-1;
 
       } catch (error) {
         console.log(error);
