@@ -16,6 +16,7 @@ export class ClasesAlumnoComponent {
   arrUsuarioClases: SolicitudClase[] = [];
   arrDatosClases: any[] = [];
   arrProfesores: any[] = [];
+  uniqueArrDatosClases:any[]=[]
 
 
   clasesService = inject(ClasesService)
@@ -79,6 +80,23 @@ export class ClasesAlumnoComponent {
             activo: true
           });
         }
+        this.uniqueArrDatosClases = this.arrDatosClases.reduce((acc, current) => {
+          // Verifica si ya existe un objeto con los mismos campos clave
+          const existingObject = acc.find(
+            (obj:any) =>
+              obj.alumno_id === current.alumno_id &&
+              obj.profesor_id === current.profesor_id &&
+              obj.especialidades_id === current.especialidades_id
+          );
+        
+          if (!existingObject) {
+            // Si no existe, agrégalo al array acumulado
+            acc.push(current);
+          }
+        
+          return acc;
+        }, []);
+        console.log(this.uniqueArrDatosClases)
       } catch (error) {
         alert(error);
       }

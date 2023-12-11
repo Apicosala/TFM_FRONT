@@ -1,5 +1,5 @@
 <main [ngClass]="{'hide-element': isEmptyProfesores()}">
-    <div *ngFor="let clase of arrDatosClases">
+    <div *ngFor="let clase of uniqueArrDatosClases">
         <app-clases-card [infoUser]="clase"></app-clases-card>
     </div>
 </main>
