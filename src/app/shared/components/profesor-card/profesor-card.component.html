@@ -64,7 +64,14 @@
                     <svg height="21" viewBox="0 0 64 64" width="21"><path d="m62 25.2h-22.9l-7.1-22.2-7.1 22.2h-22.9l18.5 13.7-7 22.1 18.5-13.7 18.5 13.7-7.1-22.2z" fill="#ffce31"/></svg>
                 </h3>
                 </ng-container>
-                <h3 class="h3__style ms-3">{{miProfesor.puntuacion}}</h3>
+                <div>
+                    <h3 class="h3__style ms-3" *ngIf="!esNaN(miProfesor.puntuacion); else noValorado">
+                      {{ miProfesor.puntuacion }}
+                    </h3>
+                    <ng-template #noValorado>
+                      <p>Este profesor no ha sido valorado.</p>
+                    </ng-template>
+                  </div>
                 </div>
                 <button class="btn-opacity-1" [routerLink]="['/detalles',miProfesor.id]"[queryParams]="{ esp:miEspecialidad }">Detalles</button>
             </div>
