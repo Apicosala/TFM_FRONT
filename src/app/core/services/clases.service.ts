@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Observable, last, lastValueFrom } from 'rxjs';
 import { IClases } from '../models/datosClases.interface';
 import { SolicitudClase } from '../models/peticion.interface';
 import { IValoracion } from '../models/valoracion.interface';
@@ -101,8 +101,8 @@ export class ClasesService {
   };
    
   // Método para borrar las clases de un profesor.
-  borrarClases(profesorId: number, alumnoId: number, especialidadId: number, fecha: string): Promise<any> {
-    return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}clases/${profesorId}&${alumnoId}&${especialidadId}&${fecha}`)
-    )
-  }
+  borrarClases(id: number): Promise<any> {
+    const url = `${this.baseUrl}clases/${id}`;
+    return lastValueFrom(this.httpClient.delete<any>(url));
+}
 }

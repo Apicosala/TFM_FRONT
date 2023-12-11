@@ -182,7 +182,6 @@ export class ClasesCardComponent {
   };
 
   terminarClases() {
-    console.log(this.profesorId, this.alumnoId, this.especialidadId)
     this.clasesService.terminarClases(this.profesorId, this.alumnoId, this.especialidadId)
       .then((response: any) => {
         console.log(response)
@@ -193,8 +192,7 @@ export class ClasesCardComponent {
   }
 
   borrarClases() {
-    console.log(this.profesorId, this.alumnoId, this.especialidadId, this.fecha)
-    this.clasesService.borrarClases(this.profesorId, this.alumnoId, this.especialidadId, this.fecha)
+    this.clasesService.borrarClases(this.infoUser.id)
       .then((response: any) => {
         Swal.fire({
           title: 'Clases terminadas',
@@ -216,7 +214,7 @@ export class ClasesCardComponent {
   terminarYBorrarClases() {
     this.terminarClases();
     this.borrarClases();
-    window.location.reload();
+    this.router.navigate(['/home'])
   }
         
  }
