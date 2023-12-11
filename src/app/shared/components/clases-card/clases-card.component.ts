@@ -53,12 +53,9 @@ export class ClasesCardComponent {
       try {
         let id = params.usuarioId;
         this.arrUsuarioClases = await this.alumnosClasesServices.getClasesByUsuarioId(id);
-
-        for (const clase of this.arrUsuarioClases) {
-
-          this.profesorId = clase.profesor_id;
-          this.alumnoId = clase.alumno_id;
-          this.especialidadId = clase.especialidades_id;
+          this.profesorId = this.infoUser.profesor_id;
+          this.alumnoId = this.infoUser.alumno_id;
+          this.especialidadId = this.infoUser.especialidades_id;
 
           // obtenemos la especialidad
           const result = await this.clasesService.getEspecialidadesByProfesorId(this.profesorId);
@@ -70,9 +67,10 @@ export class ClasesCardComponent {
           userResult = await this.clasesService.getDatosUsuario(this.esAlumno==true?this.profesorId:this.alumnoId);
           this.usuario = userResult[0];
           // Obtenemos fechas de las clases
-          const dateResult = await this.clasesService.getFechaByClases(this.profesorId, this.alumnoId, this.especialidadId);
+          const dateResult = await this.clasesService.getFechaByClases(this.infoUser.profesor_id, this.infoUser.alumno_id, this.infoUser.especialidades_id);
           this.fecha = dateResult[dateResult.length - 1].fecha;
           this.fechas = dateResult.length;
+          
 
           try {
             const response = await this.clasesService.getPuntuaciones(this.infoUser.id, this.alumnoId);
@@ -86,7 +84,6 @@ export class ClasesCardComponent {
             console.error('Error al obtener puntuaciones:', error);
             this.isPuntuacion = false;
           }
-        }
       } catch (error) {
 
       };

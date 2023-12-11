@@ -17,6 +17,7 @@ export class ClasesAlumnoComponent {
   arrDatosClases: any[] = [];
   arrProfesores: any[] = [];
   uniqueArrDatosClases:any[]=[]
+  fechas:number = 0
 
 
   clasesService = inject(ClasesService)
@@ -36,12 +37,15 @@ export class ClasesAlumnoComponent {
 
 
         this.arrUsuarioClases = await this.clasesAlumnoService.getClasesByUsuarioId(id);
-
+        
         // Recuperamos los datos de los usuarios y los guardamos en un array
         for (const clase of this.arrUsuarioClases) {
-          let profesorId = clase.profesor_id;
-          let alumnoId = clase.alumno_id;
-
+          const profesorId = clase.profesor_id;
+          const alumnoId = clase.alumno_id;
+          const especialidadId =clase.especialidades_id
+          const clasesAlumno = this.arrUsuarioClases.filter(clase => clase.alumno_id === alumnoId && clase.especialidades_id === especialidadId);
+          this.fechas = clasesAlumno.length;
+          
           const result = await this.clasesAlumnoService.getProfesorById(profesorId);
           this.arrProfesores.push(result);
 
@@ -77,26 +81,39 @@ export class ClasesAlumnoComponent {
             experiencia: 0,
             lat: 0,
             lon: 0,
-            activo: true
+            activo: true,
+            fechas: this.fechas
           });
         }
         this.uniqueArrDatosClases = this.arrDatosClases.reduce((acc, current) => {
-          // Verifica si ya existe un objeto con los mismos campos clave
-          const existingObject = acc.find(
-            (obj:any) =>
+          // Encuentra todos los objetos con los mismos campos clave
+          const matchingObjects = acc.filter(
+            (obj: any) =>
               obj.alumno_id === current.alumno_id &&
               obj.profesor_id === current.profesor_id &&
               obj.especialidades_id === current.especialidades_id
           );
         
-          if (!existingObject) {
-            // Si no existe, agrégalo al array acumulado
+          if (matchingObjects.length === 0) {
+            // Si no hay coincidencias, simplemente agrega el objeto actual
             acc.push(current);
+          } else {
+            // Si hay coincidencias, encuentra el objeto con el id más alto
+            const maxIdObject = matchingObjects.reduce((maxObj:any, obj:any) =>
+              obj.id > maxObj.id ? obj : maxObj
+            );
+        
+            // Si el id del objeto actual es mayor, reemplázalo
+            if (current.id > maxIdObject.id) {
+              const index = acc.findIndex(
+                (obj:any) => obj.id === maxIdObject.id
+              );
+              acc[index] = current;
+            }
           }
         
           return acc;
         }, []);
-        console.log(this.uniqueArrDatosClases)
       } catch (error) {
         alert(error);
       }

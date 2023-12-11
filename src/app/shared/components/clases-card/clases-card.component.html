@@ -8,7 +8,7 @@
     <!-- Datos en el centro -->
     <div class="col-md-5 d-flex align-items-center">
       <div class="card-body d-flex flex-column align-items-center justify-content-center">
-        <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 3rem;">{{infoUser.usuario.especialidad}}</h1>
+        <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-size: 3rem;">{{infoUser.especialidad}}</h1>
         <h3 class="card-profesor estilo mt-3">{{infoUser.usuario.nombre}} {{infoUser.usuario.apellidos}}</h3>
         <div class="flex-row">
           <span class=" estilo">Email: </span>
@@ -20,7 +20,7 @@
         </div>
         <div class="flex-row">
           <span class=" estilo">Cantidad total de clases: </span>
-          <span>{{fechas}}</span>
+          <span>{{infoUser.fechas}}</span>
         </div>
         <div class="flex-row">
           <span class=" font-weight-bold estilo">Última clase agendada: </span>
